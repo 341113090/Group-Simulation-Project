@@ -39,26 +39,44 @@ public class Plant extends Actor
         
     }
     
+    /**
+     * returns the health of plant
+     */
     public int getHealth(){
         return health;
     }
     
+    /**
+     * returns the health given by the plant
+     */
     public int giveHealth(){
         return healthGiven;
     }
     
+    /**
+     * returns the number of seeds of the plant
+     */
     public int getSeeds(){
         return totalSeeds;
     }
     
+    /**
+     * return the toughness of the plant
+     */
     public int getToughness(){
         return toughness;
     }
     
+    /**
+     * returns whether the plant is toxic or not
+     */
     public boolean isToxic(){
         return isToxic;
     }
     
+    /**
+     * returns whether the plant wants animals to eat it to carry seeds or not
+     */
     public boolean wantsCarry(){
         return wantsCarry;
     }
