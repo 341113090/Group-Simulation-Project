@@ -24,15 +24,26 @@ public class Plant extends Actor
     protected int fertility;
     protected boolean isToxic;
     protected boolean wantsCarry;
-    
     //getter not needed
     protected int healthLimit;
     protected int rateOfGrowth;
     protected int selfHealSpeed;
+    protected StatBar hpBar;
         
+    public Plant()
+    {
+        hpBar = new StatBar(health,health,this,48,4,36,Color.GREEN,Color.BLACK,false,Color.RED,1);
+    }
+    
+    public void addedToWorld (World w)
+    {
+        w.addObject (hpBar, getX(), getY());
+        hpBar.update(health);
+    }
+    
     public void act()
     {
-        // Add your action code here.
+        hpBar.update(health);
     }
     
     public void die(){
