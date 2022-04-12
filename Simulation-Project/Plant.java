@@ -47,7 +47,9 @@ public class Plant extends Actor
     }
     
     public void die(){
-        
+        if(health == 0){
+            getWorld().removeObject(this);
+        }
     }
     
     /**
