@@ -1,35 +1,21 @@
 #Greenfoot project file
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-editor.fx.0.height=900
-editor.fx.0.width=1440
+class.Herbivore.image=elephant.png
+dependency1.from=Plant
+dependency1.to=SuperStatBar
+dependency1.type=UsesDependency
+dependency2.from=AnimationManager
+dependency2.to=Animation
+dependency2.type=UsesDependency
+dependency3.from=AnimationManager
+dependency3.to=Coordinate
+dependency3.type=UsesDependency
+editor.fx.0.height=0
+editor.fx.0.width=0
 editor.fx.0.x=0
 editor.fx.0.y=0
-height=708
-=======
-editor.fx.0.height=1076
-editor.fx.0.width=1678
-editor.fx.0.x=-7
-editor.fx.0.y=-7
-height=1076
->>>>>>> Stashed changes
-package.numDependencies=0
-package.numTargets=8
-=======
-dependency1.from=AnimationManager
-dependency1.to=Animation
-dependency1.type=UsesDependency
-dependency2.from=Coordinate
-dependency2.to=Coordinate
-dependency2.type=UsesDependency
-editor.fx.0.height=885
-editor.fx.0.width=1381
-editor.fx.0.x=-6
-editor.fx.0.y=-6
 height=885
-package.numDependencies=2
-package.numTargets=22
->>>>>>> Stashed changes
+package.numDependencies=3
+package.numTargets=21
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -40,7 +26,7 @@ publish.title=
 publish.url=
 readme.height=60
 readme.name=@README
-readme.width=49
+readme.width=48
 readme.x=10
 readme.y=10
 simulation.speed=50
@@ -80,24 +66,24 @@ target13.width=120
 target13.x=0
 target13.y=0
 target14.height=70
-target14.name=Strawberry
+target14.name=AnimationManager
 target14.showInterface=false
 target14.type=ClassTarget
-target14.width=120
+target14.width=130
 target14.x=0
 target14.y=0
 target15.height=70
-target15.name=AnimationManager
+target15.name=SuperTextBox
 target15.showInterface=false
 target15.type=ClassTarget
-target15.width=130
+target15.width=120
 target15.x=0
 target15.y=0
 target16.height=70
-target16.name=SuperTextBox
+target16.name=Animation
 target16.showInterface=false
 target16.type=ClassTarget
-target16.width=120
+target16.width=130
 target16.x=0
 target16.y=0
 target17.height=70
@@ -108,90 +94,63 @@ target17.width=130
 target17.x=0
 target17.y=0
 target18.height=70
-target18.name=Animation
+target18.name=Good
 target18.showInterface=false
 target18.type=ClassTarget
-target18.width=130
+target18.width=120
 target18.x=0
 target18.y=0
 target19.height=70
-target19.name=Good
+target19.name=Herbivore
 target19.showInterface=false
 target19.type=ClassTarget
 target19.width=120
 target19.x=0
 target19.y=0
 target2.height=70
-<<<<<<< Updated upstream
-target2.name=SuperSmoothMover
-=======
 target2.name=PoisonIvy
->>>>>>> Stashed changes
 target2.showInterface=false
-target2.type=AbstractTarget
+target2.type=ClassTarget
 target2.width=130
 target2.x=0
 target2.y=0
 target20.height=70
-target20.name=Herbivore
+target20.name=SuperDisplayLabel
 target20.showInterface=false
 target20.type=ClassTarget
 target20.width=120
 target20.x=0
 target20.y=0
 target21.height=70
-target21.name=SuperDisplayLabel
+target21.name=MyWorld
 target21.showInterface=false
 target21.type=ClassTarget
 target21.width=120
 target21.x=0
 target21.y=0
-target22.height=70
-target22.name=Nightshade
-target22.showInterface=false
-target22.type=ClassTarget
-target22.width=120
-target22.x=0
-target22.y=0
 target3.height=70
-<<<<<<< Updated upstream
-target3.name=Animal
-=======
 target3.name=SimpleTimer
->>>>>>> Stashed changes
 target3.showInterface=false
 target3.type=ClassTarget
 target3.width=120
 target3.x=0
 target3.y=0
 target4.height=70
-<<<<<<< Updated upstream
-target4.name=Harmful
-=======
 target4.name=SuperSmoothMover
->>>>>>> Stashed changes
 target4.showInterface=false
 target4.type=AbstractTarget
 target4.width=130
 target4.x=0
 target4.y=0
 target5.height=70
-<<<<<<< Updated upstream
-target5.name=Good
-=======
 target5.name=Harmful
->>>>>>> Stashed changes
 target5.showInterface=false
 target5.type=ClassTarget
 target5.width=120
 target5.x=0
 target5.y=0
 target6.height=70
-<<<<<<< Updated upstream
-target6.name=MyWorld
-=======
 target6.name=SuperStatBar
->>>>>>> Stashed changes
 target6.showInterface=false
 target6.type=ClassTarget
 target6.width=120
@@ -205,23 +164,12 @@ target7.width=120
 target7.x=0
 target7.y=0
 target8.height=70
-<<<<<<< Updated upstream
-target8.name=Herbivore
-=======
 target8.name=MainWorld
->>>>>>> Stashed changes
 target8.showInterface=false
 target8.type=ClassTarget
 target8.width=120
 target8.x=0
 target8.y=0
-<<<<<<< Updated upstream
-version=3.0.0
-width=1076
-world.lastInstantiated=MyWorld
-xPosition=131
-yPosition=56
-=======
 target9.height=70
 target9.name=Plant
 target9.showInterface=false
@@ -234,4 +182,3 @@ width=1381
 world.lastInstantiated=MainWorld
 xPosition=0
 yPosition=0
->>>>>>> Stashed changes

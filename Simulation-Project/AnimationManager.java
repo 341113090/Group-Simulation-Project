@@ -53,7 +53,7 @@ public class AnimationManager
      * @param frameHeight    the vertical tile size
      * @return GreenfootImage   the resulting image
      */
-    private static GreenfootImage getSlice (GreenfootImage spriteSheet, int xPos, int yPos, int frameWidth, int frameHeight)
+    public static GreenfootImage getSlice (GreenfootImage spriteSheet, int xPos, int yPos, int frameWidth, int frameHeight)
     {
         if (frameWidth > spriteSheet.getWidth() || frameHeight > spriteSheet.getHeight()){
 

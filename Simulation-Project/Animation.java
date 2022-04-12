@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 
 class Animation {
+    private String name;
     private GreenfootImage[] nonDirectionalImages;
 
     private boolean directional;
@@ -16,7 +17,14 @@ class Animation {
      * @param terminal  true if this animation is not intended to repeat
      */
 
+    public Animation (GreenfootImage[] images, String _name){
+        this.directional = false;
+        nonDirectionalImages = images;
 
+        directions = 1;
+        name = _name;   
+    }
+    
     public Animation (GreenfootImage[] images){
         this.directional = false;
         nonDirectionalImages = images;
@@ -38,6 +46,21 @@ class Animation {
 
     public GreenfootImage[] getNonDirectionalImages (){
         return nonDirectionalImages;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    public String setName(){
+        return name;
+    }
+    
+    public int getFrames(){
+        return nonDirectionalImages.length;
+    }
+    
+    public GreenfootImage getFrame(int frame){
+        return nonDirectionalImages[frame];
     }
 
 }

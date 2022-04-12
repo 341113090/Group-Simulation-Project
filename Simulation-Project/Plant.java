@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Nathan and Max
  * @version April 12, 2022
  */
-public class Plant extends Actor
+public class Plant extends Animator
 {
     //getter required
     protected int toughness;
