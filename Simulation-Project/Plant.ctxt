@@ -1,6 +1,10 @@
 #BlueJ class context
 comment0.target=Plant
+<<<<<<< HEAD
 comment0.text=\n\ Plants\ are\ eaten\ by\ animals\ and\ provide\ them\ with\ nutrients.\ Plants\ also\ try\ and\ \n\ survive\ until\ the\ end\ of\ the\ day\ so\ that\ they\ can\ reproduce.\ Poisonous\ plants\ \n\ reproduce\ by\ surviving\ and\ edible\ plants\ reproduce\ by\ having\ their\ seeds\ eaten.\n\ \n\ @Nathan\ and\ Max\n\ @April\ 12,\ 2022\n
+=======
+comment0.text=\r\n\ Plants\ are\ eaten\ by\ animals\ and\ provide\ them\ with\ nutrients.\ Plants\ also\ try\ and\ \r\n\ survive\ until\ the\ end\ of\ the\ day\ so\ that\ they\ can\ reproduce.\ Poisonous\ plants\ \r\n\ reproduce\ by\ surviving\ and\ edible\ plants\ reproduce\ by\ having\ their\ seeds\ eaten.\r\n\ \r\n\ @author\ Nathan\ and\ Max\r\n\ @version\ April\ 12,\ 2022\r\n
+>>>>>>> 46497316822678f476ddfde71c721acf7325ae16
 comment1.params=
 comment1.target=void\ act()
 comment2.params=

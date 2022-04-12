@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Animal extends SuperSmoothMover
 {
-    public enum State{Waiting, Searching, Attacking}
+    public enum State{Waiting, Searching, Attacking, Running}
     
+    private State state;
     
     /**
      * Act - do whatever the Animal wants to do. This method is called whenever
@@ -18,5 +19,30 @@ public class Animal extends SuperSmoothMover
     public void act()
     {
         // Add your action code here.
+        // Super basic awful statemanager
+        
+        switch (state){
+            case Waiting:
+                Waiting();
+                break;
+            case Searching:
+                Searching();
+                break;
+        }
+        
+        Behaviour();
+    }
+    
+    protected void Behaviour(){
+        
+    }
+    
+    ///// STATES /////
+    protected void Waiting(){
+        
+    }
+    
+    protected void Searching(){
+        
     }
 }
