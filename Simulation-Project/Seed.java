@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Seed extends Good
+public class Seed extends Actor
 {
     /**
      * Act - do whatever the Seed wants to do. This method is called whenever

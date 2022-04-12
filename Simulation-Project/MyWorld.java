@@ -8,7 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    private int dayNumber;
+    //add number of animal subclasses when they're all figured out
+    private int numCherry;
+    private int numPoisonIvy;
     /**
      * Constructor for objects of class MyWorld.
      * 
