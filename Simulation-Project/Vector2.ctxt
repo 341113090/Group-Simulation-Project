@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Vector2
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Vector2\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=_x\ _y
+comment1.target=Vector2(double,\ double)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Vector2\r\n
+comment2.params=
+comment2.target=double\ getX()
+comment3.params=
+comment3.target=double\ getY()
+comment4.params=_x
+comment4.target=void\ setX(double)
+comment5.params=_y
+comment5.target=void\ setY(double)
+comment6.params=v
+comment6.target=double\ getDistanceTo(Vector2)
+numComments=7
