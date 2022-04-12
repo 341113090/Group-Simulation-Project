@@ -4,7 +4,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Vector2  
+public class Coordinate  
 {
     // instance variables - replace the example below with your own
     private double x;
@@ -13,7 +13,7 @@ public class Vector2
     /**
      * Constructor for objects of class Vector2
      */
-    public Vector2(double _x, double _y)
+    public Coordinate(double _x, double _y)
     {
         x = _x;
         y = _y;
@@ -36,7 +36,7 @@ public class Vector2
     }
     
     ///// Functions /////
-    public double getDistanceTo(Vector2 v){
+    public double getDistanceTo(Coordinate v){
         return Math.sqrt(Math.pow(getX()-v.getX(),2)+Math.pow(getY()-v.getY(),2));
 
     }
