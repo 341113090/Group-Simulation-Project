@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SuperSpeechBubble
+comment0.text=\r\n\ WORK\ IN\ PROGRESS\ -\ INCOMPLETE\!\r\n\ \r\n\ @author\ Jordan\ Cohen\r\n\ @version\ Feb\ 2022\r\n
+comment1.params=owner\ offset\ width\ height\ stemHeight\ stemStart\ text\ facingRight\ isThought
+comment1.target=SuperSpeechBubble(greenfoot.Actor,\ int,\ int,\ int,\ int,\ int,\ java.lang.String,\ boolean,\ boolean)
+comment2.params=w
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=width\ height\ stemHeight\ stemStart\ text\ facingRight\ isThought
+comment4.target=greenfoot.GreenfootImage\ drawBubble(int,\ int,\ int,\ int,\ java.lang.String,\ boolean,\ boolean)
+numComments=5
