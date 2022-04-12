@@ -1,7 +1,20 @@
 #BlueJ class context
 comment0.target=Plant
-comment0.text=\r\n\ Plants\ are\ eaten\ by\ animals\ and\ provide\ them\ with\ nutrients.\ Plants\ also\ try\ and\ \r\n\ survive\ until\ the\ end\ of\ the\ day\ so\ that\ they\ can\ reproduce.\ Poisonous\ plants\ \r\n\ reproduce\ by\ surviving\ and\ edible\ plants\ reproduce\ by\ having\ their\ seeds\ eaten.\r\n\ \r\n\ @Nathan\ and\ Max\r\n\ @April\ 12,\ 2022\r\n
+comment0.text=\n\ Plants\ are\ eaten\ by\ animals\ and\ provide\ them\ with\ nutrients.\ Plants\ also\ try\ and\ \n\ survive\ until\ the\ end\ of\ the\ day\ so\ that\ they\ can\ reproduce.\ Poisonous\ plants\ \n\ reproduce\ by\ surviving\ and\ edible\ plants\ reproduce\ by\ having\ their\ seeds\ eaten.\n\ \n\ @Nathan\ and\ Max\n\ @April\ 12,\ 2022\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Plant\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment2.params=
+comment2.target=void\ die()
+comment3.params=
+comment3.target=int\ getHealth()
+comment4.params=
+comment4.target=int\ giveHealth()
+comment5.params=
+comment5.target=int\ getSeeds()
+comment6.params=
+comment6.target=int\ getToughness()
+comment7.params=
+comment7.target=boolean\ isToxic()
+comment8.params=
+comment8.target=boolean\ wantsCarry()
+numComments=9
