@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Plant here.
+ * Plants are eaten by animals and provide them with nutrients. Plants also try and 
+ * survive until the end of the day so that they can reproduce. Poisonous plants 
+ * reproduce by surviving and edible plants reproduce by having their seeds eaten.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Nathan and Max
+ * @April 12, 2022
  */
 public class Plant extends Actor
 {
