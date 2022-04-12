@@ -28,11 +28,11 @@ public class Plant extends Actor
     protected int healthLimit;
     protected int rateOfGrowth;
     protected int selfHealSpeed;
-    protected StatBar hpBar;
+    protected SuperStatBar hpBar;
         
     public Plant()
     {
-        hpBar = new StatBar(health,health,this,48,4,36,Color.GREEN,Color.BLACK,false,Color.RED,1);
+        hpBar = new SuperStatBar(health,health,this,48,4,36,Color.GREEN,Color.BLACK,false,Color.RED,1);
     }
     
     public void addedToWorld (World w)
@@ -91,12 +91,4 @@ public class Plant extends Actor
     public boolean wantsCarry(){
         return wantsCarry;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
