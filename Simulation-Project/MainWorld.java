@@ -11,8 +11,8 @@ public class MainWorld extends World
     private int dayNumber;
     private int numCherry;
     private int numPoisonIvy;
-    private int startNumCherry = 5;
-    private int startNumPoisonIvy = 5;
+    private int startNumCherry = 4;
+    private int startNumPoisonIvy = 9;
     /**
      * Constructor for objects of class MainWorld.
      * 
