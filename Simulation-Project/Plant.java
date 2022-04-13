@@ -22,6 +22,9 @@ public class Plant extends Animator
     protected int healthLimit;
     protected int rateOfGrowth;
     protected int selfHealSpeed;
+    protected boolean isGettingEaten;
+    ////////////////////Need to instalize all these vars above in the subclass
+    
     protected SuperStatBar hpBar;
         
     //misc
@@ -29,6 +32,7 @@ public class Plant extends Animator
     public Plant()
     {
         hpBar = new SuperStatBar(health,health,this,48,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
+        isGettingEaten = false;
     }
     
     public void addedToWorld (World w)
@@ -44,6 +48,9 @@ public class Plant extends Animator
     public void act()
     {
         hpBar.update(health);
+        if(!isGettingEaten){
+            growing();
+        }
         deathCheck();
     }
     
@@ -62,6 +69,7 @@ public class Plant extends Animator
      * the amount of health the herbervoire regenerates.
      */
     public int takeDamage(){
+        isGettingEaten = true;
         if(health>=healthPerTick){
             health-=healthPerTick;//temporary, will depend on plant health
             return healthPerTick;
@@ -76,7 +84,9 @@ public class Plant extends Animator
      * This method is called when the plant is not being eaten and it is healing
      */
     public void growing(){
-        
+        if(health<=healthLimit-selfHealSpeed){ // so it doesn't go over limit
+            health += selfHealSpeed;
+        }
     }
     
     
@@ -122,5 +132,13 @@ public class Plant extends Animator
      */
     public boolean wantsCarry(){
         return wantsCarry;
+    }
+    
+    /**
+     * Setter method for if the plant is being eaten or not. Use this method in
+     * the herbovoire class
+     */
+    public void setEating(boolean a){
+        isGettingEaten = a; 
     }
 }
