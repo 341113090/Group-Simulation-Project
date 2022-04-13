@@ -18,6 +18,7 @@ public class Herbivore extends Animal
      */
     public void act()
     {
+        super.act();
         // Add your action code here.
     }
 }
