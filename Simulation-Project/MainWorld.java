@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.Random;
 /**
  * Write a description of class MainWorld here.
  * 
@@ -11,6 +11,8 @@ public class MainWorld extends World
     private int dayNumber;
     private int numCherry;
     private int numPoisonIvy;
+    private int startNumCherry = 5;
+    private int startNumPoisonIvy = 5;
     /**
      * Constructor for objects of class MainWorld.
      * 
@@ -19,7 +21,20 @@ public class MainWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        
+        for(int i = 0; i<startNumCherry; i++)
+        {
+            Random random = new Random();
+            int xx = 50 + random.nextInt(500);
+            int yy = 50+ random.nextInt(300);
+            addObject(new Cherry(), xx, yy);
+        }
+        for(int i = 0; i<startNumPoisonIvy; i++)
+        {
+            Random random = new Random();
+            int xx = 50 + random.nextInt(500);
+            int yy = 50+ random.nextInt(300);
+            addObject(new PoisonIvy(), xx, yy);
+        }
         addObject(new Herbivore(), 100, 100);
     }
 }

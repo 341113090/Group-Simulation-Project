@@ -28,7 +28,7 @@ public class Plant extends Animator
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
     {
-        hpBar = new SuperStatBar(health,health,this,48,4,36,Color.GREEN,Color.BLACK,false,Color.RED,1);
+        hpBar = new SuperStatBar(health,health,this,48,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
     }
     
     public void addedToWorld (World w)
