@@ -14,7 +14,7 @@ public class Plant extends Animator
     protected int toughness;
     protected int totalSeeds;
     protected int health;
-    protected int healthGiven;
+    protected int healthPerTick;
     protected int fertility;
     protected boolean isToxic;
     protected boolean wantsCarry;
@@ -22,7 +22,6 @@ public class Plant extends Animator
     protected int healthLimit;
     protected int rateOfGrowth;
     protected int selfHealSpeed;
-    protected int healthPerTick;
     protected SuperStatBar hpBar;
         
     //misc
@@ -49,12 +48,19 @@ public class Plant extends Animator
     }
     
     //next methods actually are being used
+    /**
+     * This method checks if the plant has no more health and removes itself.
+     */
     public void deathCheck(){
         if(health == 0){
             getWorld().removeObject(this);
         }
     }
     
+    /**
+     * The method for how much damage is being taken when being eaten and returns
+     * the amount of health the herbervoire regenerates.
+     */
     public int takeDamage(){
         if(health>=healthPerTick){
             health-=healthPerTick;//temporary, will depend on plant health
@@ -65,6 +71,14 @@ public class Plant extends Animator
             return lastHealth;
         }
     }
+    
+    /**
+     * This method is called when the plant is not being eaten and it is healing
+     */
+    public void growing(){
+        
+    }
+    
     
     
     //these methods are all getters for other classes    
@@ -79,7 +93,7 @@ public class Plant extends Animator
      * returns the health given by the plant
      */
     public int giveHealth(){
-        return healthGiven;
+        return healthPerTick;
     }
     
     /**
