@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Cherry extends Good
+public class Cherry extends Plant
 {
     /**
      * Act - do whatever the Cherry wants to do. This method is called whenever

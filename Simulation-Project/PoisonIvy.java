@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PoisonIvy here.
+ * Write a description of class Harmful here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PoisonIvy extends Harmful
+public class PoisonIvy extends Plant
 {
     /**
-     * Act - do whatever the PoisonIvy wants to do. This method is called whenever
+     * Act - do whatever the Harmful wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
