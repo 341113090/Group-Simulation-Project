@@ -2,7 +2,7 @@
 comment0.target=Animation
 comment1.params=images\ _name
 comment1.target=Animation(greenfoot.GreenfootImage[],\ java.lang.String)
-comment1.text=\r\n\ Constructor\ for\ directional\ animations\ -\ should\ be\ a\ 2d\ array\ of\ GreenfootImage\ with\r\n\ 4\ directions\ (dimension\ 1)\ and\ at\ least\ one\ image\ per\ direction\ (dimension\ 2)\r\n\r\n\ @param\ images\ \ \ \ 2d\ array\ of\ images\ as\ described\ above\r\n\ @param\ terminal\ \ true\ if\ this\ animation\ is\ not\ intended\ to\ repeat\r\n
+comment1.text=\n\ Constructor\ for\ directional\ animations\ -\ should\ be\ a\ 2d\ array\ of\ GreenfootImage\ with\n\ 4\ directions\ (dimension\ 1)\ and\ at\ least\ one\ image\ per\ direction\ (dimension\ 2)\n\n\ @param\ images\ \ \ \ 2d\ array\ of\ images\ as\ described\ above\n\ @param\ terminal\ \ true\ if\ this\ animation\ is\ not\ intended\ to\ repeat\n
 comment2.params=images
 comment2.target=Animation(greenfoot.GreenfootImage[])
 comment3.params=images

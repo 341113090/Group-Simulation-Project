@@ -10,7 +10,7 @@ public class Animal extends Animator
 {
     public enum State{Waiting, Searching, Attacking, Running}
     
-    private State state;
+    protected State state;
     
     
     // Animal variables
