@@ -22,11 +22,14 @@ public class Plant extends Animator
     protected int healthLimit;
     protected int rateOfGrowth;
     protected int selfHealSpeed;
+    protected int healthPerTick;
     protected SuperStatBar hpBar;
         
+    //misc
+    protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
     {
-        hpBar = new SuperStatBar(health,health,this,48,4,36,Color.GREEN,Color.BLACK,false,Color.RED,1);
+        hpBar = new SuperStatBar(health,health,this,48,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
     }
     
     public void addedToWorld (World w)
@@ -42,14 +45,29 @@ public class Plant extends Animator
     public void act()
     {
         hpBar.update(health);
+        deathCheck();
     }
     
-    public void die(){
+    //next methods actually are being used
+    public void deathCheck(){
         if(health == 0){
             getWorld().removeObject(this);
         }
     }
     
+    public int takeDamage(){
+        if(health>=healthPerTick){
+            health-=healthPerTick;//temporary, will depend on plant health
+            return healthPerTick;
+        }else{
+            int lastHealth = health;
+            health = 0;
+            return lastHealth;
+        }
+    }
+    
+    
+    //these methods are all getters for other classes    
     /**
      * returns the health of plant
      */

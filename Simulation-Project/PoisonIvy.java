@@ -1,22 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Cherry here.
+ * Write a description of class Harmful here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Cherry extends Plant
+public class PoisonIvy extends Plant
 {
-    GreenfootImage cherry = AnimationManager.getSlice(Plants, 12, 1);
+    GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
     
-    public Cherry()
+    public PoisonIvy()
     {
-        this.setImage(cherry);
+        this.setImage(ivy);
     }
     
     /**
-     * Act - do whatever the Cherry wants to do. This method is called whenever
+     * Act - do whatever the Harmful wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
