@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Nathan and Max
  * @version April 12, 2022
  */
-public abstract class Plant extends Actor
+public class Plant extends Animator
 {
     //getter required
     protected int toughness;
@@ -45,10 +45,8 @@ public abstract class Plant extends Actor
     }
     
     public void die(){
-        if(health == 0)
-        {
-            World w = this.getWorld();
-            w.removeObject(this);
+        if(health == 0){
+            getWorld().removeObject(this);
         }
     }
     
@@ -93,10 +91,4 @@ public abstract class Plant extends Actor
     public boolean wantsCarry(){
         return wantsCarry;
     }
-    
-    /**
-     * Plant is getting eaten. Dependent on type of plant.
-     */
-    //public abstract void eaten();
-    
 }
