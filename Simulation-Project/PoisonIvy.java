@@ -9,10 +9,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PoisonIvy extends Plant
 {
     GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
-    
     public PoisonIvy()
     {
         this.setImage(ivy);
+        toughness = .8;//poison ivey is weaker than cherry
+        totalSeeds = 1;//poison ivey is less fertile
+        health = 200;
+        healthPerTick = 8;
+        isToxic = true;
+        wantsCarry = false;
+        //getter not needed
+        healthLimit = 100;
+        selfHealSpeed = 3;
     }
     
     /**

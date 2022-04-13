@@ -11,22 +11,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Plant extends Animator
 {
     //getter required
-    protected int toughness;
+    protected double toughness;
     protected int totalSeeds;
     protected int health;
     protected int healthPerTick;
-    protected int fertility;
     protected boolean isToxic;
     protected boolean wantsCarry;
     //getter not needed
     protected int healthLimit;
-    protected int rateOfGrowth;
     protected int selfHealSpeed;
     protected boolean isGettingEaten;
     ////////////////////Need to instalize all these vars above in the subclass
     
     protected SuperStatBar hpBar;
-        
     //misc
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
@@ -67,12 +64,17 @@ public class Plant extends Animator
     /**
      * The method for how much damage is being taken when being eaten and returns
      * the amount of health the herbervoire regenerates.
+     * 
+     * 
+     * Note: needs to take in percentage of health and determine if they should
+     * give a seed or not to the herbarvoire
      */
-    public int takeDamage(){
+    public double takeDamage(){
         isGettingEaten = true;
-        if(health>=healthPerTick){
-            health-=healthPerTick;//temporary, will depend on plant health
-            return healthPerTick;
+        double actualTick = healthPerTick*toughness;//might be a problem later for statbar
+        if(health>=actualTick){
+            health-=actualTick;//temporary, will depend on plant health
+            return actualTick;
         }else{
             int lastHealth = health;
             health = 0;
@@ -90,7 +92,7 @@ public class Plant extends Animator
     }
     
     
-    
+        
     //these methods are all getters for other classes    
     /**
      * returns the health of plant
@@ -116,7 +118,7 @@ public class Plant extends Animator
     /**
      * return the toughness of the plant
      */
-    public int getToughness(){
+    public double getToughness(){
         return toughness;
     }
     
