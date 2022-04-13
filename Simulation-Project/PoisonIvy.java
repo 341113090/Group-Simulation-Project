@@ -8,6 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PoisonIvy extends Plant
 {
+    GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
+    
+    public PoisonIvy()
+    {
+        this.setImage(ivy);
+    }
+    
     /**
      * Act - do whatever the Harmful wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

@@ -24,6 +24,8 @@ public class Plant extends Animator
     protected int selfHealSpeed;
     protected SuperStatBar hpBar;
         
+    //misc
+    protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
     {
         hpBar = new SuperStatBar(health,health,this,48,4,36,Color.GREEN,Color.BLACK,false,Color.RED,1);

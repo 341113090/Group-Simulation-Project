@@ -8,6 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cherry extends Plant
 {
+    GreenfootImage cherry = AnimationManager.getSlice(Plants, 12, 1);
+    
+    public Cherry()
+    {
+        this.setImage(cherry);
+    }
+    
     /**
      * Act - do whatever the Cherry wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
