@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Cherry extends Plant
 {
     private static int numCherries = 0;
-    GreenfootImage cherry = AnimationManager.getSlice(Plants, 12, 1);
+    GreenfootImage cherry = AnimationManager.getSlice(Plants, 13, 7);
     
     public Cherry()
     {
