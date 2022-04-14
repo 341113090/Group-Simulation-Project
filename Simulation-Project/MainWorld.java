@@ -36,7 +36,7 @@ public class MainWorld extends World
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
         //instantiate the textbox at the top
-        bigPlantLabel = new SuperTextBox(plantLabels,boringFont,this.getWidth()/2,false); 
+        bigPlantLabel = new SuperTextBox(plantLabels,boringFont,this.getWidth(),false); 
         //values for location of the textbox
         int tempY = bigPlantLabel.getImage().getHeight()/2;
         int tempX = bigPlantLabel.getImage().getWidth()/2;

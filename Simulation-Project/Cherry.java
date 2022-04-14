@@ -36,6 +36,14 @@ public class Cherry extends Plant
         numCherries = xx;
     }
     
+    public void deathCheck()
+    {
+        if(health == 0){
+            numCherries--;
+            getWorld().removeObject(this);
+        }
+    }
+    
     /**
      * Act - do whatever the Cherry wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

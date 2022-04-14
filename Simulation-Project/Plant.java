@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Nathan and Max
  * @version April 12, 2022
  */
-public class Plant extends Animator
+public abstract class Plant extends Animator
 {
     //getter required
     protected double toughness;
@@ -28,7 +28,7 @@ public class Plant extends Animator
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
     {
-        hpBar = new SuperStatBar(health,health,this,48,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
+        hpBar = new SuperStatBar(health,health,this,24,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
         isGettingEaten = false;
     }
     
@@ -55,11 +55,7 @@ public class Plant extends Animator
     /**
      * This method checks if the plant has no more health and removes itself.
      */
-    public void deathCheck(){
-        if(health == 0){
-            getWorld().removeObject(this);
-        }
-    }
+    public abstract void deathCheck();
     
     /**
      * The method for how much damage is being taken when being eaten and returns

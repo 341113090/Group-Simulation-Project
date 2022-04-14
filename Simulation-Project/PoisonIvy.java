@@ -35,6 +35,13 @@ public class PoisonIvy extends Plant
         numPoisonIvy = xx;
     }
 
+    public void deathCheck()
+    {
+        if(health == 0){
+            numPoisonIvy--;
+            getWorld().removeObject(this);
+        }
+    }
     
     /**
      * Act - do whatever the Harmful wants to do. This method is called whenever
