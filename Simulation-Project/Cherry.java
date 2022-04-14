@@ -13,8 +13,8 @@ public class Cherry extends Plant
     public Cherry()
     {
         this.setImage(cherry);
-        toughness = .4;//poison ivey is weaker than cherry
-        totalSeeds = 3;//poison ivey is less fertile
+        toughness = .4;
+        totalSeeds = 3;
         health = 200;
         healthPerTick = 8;
         isToxic = false;
