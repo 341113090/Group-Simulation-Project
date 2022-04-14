@@ -26,16 +26,23 @@ public class MainWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
+        //Set the chrry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);
+        //Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
+        //sets the indexes of the plant label to each of the cherry and ivy label
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
-        bigPlantLabel = new SuperTextBox(plantLabels,boringFont,this.getWidth(),false); 
+        //instantiate the textbox at the top
+        bigPlantLabel = new SuperTextBox(plantLabels,boringFont,this.getWidth()/2,false); 
+        //values for location of the textbox
         int tempY = bigPlantLabel.getImage().getHeight()/2;
         int tempX = bigPlantLabel.getImage().getWidth()/2;
+        //actually puts the textbox on the world
         addObject(bigPlantLabel, tempX, tempY);
+        //makes startNumCherry number of cherries on the screen in random locations
         for(int i = 0; i<startNumCherry; i++)
         {
             Random random = new Random();
@@ -43,6 +50,7 @@ public class MainWorld extends World
             int yy = bigPlantLabel.getImage().getHeight()/2 + 30 + random.nextInt(300);
             addObject(new Cherry(), xx, yy);
         }
+        //makes startNumCherry number of cherries on the screen in random locations
         for(int i = 0; i<startNumPoisonIvy; i++)
         {
             Random random = new Random();
@@ -50,6 +58,8 @@ public class MainWorld extends World
             int yy = 50+ random.nextInt(300);
             addObject(new PoisonIvy(), xx, yy);
         }
+        //update the label
+        updatePlantLabels();
     }
     
     /**
@@ -58,28 +68,17 @@ public class MainWorld extends World
      */
     public void act()
     {
-        /*
-        //Make an arraylist filled with cherries
-        ArrayList<Cherry> cherries = (ArrayList<Cherry>) this.getObjects(Cherry.class);
-        int numIterationsCherry = 0;
-        for(Cherry cherry : cherries)
-        {
-            //iterate through every cherry. For every cherry keep track of how many
-            numIterationsCherry++;
-            System.out.println(numIterationsCherry);
-        }
-        //current number of cherries is the number of iterations
-        numCherry = numIterationsCherry;
-        //Make an arraylist filled with ivy
-        ArrayList<PoisonIvy> ivies = (ArrayList<PoisonIvy>) this.getObjects(PoisonIvy.class);
-        int numIterationsIvy = 0;
-        for(PoisonIvy ivy : ivies)
-        {
-            //iterate through every ivy. For every ivy keep track of how many
-            numIterationsIvy++;
-            System.out.println(numIterationsIvy);
-        }
-        */
+        //update the plant label
+        updatePlantLabels();
+    }
+    
+    /**
+     * This code updates the plant labels whenever. Uses the same instantiating 
+     * code but just gets the new values from the cherry and poison ivy class 
+     * instead of just being 0
+     */
+    public void updatePlantLabels()
+    {
         numPoisonIvy = PoisonIvy.getNumPoisonIvy();
         numCherry = Cherry.getNumCherries();
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
