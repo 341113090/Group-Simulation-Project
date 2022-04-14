@@ -16,4 +16,8 @@ public class Carnivore extends Animal
     {
         // Add your action code here.
     }
+    
+    protected void Searching(){
+        
+    }
 }

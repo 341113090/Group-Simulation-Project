@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Animator extends SuperSmoothMover
 
 {
-    protected static int fps = 12;
+    protected static int fps = 6;
     
     protected Animation[] animations;
     private int curAnim; // index of current playing animation
@@ -34,7 +34,8 @@ public class Animator extends SuperSmoothMover
         if (playing){
             // Playing currently set animations
             timer++;
-            if (timer >= fps){
+            if (timer >= 60.0/(double)fps){
+                timer = 0;
                 curFrame++;
                 
                 // Reset frame timer to zero if at end of animation

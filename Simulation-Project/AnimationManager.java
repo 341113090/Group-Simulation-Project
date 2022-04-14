@@ -29,14 +29,10 @@ public class AnimationManager
      *
      */
     protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,int numCols, int numFrames, int width, int height){
-
+            
 
             // Had to rewrite this, I have no idea how you set this up tbh mr cohen
             GreenfootImage[] img1d = new GreenfootImage[numFrames];
-            //for (int frame = 0; frame < numFrames; frame++){
-                //System.out.println(spriteSheet + " frame: " + frame);
-              //  img1d[frame] = new GreenfootImage (getSlice(spriteSheet, startCol+(frame*width), startRow +(frame*height), width, height));
-            //}
             int frame = 0;
             for (int row = 0; row < numRows;row++){
                 for (int col = 0; col < numCols; col++){
@@ -46,6 +42,24 @@ public class AnimationManager
                 }
             }
             Animation anim = new Animation(img1d);
+            return anim;
+
+        
+    }
+    protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,int numCols, int numFrames, int width, int height, String name){
+
+
+            // Had to rewrite this, I have no idea how you set this up tbh mr cohen
+            GreenfootImage[] img1d = new GreenfootImage[numFrames];
+            int frame = 0;
+            for (int row = 0; row < numRows;row++){
+                for (int col = 0; col < numCols; col++){
+                    img1d[frame] = new GreenfootImage (getSlice(spriteSheet, startCol+(col*width), startRow +(row*height), width, height));
+                    frame++;
+                    if (frame >= numFrames) break;
+                }
+            }
+            Animation anim = new Animation(img1d, name);
             return anim;
 
         
