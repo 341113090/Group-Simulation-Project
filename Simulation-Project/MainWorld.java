@@ -25,7 +25,9 @@ public class MainWorld extends World
     public MainWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(600, 400, 1);
+        Cherry.setNumCherries(0);
+        PoisonIvy.setNumPoisonIvy(0);
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
         plantLabels[0] = cherryLabel;
@@ -56,6 +58,7 @@ public class MainWorld extends World
      */
     public void act()
     {
+        /*
         //Make an arraylist filled with cherries
         ArrayList<Cherry> cherries = (ArrayList<Cherry>) this.getObjects(Cherry.class);
         int numIterationsCherry = 0;
@@ -63,6 +66,7 @@ public class MainWorld extends World
         {
             //iterate through every cherry. For every cherry keep track of how many
             numIterationsCherry++;
+            System.out.println(numIterationsCherry);
         }
         //current number of cherries is the number of iterations
         numCherry = numIterationsCherry;
@@ -73,8 +77,11 @@ public class MainWorld extends World
         {
             //iterate through every ivy. For every ivy keep track of how many
             numIterationsIvy++;
+            System.out.println(numIterationsIvy);
         }
-        numPoisonIvy = numIterationsIvy;
+        */
+        numPoisonIvy = PoisonIvy.getNumPoisonIvy();
+        numCherry = Cherry.getNumCherries();
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
         plantLabels[0] = cherryLabel;

@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cherry extends Plant
 {
+    private static int numCherries = 0;
     GreenfootImage cherry = AnimationManager.getSlice(Plants, 12, 1);
     
     public Cherry()
     {
+        numCherries++;
         this.setImage(cherry);
         toughness = .4;
         totalSeeds = 3;
@@ -22,6 +24,16 @@ public class Cherry extends Plant
         //getter not needed
         healthLimit = 150;
         selfHealSpeed = 3;
+    }
+    
+    public static int getNumCherries()
+    {
+        return numCherries;
+    }
+    
+    public static void setNumCherries(int xx)
+    {
+        numCherries = xx;
     }
     
     /**

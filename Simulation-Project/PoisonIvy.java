@@ -8,9 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PoisonIvy extends Plant
 {
+    private static int numPoisonIvy = 0;
     GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
     public PoisonIvy()
     {
+        numPoisonIvy++;
         this.setImage(ivy);
         toughness = .8;//poison ivey is weaker than cherry
         totalSeeds = 1;//poison ivey is less fertile
@@ -22,6 +24,17 @@ public class PoisonIvy extends Plant
         healthLimit = 100;
         selfHealSpeed = 3;
     }
+    
+    public static int getNumPoisonIvy()
+    {
+        return numPoisonIvy;
+    }
+    
+    public static void setNumPoisonIvy(int xx)
+    {
+        numPoisonIvy = xx;
+    }
+
     
     /**
      * Act - do whatever the Harmful wants to do. This method is called whenever
