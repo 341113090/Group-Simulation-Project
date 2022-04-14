@@ -90,9 +90,7 @@ public class Plant extends Animator
             health += selfHealSpeed;
         }
     }
-    
-    
-        
+   
     //these methods are all getters for other classes    
     /**
      * returns the health of plant
