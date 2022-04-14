@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 class Animation {
     private String name;
-    private GreenfootImage[] nonDirectionalImages;
+    public GreenfootImage[] nonDirectionalImages;
 
     private boolean directional;
 
@@ -43,6 +43,10 @@ class Animation {
     //public GreenfootImage getOneImage (AnimatedCharacter.Direction d, int frame){
     //    return directionalImages[d.getDirection()][frame];
     //}
+    
+    public GreenfootImage getImage(int i){
+        return nonDirectionalImages[i];
+    }
 
     public GreenfootImage[] getNonDirectionalImages (){
         return nonDirectionalImages;

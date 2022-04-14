@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.target=Animator
-comment0.text=\n\ Animation\ system\ integrating\ Mr.\ Cohens\ Animation\ and\ AnimationManager\ classes\n\ \n\ @author\ (Lu-Wai)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Animation\ system\ integrating\ Mr.\ Cohens\ Animation\ and\ AnimationManager\ classes\r\n\ \r\n\ @author\ (Lu-Wai)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=Animator()
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Animator\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Animator\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\ \n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \n
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
 comment3.params=name
 comment3.target=void\ playAnimation(java.lang.String)
 comment4.params=index

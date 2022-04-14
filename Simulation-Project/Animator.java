@@ -11,7 +11,7 @@ public class Animator extends SuperSmoothMover
 {
     protected static int fps = 12;
     
-    private Animation[] animations;
+    protected Animation[] animations;
     private int curAnim; // index of current playing animation
     private int curFrame; // index of current frame
     private boolean playing;
@@ -32,7 +32,6 @@ public class Animator extends SuperSmoothMover
      */
     public void act(){
         if (playing){
-            
             // Playing currently set animations
             timer++;
             if (timer >= fps){
@@ -46,9 +45,12 @@ public class Animator extends SuperSmoothMover
                 }
             }
         }
+        
+        
     }
     
     public void playAnimation(String name){
+        playing = true;
         for (int i =0 ; i < animations.length; i++){
             if (animations[i].getName().equals(name)){
                 curAnim = i;
@@ -56,6 +58,7 @@ public class Animator extends SuperSmoothMover
         }
     }
     public void playAnimation(int index){
+        playing = true;
         if (index >= 0 && index < animations.length){
             curAnim = index;
         }

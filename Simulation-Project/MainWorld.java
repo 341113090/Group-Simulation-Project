@@ -13,9 +13,11 @@ public class MainWorld extends World
     ///// DAY NIGHT CYCLE /////
     private int dayNumber;
     private int currentTime;
-    private int dayLength;
-    private int nightLength;
+    private int dayLength = 600;
+    private int nightLength = 300;
+    private double maxDarkness = 100;
     
+    // Foreground object for night effects
     private Foreground fg;
     
     private int numCherry;
@@ -44,29 +46,35 @@ public class MainWorld extends World
             int yy = 50+ random.nextInt(300);
             addObject(new PoisonIvy(), xx, yy);
         }
+        
         addObject(new Herbivore(), 100, 100);
         fg = new Foreground();
-        addObject(fg,0,0);
-        drawNight();
+        addObject(fg,getWidth()/2,getHeight()/2);
     }
 
     
     public void act(){
-        
+        timeManager();
     }
     
     private void timeManager(){
         currentTime++;
         
         if (currentTime > dayLength){
+            double transparency = (double)(currentTime-dayLength)/(double)nightLength;
+            drawNight(transparency*maxDarkness);
             
+            if (currentTime > dayLength+nightLength) currentTime = 0;
+        }      else {
+            drawNight(0);
         }
     }
     
-    private GreenfootImage drawNight(){
+    private GreenfootImage drawNight(double transparency){
         GreenfootImage dark = new GreenfootImage (getWidth(), getHeight());
         dark.setColor(Color.BLACK);
         dark.fillRect(0,0,dark.getWidth(),dark.getHeight());
+        dark.setTransparency((int)transparency);
 
         fg.setImage(dark);
         return dark;
