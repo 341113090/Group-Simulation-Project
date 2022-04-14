@@ -13,6 +13,15 @@ public class Cherry extends Plant
     public Cherry()
     {
         this.setImage(cherry);
+        toughness = .4;
+        totalSeeds = 3;
+        health = 200;
+        healthPerTick = 8;
+        isToxic = false;
+        wantsCarry = false;
+        //getter not needed
+        healthLimit = 150;
+        selfHealSpeed = 3;
     }
     
     /**

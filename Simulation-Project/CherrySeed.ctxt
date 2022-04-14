@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=CherrySeed
+comment0.text=\n\ Write\ a\ description\ of\ class\ CherrySeed\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=totalActs
+comment1.target=CherrySeed(int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=int\ getSeeds()
+numComments=4

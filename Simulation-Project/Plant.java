@@ -11,25 +11,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Plant extends Animator
 {
     //getter required
-    protected int toughness;
+    protected double toughness;
     protected int totalSeeds;
     protected int health;
-    protected int healthGiven;
-    protected int fertility;
+    protected int healthPerTick;
     protected boolean isToxic;
     protected boolean wantsCarry;
     //getter not needed
     protected int healthLimit;
-    protected int rateOfGrowth;
     protected int selfHealSpeed;
-    protected int healthPerTick;
+    protected boolean isGettingEaten;
+    ////////////////////Need to instalize all these vars above in the subclass
+    
     protected SuperStatBar hpBar;
-        
     //misc
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
     {
         hpBar = new SuperStatBar(health,health,this,48,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
+        isGettingEaten = false;
     }
     
     public void addedToWorld (World w)
@@ -45,20 +45,36 @@ public class Plant extends Animator
     public void act()
     {
         hpBar.update(health);
+        if(!isGettingEaten){
+            growing();
+        }
         deathCheck();
     }
     
     //next methods actually are being used
+    /**
+     * This method checks if the plant has no more health and removes itself.
+     */
     public void deathCheck(){
         if(health == 0){
             getWorld().removeObject(this);
         }
     }
     
-    public int takeDamage(){
-        if(health>=healthPerTick){
-            health-=healthPerTick;//temporary, will depend on plant health
-            return healthPerTick;
+    /**
+     * The method for how much damage is being taken when being eaten and returns
+     * the amount of health the herbervoire regenerates.
+     * 
+     * 
+     * Note: needs to take in percentage of health and determine if they should
+     * give a seed or not to the herbarvoire
+     */
+    public double takeDamage(){
+        isGettingEaten = true;
+        double actualTick = healthPerTick*toughness;//might be a problem later for statbar
+        if(health>=actualTick){
+            health-=actualTick;//temporary, will depend on plant health
+            return actualTick;
         }else{
             int lastHealth = health;
             health = 0;
@@ -66,7 +82,15 @@ public class Plant extends Animator
         }
     }
     
-    
+    /**
+     * This method is called when the plant is not being eaten and it is healing
+     */
+    public void growing(){
+        if(health<=healthLimit-selfHealSpeed){ // so it doesn't go over limit
+            health += selfHealSpeed;
+        }
+    }
+   
     //these methods are all getters for other classes    
     /**
      * returns the health of plant
@@ -79,7 +103,7 @@ public class Plant extends Animator
      * returns the health given by the plant
      */
     public int giveHealth(){
-        return healthGiven;
+        return healthPerTick;
     }
     
     /**
@@ -92,7 +116,7 @@ public class Plant extends Animator
     /**
      * return the toughness of the plant
      */
-    public int getToughness(){
+    public double getToughness(){
         return toughness;
     }
     
@@ -108,5 +132,13 @@ public class Plant extends Animator
      */
     public boolean wantsCarry(){
         return wantsCarry;
+    }
+    
+    /**
+     * Setter method for if the plant is being eaten or not. Use this method in
+     * the herbovoire class
+     */
+    public void setEating(boolean a){
+        isGettingEaten = a; 
     }
 }
