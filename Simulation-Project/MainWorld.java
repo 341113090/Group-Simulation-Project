@@ -61,8 +61,17 @@ public class MainWorld extends World
         //update the label
         updatePlantLabels();
         //spawning in shelters
-        addObject(new Shelter(), 30, 100);//add more shelter when theres an image
-        
+        addObject(new Shelter(), 50, 125);//add more shelter when theres an image
+        addObject(new Shelter(), 50, 200);
+        //addObject(new Shelter(), 50, 275);
+        addObject(new Shelter(), 50, 350);
+        addObject(new Shelter(), 50, 425);
+        //shelters on the left
+        addObject(new Shelter(), 750, 125);//add more shelter when theres an image
+        addObject(new Shelter(), 750, 200);
+        //addObject(new Shelter(), 750, 275);
+        addObject(new Shelter(), 750, 350);
+        addObject(new Shelter(), 750, 425);
     }
     
     /**
