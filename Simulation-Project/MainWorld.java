@@ -47,7 +47,7 @@ public class MainWorld extends World
         {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = bigPlantLabel.getImage().getHeight()/2 + 30 + random.nextInt(300);
+            int yy = bigPlantLabel.getImage().getHeight()/2 + 30 + random.nextInt(400);
             addObject(new Cherry(), xx, yy);
         }
         //makes startNumCherry number of cherries on the screen in random locations
@@ -55,7 +55,7 @@ public class MainWorld extends World
         {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = 50 + random.nextInt(300);
+            int yy = 50 + random.nextInt(400);
             addObject(new PoisonIvy(), xx, yy);
         }
         //update the label
