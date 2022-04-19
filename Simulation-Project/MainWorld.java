@@ -26,6 +26,40 @@ public class MainWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 500, 1);
+        initalPlantSpawns();
+    }
+    
+    /**
+     * In the act method, the world keeps track of how many cherries and ivies 
+     * there are.
+     */
+    public void act()
+    {
+        //update the plant label
+        updatePlantLabels();
+    }
+    
+    /**
+     * This code updates the plant labels whenever. Uses the same instantiating 
+     * code but just gets the new values from the cherry and poison ivy class 
+     * instead of just being 0
+     */
+    public void updatePlantLabels()
+    {
+        numPoisonIvy = PoisonIvy.getNumPoisonIvy();
+        numCherry = Cherry.getNumCherries();
+        String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
+        String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
+        plantLabels[0] = cherryLabel;
+        plantLabels[1] = poisonivyLabel;
+        bigPlantLabel.update(plantLabels);
+    }
+    
+    /**
+     * This code spawns in the inital cherries and poison ivies
+     */
+    public void initalPlantSpawns()
+    {
         //Set the cherry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);
@@ -60,31 +94,5 @@ public class MainWorld extends World
         }
         //update the label
         updatePlantLabels();
-    }
-    
-    /**
-     * In the act method, the world keeps track of how many cherries and ivies 
-     * there are.
-     */
-    public void act()
-    {
-        //update the plant label
-        updatePlantLabels();
-    }
-    
-    /**
-     * This code updates the plant labels whenever. Uses the same instantiating 
-     * code but just gets the new values from the cherry and poison ivy class 
-     * instead of just being 0
-     */
-    public void updatePlantLabels()
-    {
-        numPoisonIvy = PoisonIvy.getNumPoisonIvy();
-        numCherry = Cherry.getNumCherries();
-        String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
-        String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
-        plantLabels[0] = cherryLabel;
-        plantLabels[1] = poisonivyLabel;
-        bigPlantLabel.update(plantLabels);
     }
 }
