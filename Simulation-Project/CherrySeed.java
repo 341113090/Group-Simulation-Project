@@ -16,10 +16,11 @@ public class CherrySeed extends Actor
     private int totalActs, actCounter;
     private GreenfootImage image;
     GreenfootImage Plants = new GreenfootImage("Plants.png");
-    GreenfootImage cherryseed = AnimationManager.getSlice(Plants,8, 1);
+    GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
     
     public CherrySeed (int totalActs){ // when calling this, set it to ~60(1 sec)
         this.setImage(cherryseed);
+        cherryseed.scale(30,30);
         this.totalActs = totalActs;
         actCounter = totalActs;
         seeds = 3; 
