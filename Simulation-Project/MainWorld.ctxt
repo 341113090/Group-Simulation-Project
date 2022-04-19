@@ -9,5 +9,5 @@ comment2.target=void\ act()
 comment2.text=\n\ In\ the\ act\ method,\ the\ world\ keeps\ track\ of\ how\ many\ cherries\ and\ ivies\ \n\ there\ are.\n
 comment3.params=
 comment3.target=void\ updatePlantLabels()
-comment3.text=\n\ This\ code\ updates\ the\ plant\ labels\ whenever.\ Uses\ the\ same\ instantiating\ \n\ code\ but\ just\ gets\ the\ new\ values\ from\ the\ cherry\ and\ poison\ ivy\ class\ \n\ instead\ of\ just\ being\ 0\n
+comment3.text=\n\ This\ code\ updates\ the\ plant\ labels\ whenever.\ Uses\ the\ same\ instantiating\ \n\ code\ but\ just\ gets\ the\ new\ values\ from\ the\ cherry\ and\ poison\ ivy\ class\ \n\ instead\ of\ just\ being\ 0.\n
 numComments=4

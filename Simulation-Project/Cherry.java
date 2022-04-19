@@ -11,8 +11,6 @@ public class Cherry extends Plant
     private static int numCherries = 0;
     GreenfootImage cherry = AnimationManager.getSlice(Plants, 13, 7);
     
-    
-    
     public Cherry()
     {
         numCherries++;
@@ -53,6 +51,6 @@ public class Cherry extends Plant
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

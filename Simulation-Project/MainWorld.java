@@ -60,6 +60,9 @@ public class MainWorld extends World
         }
         //update the label
         updatePlantLabels();
+        //spawning in shelters
+        addObject(new Shelter(), 30, 100);//add more shelter when theres an image
+        
     }
     
     /**
@@ -75,7 +78,7 @@ public class MainWorld extends World
     /**
      * This code updates the plant labels whenever. Uses the same instantiating 
      * code but just gets the new values from the cherry and poison ivy class 
-     * instead of just being 0
+     * instead of just being 0.
      */
     public void updatePlantLabels()
     {

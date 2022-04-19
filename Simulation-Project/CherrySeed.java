@@ -17,15 +17,15 @@ public class CherrySeed extends Actor
     GreenfootImage Plants = new GreenfootImage("Plants.png");
     GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
     
-    public CherrySeed (int totalActs){ // when calling this, set it to ~60(1 sec)
+    public CherrySeed (int totalActs){ // when calling this, set it to ~120(2 sec)
         this.setImage(cherryseed);
         cherryseed.scale(30,30);
         this.totalActs = totalActs;
         actCounter = totalActs;
     }
     /**
-     * CherrySeed will remove itself after one second after spawning and will
-     * drop three Cherrys in a 
+     * CherrySeed will remove itself after two seconds after spawning and drop
+     * one cherry in place of it
      */
     public void act()
     {
