@@ -25,7 +25,7 @@ public class MainWorld extends World
     public MainWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 600, 1);
+        super(600, 400, 1);
         //Set the chrry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);
@@ -46,16 +46,16 @@ public class MainWorld extends World
         for(int i = 0; i<startNumCherry; i++)
         {
             Random random = new Random();
-            int xx = 100 + random.nextInt(600);
-            int yy = bigPlantLabel.getImage().getHeight()/2 + 30 + random.nextInt(450);
+            int xx = 75 + random.nextInt(475);
+            int yy = bigPlantLabel.getImage().getHeight()/2 + 30 + random.nextInt(300);
             addObject(new Cherry(), xx, yy);
         }
         //makes startNumCherry number of cherries on the screen in random locations
         for(int i = 0; i<startNumPoisonIvy; i++)
         {
             Random random = new Random();
-            int xx = 100 + random.nextInt(600);
-            int yy = bigPlantLabel.getImage().getHeight()/2 + 30 + random.nextInt(450);
+            int xx = 75 + random.nextInt(475);
+            int yy = 50 + random.nextInt(300);
             addObject(new PoisonIvy(), xx, yy);
         }
         //update the label
