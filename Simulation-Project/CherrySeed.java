@@ -14,7 +14,6 @@ public class CherrySeed extends Actor
      */
     private int seeds;
     private int totalActs, actCounter;
-    private GreenfootImage image;
     GreenfootImage Plants = new GreenfootImage("Plants.png");
     GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
     
@@ -33,14 +32,14 @@ public class CherrySeed extends Actor
         if (actCounter > 0){
             actCounter--;
             if (actCounter < 60){
-                image.setTransparency (actCounter * 2);
+                cherryseed.setTransparency (actCounter * 2);
             }
         } else {
-            getWorld().removeObject(this);
             Cherry cherry = new Cherry();
             if(this.getX()<500 && this.getX()>75){
                 getWorld().addObject(cherry, this.getX(), this.getY());
-            } 
+            }
+            getWorld().removeObject(this);
         }
     }
 }
