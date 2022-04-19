@@ -11,6 +11,8 @@ public class Cherry extends Plant
     private static int numCherries = 0;
     GreenfootImage cherry = AnimationManager.getSlice(Plants, 13, 7);
     
+    
+    
     public Cherry()
     {
         numCherries++;
@@ -24,6 +26,7 @@ public class Cherry extends Plant
         //getter not needed
         healthLimit = 150;
         selfHealSpeed = 3;
+        
     }
     
     public static int getNumCherries()
