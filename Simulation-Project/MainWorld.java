@@ -26,7 +26,7 @@ public class MainWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 500, 1);
-        //Set the chrry and poison ivy count to 0 every reset
+        //Set the cherry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);
         //Label that is displayed on top of the screen
