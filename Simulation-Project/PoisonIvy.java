@@ -10,12 +10,14 @@ public class PoisonIvy extends Plant
 {
     private static int numPoisonIvy = 0;
     GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
+    private double toxicityTakenAway = 10;
+    
     public PoisonIvy()
     {
         numPoisonIvy++;
         this.setImage(ivy);
         toughness = .8;//poison ivey is weaker than cherry
-        totalSeeds = 1;//poison ivey is less fertile
+        totalSeeds = 0;//poison ivey is less fertile
         health = 200;
         healthPerTick = 8;
         isToxic = true;
