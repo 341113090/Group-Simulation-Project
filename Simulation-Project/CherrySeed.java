@@ -23,9 +23,11 @@ public class CherrySeed extends Actor
         cherryseed.scale(30,30);
         this.totalActs = totalActs;
         actCounter = totalActs;
-        seeds = 3; 
     }
-    
+    /**
+     * CherrySeed will remove itself after one second after spawning and will
+     * drop three Cherrys in a 
+     */
     public void act()
     {
         if (actCounter > 0){
@@ -36,18 +38,9 @@ public class CherrySeed extends Actor
         } else {
             getWorld().removeObject(this);
             Cherry cherry = new Cherry();
-            Cherry cherry2 = new Cherry();
-            Cherry cherry3 = new Cherry();
             if(this.getX()<500 && this.getX()>75){
                 getWorld().addObject(cherry, this.getX(), this.getY());
-                getWorld().addObject(cherry2, this.getX()+20, this.getY()+20);
-                getWorld().addObject(cherry3, this.getX()-20, this.getY()+20);
-            } //this should drop the three seeds in a triangle 
-            
+            } 
         }
-    }
-    
-    public int getSeeds(){
-        return seeds;
     }
 }
