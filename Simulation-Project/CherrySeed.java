@@ -35,7 +35,14 @@ public class CherrySeed extends Actor
         } else {
             getWorld().removeObject(this);
             Cherry cherry = new Cherry();
-            getWorld().addObject(cherry, this.getX(), this.getY());
+            Cherry cherry2 = new Cherry();
+            Cherry cherry3 = new Cherry();
+            if(this.getX()<500 && this.getX()>75){
+                getWorld().addObject(cherry, this.getX(), this.getY());
+                getWorld().addObject(cherry2, this.getX()+20, this.getY()+20);
+                getWorld().addObject(cherry3, this.getX()-20, this.getY()+20);
+            } //this should drop the three seeds in a triangle 
+            
         }
     }
     
