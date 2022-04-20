@@ -14,13 +14,24 @@ public class Shelter extends Actor
      */
     private int limitAnimal;
     private Animal typeAnimal;
+    private boolean isFull;
     
     public Shelter(){
         limitAnimal = 2;
+        isFull = false;
     }
     
     public void act()
     {
         // Add your action code here.
     }
+    
+    public boolean limitHit(){
+        if(isFull){
+            return true;
+        }
+        return false;
+    }
+    
+    
 }
