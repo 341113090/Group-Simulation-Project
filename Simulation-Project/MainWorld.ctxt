@@ -11,4 +11,6 @@ comment3.params=
 comment3.target=void\ timeManager()
 comment4.params=transparency
 comment4.target=greenfoot.GreenfootImage\ drawNight(double)
-numComments=5
+comment5.params=a\ b
+comment5.target=float\ getDistance(greenfoot.Actor,\ greenfoot.Actor)
+numComments=6

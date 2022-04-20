@@ -59,7 +59,7 @@ public class MainWorld extends World
             addObject(new PoisonIvy(), xx, yy);
         }
         
-        
+        fg = new Foreground();
         addObject(fg,0,0);
     }
     
@@ -116,5 +116,14 @@ public class MainWorld extends World
 
         fg.setImage(dark);
         return dark;
+    }
+    
+    public static float getDistance (Actor a, Actor b)
+    {
+        double distance;
+        double xLength = a.getX() - b.getX();
+        double yLength = a.getY() - b.getY();
+        distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
+        return (float)distance;
     }
 }
