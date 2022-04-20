@@ -12,6 +12,7 @@ public class Animal extends Animator
     
     protected State state;
     
+    protected Actor target;
     
     // Animal variables
     protected double speed; // Animal movement speed, increases more health decay when moving
@@ -53,6 +54,10 @@ public class Animal extends Animator
     }
     
     protected void Searching(){
+        
+    }
+    
+    protected void Following(){
         
     }
 }

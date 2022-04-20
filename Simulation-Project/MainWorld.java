@@ -9,7 +9,17 @@ import java.util.ArrayList;
  */
 public class MainWorld extends World
 {
+    
+    ///// DAY NIGHT CYCLE /////
     private int dayNumber;
+    private int currentTime;
+    private int dayLength;
+    private int nightLength;
+    private double maxDarkness = 100;
+    
+    // Foreground object for night effects
+    private Foreground fg;
+    
     private int numCherry;
     private int numPoisonIvy;
     private int startNumCherry = 4;
@@ -48,6 +58,9 @@ public class MainWorld extends World
             int yy = 50+ random.nextInt(300);
             addObject(new PoisonIvy(), xx, yy);
         }
+        
+        
+        addObject(fg,0,0);
     }
     
     /**
@@ -80,5 +93,28 @@ public class MainWorld extends World
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
         bigPlantLabel.update(plantLabels);
+    }
+    
+    private void timeManager(){
+        currentTime++;
+        
+        if (currentTime > dayLength){
+            double transparency = (double)(currentTime-dayLength)/(double)nightLength;
+            drawNight(transparency*maxDarkness);
+            
+            if (currentTime > dayLength+nightLength) currentTime = 0;
+        }      else {
+            drawNight(0);
+        }
+    }
+    
+    private GreenfootImage drawNight(double transparency){
+        GreenfootImage dark = new GreenfootImage (getWidth(), getHeight());
+        dark.setColor(Color.BLACK);
+        dark.fillRect(0,0,dark.getWidth(),dark.getHeight());
+        dark.setTransparency((int)transparency);
+
+        fg.setImage(dark);
+        return dark;
     }
 }
