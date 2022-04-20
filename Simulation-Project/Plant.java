@@ -68,6 +68,7 @@ public abstract class Plant extends Animator
      * This method checks if the plant has no more health and removes itself.
      */
     public abstract void deathCheck();
+    
     /**
      * This method determines how much damage is being taken when being eaten and returns
      * the amount of health the herbivore regenerates.
