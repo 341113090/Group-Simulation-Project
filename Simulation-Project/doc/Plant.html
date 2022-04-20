@@ -64,9 +64,16 @@ var activeTableTab = "activeTableTab";
 <hr>
 <pre>public abstract class <span class="typeNameLabel">Plant</span>
 extends Animator</pre>
-<div class="block">Plants are eaten by animals and provide them with nutrients. Plants also try and 
+<div class="block">THINGS THAT ANIMALS NEED TO DO:
+ <ul>
+      <li> Tell the Plant if it is eating it or not using setEating()
+      so the plant knows whether to regen or not.</li>
+ </ul><br>
+ 
+ <p>Plants are eaten by herbivores and provide them with nutrients. Plants also try and 
  survive until the end of the day so that they can reproduce. Poisonous plants 
- reproduce by surviving and edible plants reproduce by having their seeds eaten.</div>
+ reproduce by surviving and edible plants reproduce by having their seeds eaten.
+ </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Version:</span></dt>
 <dd>April 12, 2022</dd>
@@ -198,7 +205,7 @@ extends Animator</pre>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#act()">act</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Act - do whatever the Plant wants to do.</div>
+<div class="block">Plants are used as food for Herbivores, go to method details for more specifications.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -217,42 +224,42 @@ extends Animator</pre>
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHealth()">getHealth</a></span>()</code></th>
 <td class="colLast">
-<div class="block">returns the health of plant</div>
+<div class="block">Returns the health of plant</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSeeds()">getSeeds</a></span>()</code></th>
 <td class="colLast">
-<div class="block">returns the number of seeds of the plant</div>
+<div class="block">Returns the number of seeds of the plant</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getToughness()">getToughness</a></span>()</code></th>
 <td class="colLast">
-<div class="block">return the toughness of the plant</div>
+<div class="block">Return the toughness of the plant</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#giveHealth()">giveHealth</a></span>()</code></th>
 <td class="colLast">
-<div class="block">returns the health given by the plant</div>
+<div class="block">Returns the health given by the plant</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#growing()">growing</a></span>()</code></th>
 <td class="colLast">
-<div class="block">This method is called when the plant is not being eaten and it is healing</div>
+<div class="block">This healing method is called when the plant is not being eaten.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isToxic()">isToxic</a></span>()</code></th>
 <td class="colLast">
-<div class="block">returns whether the plant is toxic or not</div>
+<div class="block">Returns whether the plant is toxic or not</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -266,15 +273,15 @@ extends Animator</pre>
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#takeDamage()">takeDamage</a></span>()</code></th>
 <td class="colLast">
-<div class="block">The method for how much damage is being taken when being eaten and returns
- the amount of health the herbervoire regenerates.</div>
+<div class="block">This method determines how much damage is being taken when being eaten and returns
+ the amount of health the herbivore regenerates.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wantsCarry()">wantsCarry</a></span>()</code></th>
 <td class="colLast">
-<div class="block">returns whether the plant wants animals to eat it to carry seeds or not</div>
+<div class="block">Returns whether the plant wants animals to eat it to carry seeds or not</div>
 </td>
 </tr>
 </table>
@@ -470,8 +477,13 @@ extends Animator</pre>
 <li class="blockList">
 <h4>act</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;act()</pre>
-<div class="block">Act - do whatever the Plant wants to do. This method is called whenever
- the 'Act' or 'Run' button gets pressed in the environment.</div>
+<div class="block">Plants are used as food for Herbivores, go to method details for more specifications.
+  Act - Plants will continously:
+  <ol>
+      <li> Update plant hp</li>
+      <li> Check if they are being eaten</li>
+      <li> Check if they are fully eaten</li>
+  </ol></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>act</code>&nbsp;in class&nbsp;<code>Animator</code></dd>
@@ -495,12 +507,11 @@ extends Animator</pre>
 <li class="blockList">
 <h4>takeDamage</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;takeDamage()</pre>
-<div class="block">The method for how much damage is being taken when being eaten and returns
- the amount of health the herbervoire regenerates.
- 
- 
- Note: needs to take in percentage of health and determine if they should
- give a seed or not to the herbarvoire</div>
+<div class="block">This method determines how much damage is being taken when being eaten and returns
+ the amount of health the herbivore regenerates.
+ <br><br>
+ Note: Plant will give a seed based on the percent of health they lose to the
+ herbivore. Cherry will give three seeds if eaten from full health.</div>
 </li>
 </ul>
 <a id="growing()">
@@ -510,7 +521,10 @@ extends Animator</pre>
 <li class="blockList">
 <h4>growing</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;growing()</pre>
-<div class="block">This method is called when the plant is not being eaten and it is healing</div>
+<div class="block">This healing method is called when the plant is not being eaten.
+ <ul>
+ <li> Plant health will never go over a certain amount of health after being eaten.</li>
+ </ul></div>
 </li>
 </ul>
 <a id="getHealth()">
@@ -520,7 +534,7 @@ extends Animator</pre>
 <li class="blockList">
 <h4>getHealth</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getHealth()</pre>
-<div class="block">returns the health of plant</div>
+<div class="block">Returns the health of plant</div>
 </li>
 </ul>
 <a id="giveHealth()">
@@ -530,7 +544,7 @@ extends Animator</pre>
 <li class="blockList">
 <h4>giveHealth</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;giveHealth()</pre>
-<div class="block">returns the health given by the plant</div>
+<div class="block">Returns the health given by the plant</div>
 </li>
 </ul>
 <a id="getSeeds()">
@@ -540,7 +554,7 @@ extends Animator</pre>
 <li class="blockList">
 <h4>getSeeds</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getSeeds()</pre>
-<div class="block">returns the number of seeds of the plant</div>
+<div class="block">Returns the number of seeds of the plant</div>
 </li>
 </ul>
 <a id="getToughness()">
@@ -550,7 +564,7 @@ extends Animator</pre>
 <li class="blockList">
 <h4>getToughness</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getToughness()</pre>
-<div class="block">return the toughness of the plant</div>
+<div class="block">Return the toughness of the plant</div>
 </li>
 </ul>
 <a id="isToxic()">
@@ -560,7 +574,7 @@ extends Animator</pre>
 <li class="blockList">
 <h4>isToxic</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isToxic()</pre>
-<div class="block">returns whether the plant is toxic or not</div>
+<div class="block">Returns whether the plant is toxic or not</div>
 </li>
 </ul>
 <a id="wantsCarry()">
@@ -570,7 +584,7 @@ extends Animator</pre>
 <li class="blockList">
 <h4>wantsCarry</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;wantsCarry()</pre>
-<div class="block">returns whether the plant wants animals to eat it to carry seeds or not</div>
+<div class="block">Returns whether the plant wants animals to eat it to carry seeds or not</div>
 </li>
 </ul>
 <a id="setEating(boolean)">
@@ -581,7 +595,7 @@ extends Animator</pre>
 <h4>setEating</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setEating&#8203;(boolean&nbsp;a)</pre>
 <div class="block">Setter method for if the plant is being eaten or not. Use this method in
- the herbovoire class</div>
+ the herbivore class</div>
 </li>
 </ul>
 </li>
