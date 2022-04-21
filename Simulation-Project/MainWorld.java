@@ -12,10 +12,12 @@ public class MainWorld extends World
     
     ///// DAY NIGHT CYCLE /////
     private int dayNumber;
-    private int currentTime;
-    private int dayLength;
-    private int nightLength;
+    private int currentTime = 0;
+    private int dayLength = 600;
+    private int nightLength = 300;
     private double maxDarkness = 100;
+    
+    public static bool night;
     
     // Foreground object for night effects
     private Foreground fg;
@@ -60,7 +62,11 @@ public class MainWorld extends World
         }
         
         fg = new Foreground();
+<<<<<<< Updated upstream
         addObject(fg,0,0);
+=======
+        addObject(fg,getWidth()/2,getHeight()/2);
+>>>>>>> Stashed changes
     }
     
     /**
@@ -69,6 +75,7 @@ public class MainWorld extends World
      */
     public void act()
     {
+        timeManager();
         //Make an arraylist filled with cherries
         ArrayList<Cherry> cherries = (ArrayList<Cherry>) this.getObjects(Cherry.class);
         int numIterationsCherry = 0;
@@ -98,12 +105,25 @@ public class MainWorld extends World
     private void timeManager(){
         currentTime++;
         
+        
         if (currentTime > dayLength){
-            double transparency = (double)(currentTime-dayLength)/(double)nightLength;
+            night = true;
+            double transparency = 0;
+            if (currentTime-dayLength < nightLength/2){
+
+                transparency = (double)(currentTime-dayLength)/(double)nightLength/2.0;
+                System.out.println("Before halfway");
+            }   else {
+                System.out.println("After halfway");
+                transparency = 1-(double)(currentTime-dayLength-nightLength/2.0)/(double)nightLength-2.0;
+            }
             drawNight(transparency*maxDarkness);
             
-            if (currentTime > dayLength+nightLength) currentTime = 0;
-        }      else {
+            if (currentTime > dayLength+nightLength) {
+            currentTime = 0;
+            }      
+        }   else {
+            night = false;
             drawNight(0);
         }
     }
