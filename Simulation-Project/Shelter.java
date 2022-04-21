@@ -1,6 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
+ * Code to copy paste into animal class: 
+ * <p>
+ * public void checkInShelter(){<br>
+ *     //need to add a collision detection to detect the shelter in front<br> 
+ *     if(shelter.getCurAnimals()>0){<br>
+ *          if(shelter.getTypeAnimal()==this.getClass() && shelter.limitHit() != false){<br>
+ *              //animal goes into shelter<br>
+ *              shelter.addCurAnimals();<br>
+ *          } else{<br>
+ *              //move away<br>
+ *          }<br>
+ *     } else{<br>
+ *          shelter.setTypeAnimal(this.getClass()); // not sure if getClass() works<br>
+ *          shelter.addCurAnimals();<br>
+ *     }<br>
+ * }</p><br>
  * 
  * MAJOR THING FOR ANIMAL TO IMPLEMENT:     
  * Animals that want to enter a shelter need to:

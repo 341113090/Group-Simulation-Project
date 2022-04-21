@@ -1,7 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * 
  * THINGS THAT ANIMALS NEED TO DO:
  * <ul>
  *      <li> Tell the Plant if it is eating it or not using setEating()

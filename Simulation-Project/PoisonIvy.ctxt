@@ -1,18 +1,18 @@
 #BlueJ class context
 comment0.target=PoisonIvy
-comment0.text=\n\ Write\ a\ description\ of\ class\ Harmful\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Harmful\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=PoisonIvy()
 comment2.params=
 comment2.target=int\ getNumPoisonIvy()
-comment2.text=\n\ Returns\ the\ number\ of\ Poison\ Ivy\ in\ the\ world.\ \n
+comment2.text=\r\n\ Returns\ the\ number\ of\ Poison\ Ivy\ in\ the\ world.\ \r\n
 comment3.params=xx
 comment3.target=void\ setNumPoisonIvy(int)
-comment3.text=\n\ Sets\ the\ number\ of\ Poison\ Ivy\ in\ the\ world.\n
+comment3.text=\r\n\ Sets\ the\ number\ of\ Poison\ Ivy\ in\ the\ world.\r\n
 comment4.params=
 comment4.target=void\ deathCheck()
-comment4.text=\n\ Checks\ if\ this\ instance\ of\ Poison\ Ivy\ is\ eaten\ and\ subtracts\ one\ from\n\ the\ overall\ number\ of\ Poison\ Ivy\ in\ the\ world.\n
+comment4.text=\r\n\ Checks\ if\ this\ instance\ of\ Poison\ Ivy\ is\ eaten\ and\ subtracts\ one\ from\r\n\ the\ overall\ number\ of\ Poison\ Ivy\ in\ the\ world.\r\n
 comment5.params=
 comment5.target=void\ act()
-comment5.text=\n\ Calls\ superclass\ act().\n
+comment5.text=\r\n\ Calls\ superclass\ act().\r\n
 numComments=6
