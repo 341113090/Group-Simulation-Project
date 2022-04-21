@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Animal extends Animator
 {
-    public enum State{Waiting, Searching, Attacking, Running}
+    public enum State{Waiting, Searching, Following, Attacking, Running}
     
     protected State state;
     
@@ -18,9 +18,13 @@ public class Animal extends Animator
     protected double speed; // Animal movement speed, increases more health decay when moving
     protected int attack;  // Animal attack damage, decreases health
     protected int health; // Animal health/hp, decreases speed
+    protected int size;
     protected double senseRange; // How far animal can detect threats/food, increases health decay
     protected double healthDecay; // How fast animals health goes down, hunger
     protected double altruism; // Chance of animal giving up its spot
+    
+    // Attack variables
+    
     
     /**
      * Act - do whatever the Animal wants to do. This method is called whenever
@@ -30,6 +34,7 @@ public class Animal extends Animator
     {
         super.act();
         // Add your action code here.
+        
         // Super basic awful statemanager
         
         switch (state){
@@ -39,7 +44,11 @@ public class Animal extends Animator
             case Searching:
                 Searching();
                 break;
+            case Following:
+                Following();
+                break;
         }
+        
         
         Behaviour();
     }
@@ -58,6 +67,15 @@ public class Animal extends Animator
     }
     
     protected void Following(){
+        
+    }
+    
+    protected void ReturnToShelter(){
+        
+    }
+    
+    ////// FUNCTIONS /////
+    protected void MoveTowardsObject(Actor target){
         
     }
 }
