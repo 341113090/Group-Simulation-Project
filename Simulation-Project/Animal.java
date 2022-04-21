@@ -20,7 +20,7 @@ public class Animal extends Animator {
     protected int attack; // Animal attack damage, decreases health
     protected int health; // Animal health/hp, decreases speed
     protected int size;
-    protected double senseRange; // How far animal can detect threats/food, increases health decay
+    protected int senseRange; // How far animal can detect threats/food, increases health decay
     protected double healthDecay; // How fast animals health goes down, hunger
     protected double altruism; // Chance of animal giving up its spot
 
@@ -75,5 +75,9 @@ public class Animal extends Animator {
     ////// FUNCTIONS /////
     protected void MoveTowardsObject(Actor target) {
 
+    }
+    
+    protected void Animations(){
+        
     }
 }

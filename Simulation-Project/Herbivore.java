@@ -18,10 +18,21 @@ public class Herbivore extends Animal
         
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
-        addAnimation(AnimationManager.createAnimation(img,3*16,8*16,1, 8,8,16,16, "Idle"));
-        setImage(animations[0].getImage(0));
-        //playAnimation(0);
+        addAnimation(AnimationManager.createAnimation(img,9*16,0*16,1, 1,1,16,16, "Idle Side"));
+        addAnimation(AnimationManager.createAnimation(img,10*16,0*16,1, 1,1,16,16, "Idle Up"));
+        addAnimation(AnimationManager.createAnimation(img,11*16,0*16,1, 1,1,16,16, "Idle Down"));
+        
+        
+        addAnimation(AnimationManager.createAnimation(img,9*16,4*16,1, 4,4,16,16, "Walk Side"));
+        addAnimation(AnimationManager.createAnimation(img,10*16,4*16,1, 4,4,16,16, "Walk Up"));
+        addAnimation(AnimationManager.createAnimation(img,11*16,4*16,1, 4,4,16,16, "Walk Down"));
+    
+        setImage(animations[1].getImage(0));
+
+        playAnimation("Walk Side");
         state=State.Waiting;
+        
+        senseRange = 50;
     }
     /**
      * Act - do whatever the Herbivore wants to do. This method is called whenever
@@ -31,8 +42,6 @@ public class Herbivore extends Animal
     {
         super.act();
         // Add your action code here.
-        playAnimation("Idle");    
-        playAnimation(0);
         
         targetClosestPlant();
         
@@ -45,6 +54,9 @@ public class Herbivore extends Animal
             {
                 moveRandomly();
             }
+            
+        
+        setRotation(0);
     }
     
     public void started(){
@@ -65,20 +77,7 @@ public class Herbivore extends Animal
         
         numplants = getWorld().getObjects(Plant.class).size();
         
-        // If any plants are found
-        if (numplants > 50) // If lots of plants are found, search small area
-        {
-             plants = (ArrayList)getObjectsInRange(80, Plant.class);
-        }
-        
-        else if (numplants > 20) // If less plants are found, search wider radius
-        {
-            plants = (ArrayList)getObjectsInRange(180, Plant.class);
-        }
-        else    // If even fewer plants are found, search the whole World
-        {    
-            plants = (ArrayList)getWorld().getObjects(Plant.class);
-        }
+        plants = (ArrayList)getObjectsInRange(senseRange, Plant.class);
              
         if (plants.size() > 0)
         {
@@ -153,5 +152,7 @@ public class Herbivore extends Animal
         else
             move (mySpeed);
     }
+    
+    
     
 }

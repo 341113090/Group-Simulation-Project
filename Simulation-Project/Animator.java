@@ -35,6 +35,7 @@ public class Animator extends SuperSmoothMover
             // Playing currently set animations
             timer++;
             if (timer >= 60.0/(double)fps){
+                System.out.println(curFrame);
                 timer = 0;
                 curFrame++;
                 
@@ -43,6 +44,7 @@ public class Animator extends SuperSmoothMover
                     setImage(animations[curAnim].getFrame(curFrame));
                 }   else {
                     curFrame = 0;
+                    setImage(animations[curAnim].getFrame(curFrame));
                 }
             }
         }
@@ -53,8 +55,10 @@ public class Animator extends SuperSmoothMover
     public void playAnimation(String name){
         playing = true;
         for (int i =0 ; i < animations.length; i++){
+            //System.out.println(animations[i].getName().equals(name));
             if (animations[i].getName().equals(name)){
                 curAnim = i;
+                break;
             }
         }
     }
@@ -67,14 +71,17 @@ public class Animator extends SuperSmoothMover
     
     public void addAnimation(Animation anim){
         if (animations != null){
-            Animation[] temp = new Animation[animations.length];
+            System.out.println("Added new");
+            Animation[] temp = new Animation[animations.length+1];
             for (int i =0;i < animations.length; i++){
                 temp[i] = animations[i];
             }
             animations = temp;
             animations[animations.length-1] = anim;
+            System.out.println(temp.length);
         }
         else {
+            System.out.println("first");
             animations = new Animation[1];
             animations[0] = anim;
         }

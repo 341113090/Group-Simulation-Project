@@ -29,8 +29,6 @@ public class AnimationManager
      *
      */
     protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,int numCols, int numFrames, int width, int height){
-            
-
             // Had to rewrite this, I have no idea how you set this up tbh mr cohen
             GreenfootImage[] img1d = new GreenfootImage[numFrames];
             int frame = 0;
