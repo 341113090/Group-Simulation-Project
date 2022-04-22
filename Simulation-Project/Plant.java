@@ -17,6 +17,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public abstract class Plant extends Animator
 {
     //getter required
+    protected int maxHp;
     protected double toughness;
     protected int totalSeeds;
     protected int health;
@@ -33,13 +34,13 @@ public abstract class Plant extends Animator
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
     public Plant()
     {
-        hpBar = new SuperStatBar(health,health,this,24,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
         isGettingEaten = true;
+        hpBar = new SuperStatBar(maxHp,health,this,24,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
     }
     
     public void addedToWorld (World w)
     {
-        w.addObject (hpBar, getX(), getY());
+        getWorld().addObject (hpBar, getX(), getY());
         hpBar.update(health);
     }
 
@@ -55,7 +56,6 @@ public abstract class Plant extends Animator
      */
     public void act()
     {
-        hpBar.update(health);
         if(!isGettingEaten){
             growing();
         }
