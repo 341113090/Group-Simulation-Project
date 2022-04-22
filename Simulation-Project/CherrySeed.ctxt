@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=CherrySeed
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CherrySeed\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ CherrySeed\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=totalActs
 comment1.target=CherrySeed(int)
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ CherrySeed\ will\ remove\ itself\ after\ two\ seconds\ after\ spawning\ and\ drop\r\n\ one\ cherry\ in\ place\ of\ it\r\n
+comment2.text=\n\ CherrySeed\ will\ remove\ itself\ after\ two\ seconds\ after\ spawning\ and\ drop\n\ one\ cherry\ in\ place\ of\ it\n
 numComments=3

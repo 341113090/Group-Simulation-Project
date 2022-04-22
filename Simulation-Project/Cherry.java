@@ -55,7 +55,5 @@ public class Cherry extends Plant
     public void act()
     {
         super.act();
-        takeDamage();
-        health -= healthPerTick;
     }
 }
