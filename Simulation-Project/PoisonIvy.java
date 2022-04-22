@@ -8,12 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PoisonIvy extends Plant
 {
+    private static int numPoisonIvy = 0;
     GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
+    private double toxicityTakenAway = 10;
+    
     public PoisonIvy()
     {
+        numPoisonIvy++;
         this.setImage(ivy);
         toughness = .8;//poison ivey is weaker than cherry
-        totalSeeds = 1;//poison ivey is less fertile
+        totalSeeds = 0;//poison ivey is less fertile
         health = 200;
         healthPerTick = 8;
         isToxic = true;
@@ -24,11 +28,38 @@ public class PoisonIvy extends Plant
     }
     
     /**
-     * Act - do whatever the Harmful wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Returns the number of Poison Ivy in the world. 
+     */
+    public static int getNumPoisonIvy()
+    {
+        return numPoisonIvy;
+    }
+    
+    /**
+     * Sets the number of Poison Ivy in the world.
+     */
+    public static void setNumPoisonIvy(int xx)
+    {
+        numPoisonIvy = xx;
+    }
+    
+    /**
+     * Checks if this instance of Poison Ivy is eaten and subtracts one from
+     * the overall number of Poison Ivy in the world.
+     */
+    public void deathCheck()
+    {
+        if(health == 0){
+            numPoisonIvy--;
+            getWorld().removeObject(this);
+        }
+    }
+    
+    /**
+     * Calls superclass act().
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

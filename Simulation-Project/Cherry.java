@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cherry extends Plant
 {
-    GreenfootImage cherry = AnimationManager.getSlice(Plants, 12, 1);
+    private static int numCherries = 0;
+    GreenfootImage cherry = AnimationManager.getSlice(Plants, 13, 7);
     
     public Cherry()
     {
+        numCherries++;
         this.setImage(cherry);
         toughness = .4;
         totalSeeds = 3;
@@ -22,14 +24,32 @@ public class Cherry extends Plant
         //getter not needed
         healthLimit = 150;
         selfHealSpeed = 3;
+        
+    }
+    
+    public static int getNumCherries()
+    {
+        return numCherries;
+    }
+    
+    public static void setNumCherries(int xx)
+    {
+        numCherries = xx;
+    }
+    
+    public void deathCheck()
+    {
+        if(health == 0){
+            numCherries--;
+            getWorld().removeObject(this);
+        }
     }
     
     /**
-     * Act - do whatever the Cherry wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Calls superclass act().
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }

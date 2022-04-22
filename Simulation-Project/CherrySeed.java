@@ -14,29 +14,32 @@ public class CherrySeed extends Actor
      */
     private int seeds;
     private int totalActs, actCounter;
-    private GreenfootImage image;
+    GreenfootImage Plants = new GreenfootImage("Plants.png");
+    GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
     
-    public CherrySeed (int totalActs){ // when calling this, set it to ~60(1 sec)
+    public CherrySeed (int totalActs){ // when calling this, set it to ~120(2 sec)
+        this.setImage(cherryseed);
+        cherryseed.scale(30,30);
         this.totalActs = totalActs;
         actCounter = totalActs;
-        seeds = 3; 
     }
-    
+    /**
+     * CherrySeed will remove itself after two seconds after spawning and drop
+     * one cherry in place of it
+     */
     public void act()
     {
         if (actCounter > 0){
             actCounter--;
             if (actCounter < 60){
-                image.setTransparency (actCounter * 2);
+                cherryseed.setTransparency (actCounter * 2);
             }
         } else {
-            getWorld().removeObject(this);
             Cherry cherry = new Cherry();
-            getWorld().addObject(cherry, this.getX(), this.getY());
+            if(this.getX()<500 && this.getX()>75){
+                getWorld().addObject(cherry, this.getX(), this.getY());
+            }
+            getWorld().removeObject(this);
         }
-    }
-    
-    public int getSeeds(){
-        return seeds;
     }
 }
