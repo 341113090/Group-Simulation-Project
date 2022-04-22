@@ -44,6 +44,7 @@ public class TitleScreen extends World
     Rectangle carnSelected;
     Rectangle herbSelected;
     Rectangle shelterSelected;
+    GreenfootImage background = new GreenfootImage("TitleBackground.png");
     
     /**
      * Constructor for objects of class TitleScreen.
@@ -51,8 +52,9 @@ public class TitleScreen extends World
      */
     public TitleScreen()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        // Create a new world with 800x500 cells with a cell size of 1x1 pixels.
+        super(800, 500, 1); 
+        setBackground(background);
         prepare();
         
     }
