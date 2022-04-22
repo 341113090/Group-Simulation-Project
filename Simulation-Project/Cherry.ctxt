@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Cherry
-comment0.text=\n\ Write\ a\ description\ of\ class\ Cherry\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Cherry\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=Cherry()
 comment2.params=
@@ -13,5 +13,5 @@ comment5.params=
 comment5.target=void\ addedToWorld()
 comment6.params=
 comment6.target=void\ act()
-comment6.text=\n\ Calls\ superclass\ act().\n
+comment6.text=\r\n\ Calls\ superclass\ act().\r\n
 numComments=7

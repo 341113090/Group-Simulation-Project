@@ -35,7 +35,7 @@ public abstract class Plant extends Animator
     public Plant()
     {
         isGettingEaten = true;
-        hpBar = new SuperStatBar(maxHp,health,this,24,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
+        hpBar = new SuperStatBar(maxHp,maxHp,this,24,4,10,Color.GREEN,Color.GREEN,false,Color.BLACK,1);
     }
     
     public void addedToWorld (World w)
