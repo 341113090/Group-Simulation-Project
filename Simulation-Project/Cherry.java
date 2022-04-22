@@ -48,6 +48,7 @@ public class Cherry extends Plant
     }
     
     public void addedToWorld(){
+        hpBar.update(health);
     }
     
     /**
@@ -56,7 +57,7 @@ public class Cherry extends Plant
     public void act()
     {
         super.act();
-        hpBar.update(health);
         health--;
+        hpBar.update(health);
     }
 }
