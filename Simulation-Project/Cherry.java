@@ -45,11 +45,17 @@ public class Cherry extends Plant
         }
     }
     
+    public void addedToWorld(){
+        takeDamage();
+    }
+    
     /**
      * Calls superclass act().
      */
     public void act()
     {
         super.act();
+        takeDamage();
+        health -= healthPerTick;
     }
 }
