@@ -1,10 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Plants are eaten by animals and provide them with nutrients. Plants also try and 
+ * THINGS THAT ANIMALS NEED TO DO:
+ * <ul>
+ *      <li> Tell the Plant if it is eating it or not using setEating()
+ *      so the plant knows whether to regen or not.</li>
+ * </ul><br>
+ * 
+ * <p>Plants are eaten by herbivores and provide them with nutrients. Plants also try and 
  * survive until the end of the day so that they can reproduce. Poisonous plants 
  * reproduce by surviving and edible plants reproduce by having their seeds eaten.
- * 
+ * </p>
  * @author Nathan and Max
  * @version April 12, 2022
  */
@@ -21,7 +27,6 @@ public abstract class Plant extends Animator
     protected int healthLimit;
     protected int selfHealSpeed;
     protected boolean isGettingEaten;
-    ////////////////////Need to instalize all these vars above in the subclass
     
     protected SuperStatBar hpBar;
     //misc
@@ -37,10 +42,16 @@ public abstract class Plant extends Animator
         w.addObject (hpBar, getX(), getY());
         hpBar.update(health);
     }
-    
+
     /**
-     * Act - do whatever the Plant wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     *  Plants are used as food for Herbivores, go to method details for more specifications.
+     *  Act - Plants will continously:
+     *  <ol>
+     *      <li> Update plant hp</li>
+     *      <li> Check if they are being eaten</li>
+     *      <li> Check if they are fully eaten</li>
+     *  </ol>
+     * 
      */
     public void act()
     {
@@ -58,12 +69,11 @@ public abstract class Plant extends Animator
     public abstract void deathCheck();
     
     /**
-     * The method for how much damage is being taken when being eaten and returns
-     * the amount of health the herbervoire regenerates.
-     * 
-     * 
-     * Note: needs to take in percentage of health and determine if they should
-     * give a seed or not to the herbarvoire
+     * This method determines how much damage is being taken when being eaten and returns
+     * the amount of health the herbivore regenerates.
+     * <br><br>
+     * Note: Plant will give a seed based on the percent of health they lose to the
+     * herbivore. Cherry will give three seeds if eaten from full health.
      */
     public double takeDamage(){
         isGettingEaten = true;
@@ -79,7 +89,11 @@ public abstract class Plant extends Animator
     }
     
     /**
-     * This method is called when the plant is not being eaten and it is healing
+     * 
+     * This healing method is called when the plant is not being eaten.
+     * <ul>
+     * <li> Plant health will never go over a certain amount of health after being eaten.</li>
+     * </ul>
      */
     public void growing(){
         if(health<=healthLimit-selfHealSpeed){ // so it doesn't go over limit
@@ -89,42 +103,42 @@ public abstract class Plant extends Animator
    
     //these methods are all getters for other classes    
     /**
-     * returns the health of plant
+     * Returns the health of plant.
      */
     public int getHealth(){
         return health;
     }
     
     /**
-     * returns the health given by the plant
+     * Returns the health given by the plant.
      */
     public int giveHealth(){
         return healthPerTick;
     }
     
     /**
-     * returns the number of seeds of the plant
+     * Returns the number of seeds of the plant.
      */
     public int getSeeds(){
         return totalSeeds;
     }
     
     /**
-     * return the toughness of the plant
+     * Return the toughness of the plant.
      */
     public double getToughness(){
         return toughness;
     }
     
     /**
-     * returns whether the plant is toxic or not
+     * Returns whether the plant is toxic or not.
      */
     public boolean isToxic(){
         return isToxic;
     }
     
     /**
-     * returns whether the plant wants animals to eat it to carry seeds or not
+     * Returns whether the plant wants animals to eat it to carry seeds or not.
      */
     public boolean wantsCarry(){
         return wantsCarry;
@@ -132,7 +146,7 @@ public abstract class Plant extends Animator
     
     /**
      * Setter method for if the plant is being eaten or not. Use this method in
-     * the herbovoire class
+     * the herbivore class.
      */
     public void setEating(boolean a){
         isGettingEaten = a; 

@@ -27,16 +27,26 @@ public class PoisonIvy extends Plant
         selfHealSpeed = 3;
     }
     
+    /**
+     * Returns the number of Poison Ivy in the world. 
+     */
     public static int getNumPoisonIvy()
     {
         return numPoisonIvy;
     }
     
+    /**
+     * Sets the number of Poison Ivy in the world.
+     */
     public static void setNumPoisonIvy(int xx)
     {
         numPoisonIvy = xx;
     }
-
+    
+    /**
+     * Checks if this instance of Poison Ivy is eaten and subtracts one from
+     * the overall number of Poison Ivy in the world.
+     */
     public void deathCheck()
     {
         if(health == 0){
@@ -46,8 +56,7 @@ public class PoisonIvy extends Plant
     }
     
     /**
-     * Act - do whatever the Harmful wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Calls superclass act().
      */
     public void act()
     {

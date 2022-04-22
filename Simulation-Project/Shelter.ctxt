@@ -1,9 +1,19 @@
 #BlueJ class context
 comment0.target=Shelter
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Shelter\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Code\ to\ copy\ paste\ into\ animal\ class\:\ \n\ <p>\n\ public\ void\ checkInShelter(){<br>\n\ \ \ \ \ //need\ to\ add\ a\ collision\ detection\ to\ detect\ the\ shelter\ in\ front<br>\ \n\ \ \ \ \ if(shelter.getCurAnimals()>0){<br>\n\ \ \ \ \ \ \ \ \ \ if(shelter.getTypeAnimal()\=\=this.getClass()\ &&\ shelter.limitHit()\ \!\=\ false){<br>\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ //animal\ goes\ into\ shelter<br>\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ shelter.addCurAnimals();<br>\n\ \ \ \ \ \ \ \ \ \ }\ else{<br>\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ //move\ away<br>\n\ \ \ \ \ \ \ \ \ \ }<br>\n\ \ \ \ \ }\ else{<br>\n\ \ \ \ \ \ \ \ \ \ shelter.setTypeAnimal(this.getClass());\ //\ not\ sure\ if\ getClass()\ works<br>\n\ \ \ \ \ \ \ \ \ \ shelter.addCurAnimals();<br>\n\ \ \ \ \ }<br>\n\ }</p><br>\n\ \n\ MAJOR\ THING\ FOR\ ANIMAL\ TO\ IMPLEMENT\:\ \ \ \ \ \n\ Animals\ that\ want\ to\ enter\ a\ shelter\ need\ to\:\n\ <ol><br>\n\ \ \ \ \ \ <li>\ Check\ if\ there\ is\ any\ animals\ in\ the\ shelter\ using\ getCurAnimals()</li>\n\ \ \ \ \ \ <li>\ If\ there\ is\:\ \n\ \ \ \ \ \ <ul>\ \n\ \ \ \ \ \ \ \ \ \ <li>\ Check\ what\ type\ of\ animal\ is\ there\ using\ getTypeAnimal()</li>\n\ \ \ \ \ \ \ \ \ \ <li>\ Check\ if\ limit\ has\ been\ hit\ using\ limitHit()</li>\n\ \ \ \ \ \ </ul>\n\ \ \ \ \ \ <li>\ If\ there\ is\ not\:\ </li>\n\ \ \ \ \ \ <ul>\ \n\ \ \ \ \ \ \ \ \ \ <li>\ Animal\ needs\ to\ set\ the\ typeAnimal\ using\ setTypeAnimal</li>\n\ \ \ \ \ \ \ \ \ \ <li>\ Animal\ needs\ to\ add\ one\ to\ the\ addCurAnimals()</li>\n\ \ \ \ \ \ </ul>\n\ </ol>\n\ <br>\n\ \n\ <p>\ Shelter\ comes\ in\ when\ the\ day\ ends\ and\ animals\ are\ finding\ a\ place\ to\ \n\ stay\ for\ the\ night.\ There\ can\ only\ be\ one\ type\ of\ animal\ per\ shelter\ and\ there\n\ is\ a\ limit\ on\ how\ many\ animals\ can\ fit\ in\ one\ shelter.\ </p>\n\ \n\ @author\ (Max)\ \n\ @version\ (April\ 20th,\ 2022)\n
 comment1.params=
 comment1.target=Shelter()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Shelter\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=
 comment2.target=void\ act()
-numComments=3
+comment3.params=
+comment3.target=boolean\ limitHit()
+comment3.text=\n\ This\ method\ checks\ when\ the\ limit\ of\ animals\ that\ can\ fit\ into\ a\ shelter.\n
+comment4.params=
+comment4.target=Animal\ getTypeAnimal()
+comment5.params=animal
+comment5.target=void\ setTypeAnimal(Animal)
+comment6.params=
+comment6.target=int\ getCurAnimals()
+comment7.params=
+comment7.target=void\ addCurAnimals()
+numComments=8
