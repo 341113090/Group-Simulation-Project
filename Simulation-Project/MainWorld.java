@@ -12,8 +12,11 @@ public class MainWorld extends World
     private int dayNumber;
     private int numCherry;
     private int numPoisonIvy;
-    private int startNumCherry = 4;
-    private int startNumPoisonIvy = 9;
+    private int startNumCherry = 0;
+    private int startNumPoisonIvy = 0;
+    private int startNumHerb = 0;
+    private int startNumCarn = 0;
+    private int startNumShelter = 0;
     private String[] plantLabels = new String[2];
     Font funFont = new Font ("Comic Sans MS", false, false, 16);
     Font boringFont = new Font ("Times New Roman", false, false, 14);
@@ -22,10 +25,16 @@ public class MainWorld extends World
      * Constructor for objects of class MainWorld.
      * 
      */
-    public MainWorld()
+    public MainWorld(int cherry, int poisonIvy, int herb, int carn, int shelter)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 500, 1);
+        startNumCherry = cherry;
+        startNumPoisonIvy = poisonIvy;
+        startNumHerb = herb;
+        startNumCarn = carn;
+        startNumShelter = shelter;
+        
         //Set the cherry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);
