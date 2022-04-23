@@ -1,163 +1,191 @@
 import greenfoot.*;
 import javax.swing.JOptionPane;
 import java.util.HashMap;
+
 /**
- * AnimationManager contains a number of useful, static methods to help import and manupulate Animations.
- * This includes the ability to import straight from a SpriteSheet, as well as adding layers on top of
- * each other (I.e. draw armor onto body) and cropping images (for tighter collision detection).
+ * AnimationManager contains a number of useful, static methods to help import
+ * and manupulate Animations.
+ * This includes the ability to import straight from a SpriteSheet, as well as
+ * adding layers on top of
+ * each other (I.e. draw armor onto body) and cropping images (for tighter
+ * collision detection).
  *
- * Note that MatchLargest DOESN'T WORK smoothly for animations with LPC sprites because for some reason
+ * Note that MatchLargest DOESN'T WORK smoothly for animations with LPC sprites
+ * because for some reason
  * a frame ends up off center despite my initial attempts to fix (TODO- FIX!)
  *
  * @author Jordan Cohen
  * @version 0.0.3
  * @since 0.0.1
  */
-public class AnimationManager
-{
-    private static final Color CLEAR_PIXEL = new Color (0,0,0,0);
+public class AnimationManager {
+    private static final Color CLEAR_PIXEL = new Color(0, 0, 0, 0);
 
-    /**  This will allow for importing armor etc to make the character dynamic! Without spritefoot work!
-     *  Rows must be 4 (directional) or 1 (non-directional). This is designed to work with spritesheets from
-     *  LPC but could be tailored to work with other source material.
+    /**
+     * This will allow for importing armor etc to make the character dynamic!
+     * Without spritefoot work!
+     * Rows must be 4 (directional) or 1 (non-directional). This is designed to work
+     * with spritesheets from
+     * LPC but could be tailored to work with other source material.
      *
-     *  @param spriteSheet  the Spritesheet to pull frames from
-     *  @param startRow     the row on which the desired sprites are located (not x,y coordinate)
-     *  @param numFrames    the number of frames in the animation
-     *  @param terminal     is this a terminal animation? (One that ends after it plays a set number of times).
-     *  @return Animation   an appropriate Animation object that is either 1 direction or 4 direction.
+     * @param spriteSheet the Spritesheet to pull frames from
+     * @param startRow    the row on which the desired sprites are located (not x,y
+     *                    coordinate)
+     * @param numFrames   the number of frames in the animation
+     * @param terminal    is this a terminal animation? (One that ends after it
+     *                    plays a set number of times).
+     * @return Animation an appropriate Animation object that is either 1 direction
+     *         or 4 direction.
      *
      */
-    protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,int numCols, int numFrames, int width, int height){
-            // Had to rewrite this, I have no idea how you set this up tbh mr cohen
-            GreenfootImage[] img1d = new GreenfootImage[numFrames];
-            int frame = 0;
-            for (int row = 0; row < numRows;row++){
-                for (int col = 0; col < numCols; col++){
-                    img1d[frame] = new GreenfootImage (getSlice(spriteSheet, startCol+(col*width), startRow +(row*height), width, height));
-                    frame++;
-                    if (frame >= numFrames) break;
-                }
+    protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,
+            int numCols, int numFrames, int width, int height) {
+        // Had to rewrite this, I have no idea how you set this up tbh mr cohen
+        GreenfootImage[] img1d = new GreenfootImage[numFrames];
+        int frame = 0;
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                img1d[frame] = new GreenfootImage(
+                        getSlice(spriteSheet, startCol + (col * width), startRow + (row * height), width, height));
+                frame++;
+                if (frame >= numFrames)
+                    break;
             }
-            Animation anim = new Animation(img1d);
-            return anim;
+        }
+        Animation anim = new Animation(img1d);
+        return anim;
 
-        
     }
-    protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,int numCols, int numFrames, int width, int height, String name){
 
+    protected static Animation createAnimation(GreenfootImage spriteSheet, int startRow, int startCol, int numRows,
+            int numCols, int numFrames, int width, int height, String name) {
 
-            // Had to rewrite this, I have no idea how you set this up tbh mr cohen
-            GreenfootImage[] img1d = new GreenfootImage[numFrames];
-            int frame = 0;
-            for (int row = 0; row < numRows;row++){
-                for (int col = 0; col < numCols; col++){
-                    img1d[frame] = new GreenfootImage (getSlice(spriteSheet, startCol+(col*width), startRow +(row*height), width, height));
-                    frame++;
-                    if (frame >= numFrames) break;
-                }
+        // Had to rewrite this, I have no idea how you set this up tbh mr cohen
+        GreenfootImage[] img1d = new GreenfootImage[numFrames];
+        int frame = 0;
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                img1d[frame] = new GreenfootImage(
+                        getSlice(spriteSheet, startCol + (col * width), startRow + (row * height), width, height));
+                frame++;
+                if (frame >= numFrames)
+                    break;
             }
-            Animation anim = new Animation(img1d, name);
-            return anim;
+        }
+        Animation anim = new Animation(img1d, name);
+        return anim;
 
-        
     }
+
     /**
-     * Grabs a part of a sprite sheet (or any other GreenfootImage) and returns it as a new
+     * Grabs a part of a sprite sheet (or any other GreenfootImage) and returns it
+     * as a new
      * GreenfootImage. The sprite sheet must be larger than the resulting image.
      *
-     * @param spriteSheet   the larger spritesheet to pull images from
-     * @param xPos  the x position (of the left) of the desired spot to draw from
-     * @param yPos  the y position (of the top) of the desired spot to draw from
-     * @param frameWidth     the horizontal tile size
-     * @param frameHeight    the vertical tile size
-     * @return GreenfootImage   the resulting image
+     * @param spriteSheet the larger spritesheet to pull images from
+     * @param xPos        the x position (of the left) of the desired spot to draw
+     *                    from
+     * @param yPos        the y position (of the top) of the desired spot to draw
+     *                    from
+     * @param frameWidth  the horizontal tile size
+     * @param frameHeight the vertical tile size
+     * @return GreenfootImage the resulting image
      */
-    public static GreenfootImage getSlice (GreenfootImage spriteSheet, int xPos, int yPos, int frameWidth, int frameHeight)
-    {
-        if (frameWidth > spriteSheet.getWidth() || frameHeight > spriteSheet.getHeight()){
+    public static GreenfootImage getSlice(GreenfootImage spriteSheet, int xPos, int yPos, int frameWidth,
+            int frameHeight) {
+        if (frameWidth > spriteSheet.getWidth() || frameHeight > spriteSheet.getHeight()) {
 
-            System.out.println("Error in AnimationManager: GetSlice: You specified a SpriteSheet that was smaller than your desired output");
+            System.out.println(
+                    "Error in AnimationManager: GetSlice: You specified a SpriteSheet that was smaller than your desired output");
             return null;
         }
-        GreenfootImage small = new GreenfootImage (frameWidth, frameHeight);
-        // negatively offset the larger sprite sheet image so that a correct, small portion
+        GreenfootImage small = new GreenfootImage(frameWidth, frameHeight);
+        // negatively offset the larger sprite sheet image so that a correct, small
+        // portion
         // of it is drawn onto the smaller, resulting image.
-        small.drawImage (spriteSheet, -xPos, -yPos);
+        small.drawImage(spriteSheet, -xPos, -yPos);
         return small;
     }
-    public static GreenfootImage getSlice (GreenfootImage spriteSheet, int xPos, int yPos)
-    {
+
+    public static GreenfootImage getSlice(GreenfootImage spriteSheet, int xPos, int yPos) {
         int frameWidth = 16;
-        xPos*=16;
-        yPos*=16;
-        if (frameWidth > spriteSheet.getWidth() || frameWidth > spriteSheet.getHeight()){
+        xPos *= 16;
+        yPos *= 16;
+        if (frameWidth > spriteSheet.getWidth() || frameWidth > spriteSheet.getHeight()) {
 
-            System.out.println("Error in AnimationManager: GetSlice: You specified a SpriteSheet that was smaller than your desired output");
+            System.out.println(
+                    "Error in AnimationManager: GetSlice: You specified a SpriteSheet that was smaller than your desired output");
             return null;
         }
-        GreenfootImage small = new GreenfootImage (frameWidth, frameWidth);
-        // negatively offset the larger sprite sheet image so that a correct, small portion
+        GreenfootImage small = new GreenfootImage(frameWidth, frameWidth);
+        // negatively offset the larger sprite sheet image so that a correct, small
+        // portion
         // of it is drawn onto the smaller, resulting image.
-        small.drawImage (spriteSheet, -xPos, -yPos);
+        small.drawImage(spriteSheet, -xPos, -yPos);
         return small;
     }
-
 
     /**
-     * The Tight Selection core. This is the algorithm that finds the tightest rectangle around a shape.
+     * The Tight Selection core. This is the algorithm that finds the tightest
+     * rectangle around a shape.
      * Result does not include a border - only the tighest possible selection.
      *
-     * Note: This feature will not work on sprites that overlap each other. Sprites must be within their
+     * Note: This feature will not work on sprites that overlap each other. Sprites
+     * must be within their
      * own bounding rectangle. TODO: Improve This.
      *
-     * @param source    The GreenfootImage that is the source for the resulting selection
-     * @param targetX   The X coordinate that was selected, should be on the image, not on transparency
-     * @param targetY   The Y coordinate that was selected, should be on the image, not on transparency
+     * @param source  The GreenfootImage that is the source for the resulting
+     *                selection
+     * @param targetX The X coordinate that was selected, should be on the image,
+     *                not on transparency
+     * @param targetY The Y coordinate that was selected, should be on the image,
+     *                not on transparency
      *
-     * @return GreenfootImage   Returns a GreenfootImage object that is cropped without excess transparency
+     * @return GreenfootImage Returns a GreenfootImage object that is cropped
+     *         without excess transparency
      */
-    public static GreenfootImage getCroppedImage (GreenfootImage source, int targetX, int targetY){
+    public static GreenfootImage getCroppedImage(GreenfootImage source, int targetX, int targetY) {
         int left = targetX - 1, right = targetX + 1, top = targetY - 1, bottom = targetY + 1;
         boolean leftDone = false, rightDone = false, topDone = false, bottomDone = false;
         boolean done = false;
         // initial adjustments to make a small square
 
-        //BufferedImage awtSource = source.getAwtImage();
+        // BufferedImage awtSource = source.getAwtImage();
         Color temp = source.getColorAt(targetX, targetY);
-        if (temp.getAlpha() == 0){ // If used did not click on a shape
-            JOptionPane.showMessageDialog( null,
-                "Clicked on Transparency - Please click on an image instead.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+        if (temp.getAlpha() == 0) { // If used did not click on a shape
+            JOptionPane.showMessageDialog(null,
+                    "Clicked on Transparency - Please click on an image instead.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         } else { // if user has clicked on a shape
 
-            while (!done){
+            while (!done) {
                 boolean stillGrowing = false;
 
-                //Check on all sides for transparency, and if I've found it on all sides, then I'm done, otherwise continue to grow
-                if (!checkTransparentVertical(new Coordinate(left, top), new Coordinate (left, bottom), source)){
+                // Check on all sides for transparency, and if I've found it on all sides, then
+                // I'm done, otherwise continue to grow
+                if (!checkTransparentVertical(new Coordinate(left, top), new Coordinate(left, bottom), source)) {
                     left--;
                     stillGrowing = true;
                 }
 
-                if (!checkTransparentHorizontal(new Coordinate (left, top), new Coordinate (right, top), source)){
+                if (!checkTransparentHorizontal(new Coordinate(left, top), new Coordinate(right, top), source)) {
                     top--;
                     stillGrowing = true;
                 }
 
-                if(!checkTransparentVertical(new Coordinate(right, top), new Coordinate (right, bottom), source)){
+                if (!checkTransparentVertical(new Coordinate(right, top), new Coordinate(right, bottom), source)) {
                     right++;
                     stillGrowing = true;
                 }
 
-                if (!checkTransparentHorizontal(new Coordinate(left, bottom), new Coordinate (right, bottom), source)){
-                    bottom ++;
+                if (!checkTransparentHorizontal(new Coordinate(left, bottom), new Coordinate(right, bottom), source)) {
+                    bottom++;
                     stillGrowing = true;
                 }
 
-                if (!stillGrowing){
+                if (!stillGrowing) {
                     done = true;
 
                 }
@@ -169,163 +197,174 @@ public class AnimationManager
         right++;
         top++;
 
-        // Build a new GreenfootImage by cropping using the dimensions that were just calculated
+        // Build a new GreenfootImage by cropping using the dimensions that were just
+        // calculated
         int offsetX = 0, offsetY = 0;
-        if (right-left % 2 == 0){ offsetX = 1; }
-        if (bottom-top % 2 == 0){ offsetY = 1; }
-        return new GreenfootImage (getSlice(source, left, top, right-left + offsetX, bottom-top + offsetY));
+        if (right - left % 2 == 0) {
+            offsetX = 1;
+        }
+        if (bottom - top % 2 == 0) {
+            offsetY = 1;
+        }
+        return new GreenfootImage(getSlice(source, left, top, right - left + offsetX, bottom - top + offsetY));
     }
 
     /**
-     * Check in a straight, vertical line to see if every pixel in that line is transparent. This will
+     * Check in a straight, vertical line to see if every pixel in that line is
+     * transparent. This will
      * help determine if the edge of a contiguous image has been reached. Edge safe.
      *
-     * @param   top Coordinate (x,y pair) of the top of the line
-     * @param   bottom  Coordinate (x,y pair) of the bottom of th eline
-     * @param   bi  The image to scan, as a bufferedImage (not GreenfootImage!)
+     * @param top    Coordinate (x,y pair) of the top of the line
+     * @param bottom Coordinate (x,y pair) of the bottom of th eline
+     * @param bi     The image to scan, as a bufferedImage (not GreenfootImage!)
      */
-    private static boolean checkTransparentVertical (Coordinate top, Coordinate bottom, GreenfootImage gi){
+    private static boolean checkTransparentVertical(Coordinate top, Coordinate bottom, GreenfootImage gi) {
         boolean transparent = true;
-        try{
-            for (int i = (int)top.getY(); i < bottom.getY(); i++){
-                int trans = gi.getColorAt((int)top.getX(), i).getAlpha();
-                if (trans != 0){
+        try {
+            for (int i = (int) top.getY(); i < bottom.getY(); i++) {
+                int trans = gi.getColorAt((int) top.getX(), i).getAlpha();
+                if (trans != 0) {
                     transparent = false;
                 }
 
             }
-        }
-        catch (ArrayIndexOutOfBoundsException e){ // treat edges as transparent, because we can't go any further
+        } catch (ArrayIndexOutOfBoundsException e) { // treat edges as transparent, because we can't go any further
             transparent = true;
         }
         return transparent;
     }
 
     /**
-     * Check in a straight, vertical line to see if every pixel in that line is transparent. This will
+     * Check in a straight, vertical line to see if every pixel in that line is
+     * transparent. This will
      * help determine if the edge of a contiguous image has been reached. Edge safe.
      *
-     * @param   top Coordinate (x,y pair) of the top of the line
-     * @param   bottom  Coordinate (x,y pair) of the bottom of th eline
-     * @param   bi  The image to scan, as a bufferedImage (not GreenfootImage!)
+     * @param top    Coordinate (x,y pair) of the top of the line
+     * @param bottom Coordinate (x,y pair) of the bottom of th eline
+     * @param bi     The image to scan, as a bufferedImage (not GreenfootImage!)
      */
-    private static boolean checkTransparentHorizontal (Coordinate left, Coordinate right, GreenfootImage gi){
+    private static boolean checkTransparentHorizontal(Coordinate left, Coordinate right, GreenfootImage gi) {
         boolean transparent = true;
-        try{
-            for (int i = (int)left.getX(); i < right.getX(); i++){
-                int trans = gi.getColorAt(i, (int)left.getX()).getAlpha();
-                if (trans != 0){
+        try {
+            for (int i = (int) left.getX(); i < right.getX(); i++) {
+                int trans = gi.getColorAt(i, (int) left.getX()).getAlpha();
+                if (trans != 0) {
                     transparent = false;
                 }
 
             }
-        }
-        catch (ArrayIndexOutOfBoundsException e){ // treat edges as transparent, because we can't go any further
+        } catch (ArrayIndexOutOfBoundsException e) { // treat edges as transparent, because we can't go any further
             transparent = true;
         }
         return transparent;
     }
 
-    public static Animation trim (Animation anim, int leftTrim, int rightTrim, int topTrim, int bottomTrim){
+    public static Animation trim(Animation anim, int leftTrim, int rightTrim, int topTrim, int bottomTrim) {
 
-            GreenfootImage[] images = anim.getNonDirectionalImages();
-            for (int frame = 0; frame < images.length; frame++){
-                images[frame] = getSlice(images[frame], leftTrim, topTrim, rightTrim - leftTrim, bottomTrim - topTrim);
-            }
-            return new Animation (images);
-        
+        GreenfootImage[] images = anim.getNonDirectionalImages();
+        for (int frame = 0; frame < images.length; frame++) {
+            images[frame] = getSlice(images[frame], leftTrim, topTrim, rightTrim - leftTrim, bottomTrim - topTrim);
+        }
+        return new Animation(images);
+
     }
 
-    public static Animation matchLargest (Animation anim, int leftPad, int rightPad, int topPad, int bottomPad){
-        
-            return new Animation (matchLargest(anim.getNonDirectionalImages(), leftPad, rightPad, topPad, bottomPad));
-        
+    public static Animation matchLargest(Animation anim, int leftPad, int rightPad, int topPad, int bottomPad) {
+
+        return new Animation(matchLargest(anim.getNonDirectionalImages(), leftPad, rightPad, topPad, bottomPad));
+
     }
 
-    // Allows resizing a whole Animation set at once (4 directions). This makes all images within the same direction
-    // the same, cropped size, but does not make all directions have the same maximum size - after experimentation, it
+    // Allows resizing a whole Animation set at once (4 directions). This makes all
+    // images within the same direction
+    // the same, cropped size, but does not make all directions have the same
+    // maximum size - after experimentation, it
     // may be necessary to implement across-direction equalization.
-    public static GreenfootImage[][] matchLargest (GreenfootImage[][] images, int leftPad, int rightPad, int topPad, int bottomPad){
+    public static GreenfootImage[][] matchLargest(GreenfootImage[][] images, int leftPad, int rightPad, int topPad,
+            int bottomPad) {
         GreenfootImage[][] results = new GreenfootImage[images.length][images[0].length];
 
-        for (int i = 0; i < images.length; i++){
-            results [i] = matchLargest (images[i], leftPad, rightPad, topPad, bottomPad);
+        for (int i = 0; i < images.length; i++) {
+            results[i] = matchLargest(images[i], leftPad, rightPad, topPad, bottomPad);
         }
 
         return results;
     }
 
-    // Resizes all images to have the same size as the source image, with the supplied padding
-    // Note that padding parameters are for extra padding on ALL images above and beyond making them
+    // Resizes all images to have the same size as the source image, with the
+    // supplied padding
+    // Note that padding parameters are for extra padding on ALL images above and
+    // beyond making them
     // the same size as the largest one. Most of the time, these should be all zero.
-    public static GreenfootImage[] matchLargest (GreenfootImage[] images, int leftPad, int rightPad, int topPad, int bottomPad){
+    public static GreenfootImage[] matchLargest(GreenfootImage[] images, int leftPad, int rightPad, int topPad,
+            int bottomPad) {
         int largestX = 0;
         int largestY = 0;
         GreenfootImage[] results = new GreenfootImage[images.length];
         // find max width and height
-        for (GreenfootImage i : images){
-            if (i.getWidth() > largestX){
+        for (GreenfootImage i : images) {
+            if (i.getWidth() > largestX) {
                 largestX = i.getWidth();
             }
-            if (i.getHeight() > largestY){
+            if (i.getHeight() > largestY) {
                 largestY = i.getHeight();
             }
 
         }
 
         int index = 0;
-        for (GreenfootImage i : images){
+        for (GreenfootImage i : images) {
 
             int left = 0, right = 0, top = 0, bottom = 0;
-            if (i.getWidth() < largestX){
-                int d = Math.abs(largestX - i.getWidth ()); // find delta
+            if (i.getWidth() < largestX) {
+                int d = Math.abs(largestX - i.getWidth()); // find delta
 
-                if (d % 2 == 0){ // if delta is even, split padding
+                if (d % 2 == 0) { // if delta is even, split padding
                     left = leftPad + d / 2;
                 } else { // if odd, add extra padding on LEFT, to be consistent
                     left = leftPad + ((d + 1) / 2);
                 }
-                //left = leftPad + d / 2;
+                // left = leftPad + d / 2;
                 right = rightPad + d / 2;
             }
-            if (i.getHeight() < largestY){
+            if (i.getHeight() < largestY) {
                 int d = Math.abs(largestY - i.getHeight());
 
-                if (d % 2 == 0){  // even delta
+                if (d % 2 == 0) { // even delta
                     top = topPad + d / 2;
-                } else {            // if odd, add extra padding on TOP to be consistent
-                    top = topPad + ((d+1)/2);
+                } else { // if odd, add extra padding on TOP to be consistent
+                    top = topPad + ((d + 1) / 2);
                 }
-                //top = topPad + d / 2;
+                // top = topPad + d / 2;
                 bottom = bottomPad + d / 2;
             }
 
-            //System.out.println("left: " + left + " right: " + right);
-            results[index] = addPadding (i, left, right, top, bottom, largestX, largestY);
+            // System.out.println("left: " + left + " right: " + right);
+            results[index] = addPadding(i, left, right, top, bottom, largestX, largestY);
             index++;
         }
         return results;
     }
 
-    public static GreenfootImage addPadding (GreenfootImage gi, int leftPad, int rightPad, int topPad, int bottomPad, int maxWidth, int maxHeight){
+    public static GreenfootImage addPadding(GreenfootImage gi, int leftPad, int rightPad, int topPad, int bottomPad,
+            int maxWidth, int maxHeight) {
         int xSize = gi.getWidth() + leftPad + rightPad;
         int ySize = gi.getHeight() + topPad + bottomPad;
 
         // Temp image, to store pixels as we reverse everything
-        //System.out.println("Making a new image size: " + xSize + ", " + ySize);
-        //BufferedImage newBi = new BufferedImage (xSize, ySize, 3);
-        GreenfootImage newGi = new GreenfootImage (xSize, ySize);
+        // System.out.println("Making a new image size: " + xSize + ", " + ySize);
+        // BufferedImage newBi = new BufferedImage (xSize, ySize, 3);
+        GreenfootImage newGi = new GreenfootImage(xSize, ySize);
 
-        //int empty = packagePixel (0, 0, 0, 0);
+        // int empty = packagePixel (0, 0, 0, 0);
 
-        for (int y = 0; y < ySize; y++)
-        {
-            for (int x = 0; x < xSize; x++)
-            {
-                if (y < topPad || y >= topPad + gi.getHeight() || x < leftPad || x >= rightPad + gi.getWidth()){
+        for (int y = 0; y < ySize; y++) {
+            for (int x = 0; x < xSize; x++) {
+                if (y < topPad || y >= topPad + gi.getHeight() || x < leftPad || x >= rightPad + gi.getWidth()) {
                     newGi.setColorAt(x, y, CLEAR_PIXEL);
                 } else {
-                    //System.out.println("x: " + x + ", y: " + y + " leftPad: " + leftPad + " topPad: " + topPad);
+                    // System.out.println("x: " + x + ", y: " + y + " leftPad: " + leftPad + "
+                    // topPad: " + topPad);
                     newGi.setColorAt(x, y, gi.getColorAt(x - leftPad, y - topPad));
                 }
             }
@@ -342,21 +381,33 @@ public class AnimationManager
      *
      * @param rgbaValue The value of a single pixel as an integer, representing<br>
      *                  8 bits for red, green and blue and 8 bits for alpha:<br>
-     *                  <pre>alpha   red     green   blue</pre>
-     *                  <pre>00000000000000000000000000000000</pre>
-     * @return int[4]   Array containing 4 shorter ints<br>
-     *                  <pre>0       1       2       3</pre>
-     *                  <pre>alpha   red     green   blue</pre>
+     * 
+     *                  <pre>
+     * alpha   red     green   blue
+     *                  </pre>
+     * 
+     *                  <pre>
+     *                  00000000000000000000000000000000
+     *                  </pre>
+     * 
+     * @return int[4] Array containing 4 shorter ints<br>
+     * 
+     *         <pre>
+     * 0       1       2       3
+     *         </pre>
+     * 
+     *         <pre>
+     * alpha   red     green   blue
+     *         </pre>
      */
-    public static int[] unpackPixel (int rgbaValue)
-    {
+    public static int[] unpackPixel(int rgbaValue) {
         int[] unpackedValues = new int[4];
         // alpha
         unpackedValues[0] = (rgbaValue >> 24) & 0xFF;
         // red
         unpackedValues[1] = (rgbaValue >> 16) & 0xFF;
         // green
-        unpackedValues[2] = (rgbaValue >>  8) & 0xFF;
+        unpackedValues[2] = (rgbaValue >> 8) & 0xFF;
         // blue
         unpackedValues[3] = (rgbaValue) & 0xFF;
 
@@ -368,16 +419,15 @@ public class AnimationManager
      * to package all of the data into a single integer, which can be used to
      * set a pixel in a BufferedImage.
      *
-     * @param   int red value (0-255)
-     * @param   int green value (0-255)
-     * @param   int blue value (0-255)
-     * @param   int alpha value (0-255)
+     * @param int red value (0-255)
+     * @param int green value (0-255)
+     * @param int blue value (0-255)
+     * @param int alpha value (0-255)
      *
-     * @return int  Integer representing 32 bit integer pixel ready
-     *              for BufferedImage
+     * @return int Integer representing 32 bit integer pixel ready
+     *         for BufferedImage
      */
-    public static int packagePixel (int r, int g, int b, int a)
-    {
+    public static int packagePixel(int r, int g, int b, int a) {
         int newRGB = (a << 24) | (r << 16) | (g << 8) | b;
         return newRGB;
     }
