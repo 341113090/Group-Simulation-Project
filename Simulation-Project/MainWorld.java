@@ -10,6 +10,16 @@ import java.util.ArrayList;
 public class MainWorld extends World
 {
     private int dayNumber;
+    private int currentTime = 0;
+    private int dayLength = 600;
+    private int nightLength = 300;  
+    private double maxDarkness = 100;
+
+    public static boolean night;
+
+    // Foreground object for night effects
+    private Foreground fg;
+
     private int numCherry;
     private int numPoisonIvy;
     private int startNumCherry = 4;
@@ -72,6 +82,11 @@ public class MainWorld extends World
         //addObject(new Shelter(), 750, 275);
         addObject(new Shelter(), 750, 350);
         addObject(new Shelter(), 750, 425);
+        
+        addObject(new Herbivore(), getWidth()/2, getHeight()/2);
+                fg = new Foreground();
+        addObject(fg, getWidth() / 2, getHeight() / 2);
+        
     }
     
     /**
@@ -98,5 +113,49 @@ public class MainWorld extends World
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
         bigPlantLabel.update(plantLabels);
+    }
+    
+        private void timeManager() {
+        currentTime++;
+
+        if (currentTime > dayLength) {
+            night = true;
+            double transparency = 0;
+            if (currentTime - dayLength < nightLength / 2) {
+    
+                transparency = (double) (currentTime - dayLength) / (double) nightLength*2;
+                //System.out.println("Before halfway");
+            } else {
+                //System.out.println("After halfway");
+                transparency = 1 - (double) (currentTime - dayLength - nightLength / 2.0) / (double) nightLength*2 ;
+            }
+            System.out.println(transparency);
+            drawNight(transparency * maxDarkness);
+
+            if (currentTime > dayLength + nightLength) {
+                currentTime = 0;
+            }
+        } else {
+            night = false;
+            drawNight(0);
+        }
+    }
+
+    private GreenfootImage drawNight(double transparency) {
+        GreenfootImage dark = new GreenfootImage(getWidth(), getHeight());
+        dark.setColor(Color.BLACK);
+        dark.fillRect(0, 0, dark.getWidth(), dark.getHeight());
+        dark.setTransparency((int) transparency);
+
+        fg.setImage(dark);
+        return dark;
+    }
+
+    public static float getDistance(Actor a, Actor b) {
+        double distance;
+        double xLength = a.getX() - b.getX();
+        double yLength = a.getY() - b.getY();
+        distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
+        return (float) distance;
     }
 }
