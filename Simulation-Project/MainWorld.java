@@ -97,6 +97,8 @@ public class MainWorld extends World
     {
         //update the plant label
         updatePlantLabels();
+        
+        timeManager();
     }
     
     /**

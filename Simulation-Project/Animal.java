@@ -18,14 +18,18 @@ public class Animal extends Animator {
     // Animal variables
     protected double speed; // Animal movement speed, increases more health decay when moving
     protected int attack; // Animal attack damage, decreases health
-    protected int health; // Animal health/hp, decreases speed
+    protected int maxHealth; // Animal health/hp, decreases speed
     protected int size;
     protected int senseRange; // How far animal can detect threats/food, increases health decay
     protected double healthDecay; // How fast animals health goes down, hunger
     protected double altruism; // Chance of animal giving up its spot
 
-    // Attack variables
-
+    // 
+    protected double curHealth;
+    protected double rotation;
+    
+    //
+    protected int time;
     /**
      * Act - do whatever the Animal wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -67,7 +71,12 @@ public class Animal extends Animator {
     protected void Following() {
 
     }
-
+    protected void Attacking(){
+        
+    }
+    protected void Eating(){
+        
+    }
     protected void ReturnToShelter() {
 
     }

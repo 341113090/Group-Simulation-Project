@@ -60,6 +60,8 @@ public abstract class Plant extends Animator
             growing();
         }
         deathCheck();
+        
+        isGettingEaten = false;
     }
     
     //next methods actually are being used
@@ -75,8 +77,9 @@ public abstract class Plant extends Animator
      * Note: Plant will give a seed based on the percent of health they lose to the
      * herbivore. Cherry will give three seeds if eaten from full health.
      */
-    public double takeDamage(){
+    public double eatPlant(){
         isGettingEaten = true;
+        System.out.println("being eaten");
         double actualTick = healthPerTick*toughness;//might be a problem later for statbar
         if(health>=actualTick){
             health-=actualTick;//temporary, will depend on plant health

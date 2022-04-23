@@ -41,6 +41,7 @@ public class Herbivore extends Animal
     public void act()
     {
         super.act();
+        setRotation(rotation);
         // Add your action code here.
         
         targetClosestPlant();
@@ -67,7 +68,7 @@ public class Herbivore extends Animal
         System.out.println("How");
     }
     
-    private void targetClosestPlant (){
+    private int targetClosestPlant (){
         
         double closestTargetDistance = 0;
         double distanceToActor;
@@ -102,11 +103,13 @@ public class Herbivore extends Animal
                 {
                     targetPlant = o;
                     closestTargetDistance = distanceToActor;
+                    return 1;
                 }
                 
             }
             
-        }
+        }   
+        return 0;
        
     }
     
@@ -123,13 +126,13 @@ public class Herbivore extends Animal
         {
             // If I was able to eat, increase by life by Plant's nibble power
             
-            /*
-            int tryToEat = targetPlant.nibble();
-            if (tryToEat > 0 && hp < maxHP)
+            
+            double tryToEat = targetPlant.eatPlant();
+            if (tryToEat > 0 && curHealth < maxHealth)
             {
-                hp += tryToEat;
+                curHealth += tryToEat;
             }
-            */
+            
             
         }
         else
@@ -147,12 +150,48 @@ public class Herbivore extends Animal
     {
         if (Greenfoot.getRandomNumber (100) == 50)
         {
-            turn (Greenfoot.getRandomNumber(360));
+            rotation = Greenfoot.getRandomNumber(360);
+            setRotation (rotation);
         }
         else
             move (mySpeed);
     }
     
+    private int randomDirectionDelay;
     
+    protected void Searching(){
+        if (time < randomDirectionDelay){
+            time++;
+        }   else {
+            rotation = Greenfoot.getRandomNumber(360);
+        }
+            setRotation (rotation);
+            move(mySpeed);
+            
+        if (    targetClosestPlant() == 1){
+            state = State.Following;
+        }
+    }
+    
+    protected void Following(){
+        turnTowards(targetPlant.getX(), targetPlant.getY());
+        rotation = getRotation();
+        
+        move (mySpeed);
+        
+        if (this.getNeighbours (30, true, Plant.class).size() > 0)
+        {
+            // If I was able to eat, increase by life by Plant's nibble power
+            
+            
+            double tryToEat = targetPlant.eatPlant();
+            if (tryToEat > 0 && curHealth < maxHealth)
+            {
+                curHealth += tryToEat;
+            }
+            
+            
+        }
+    }
     
 }
