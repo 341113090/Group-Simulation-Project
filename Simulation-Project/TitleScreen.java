@@ -72,60 +72,26 @@ public class TitleScreen extends World
     {    
         // Create a new world with 800x500 cells with a cell size of 1x1 pixels.
         super(800, 500, 1); 
-        setBackground(background);
-        prepare();
         
+        //sets the background
+        setBackground(background);
+        
+        //gets all the items on screen ready
+        prepare();
     }
     
     /**
      * The main world act loop
+     * keeps track of everything that happens and allows user to interact
      */
     public void act()
     {
+        //method that checks for user clicking options
         checkForSelection();
+        //method that darkens options that have been selected
         showSelection();
-        //starts game if user presses <space>
-        if(Greenfoot.isKeyDown("space"))
-        {
-            for(SuperTextBox cherryLabels : cherryTextBoxes)
-            {
-                if(cherryLabels.checkSelected())
-                {
-                    cherryNum = cherryLabels.getValue();
-                }
-            }
-            for(SuperTextBox poisonIvyLabels : poisonIvyTextBoxes)
-            {
-                if(poisonIvyLabels.checkSelected())
-                {
-                    poisonIvyNum = poisonIvyLabels.getValue();
-                }
-            }
-            for(SuperTextBox herbLabels : herbTextBoxes)
-            {
-                if(herbLabels.checkSelected())
-                {
-                    herbNum = herbLabels.getValue();
-                }
-            }
-            for(SuperTextBox carnLabels : carnTextBoxes)
-            {
-                if(carnLabels.checkSelected())
-                {
-                    carnNum = carnLabels.getValue();
-                }
-            }
-            for(SuperTextBox shelterLabels : shelterTextBoxes)
-            {
-                if(shelterLabels.checkSelected())
-                {
-                    shelterNum = shelterLabels.getValue();
-                }
-            }
-            MainWorld mainworld = new MainWorld(cherryNum, poisonIvyNum, herbNum, carnNum, shelterNum);
-            Greenfoot.setWorld(mainworld);
-        }
-        
+        //starts game with selected options if user presses <space>
+        startMethod();
     }
     
     /**
@@ -141,8 +107,9 @@ public class TitleScreen extends World
         label.setFillColor(Color.BLACK);
         Label label2 = new Label("Press <space> to start", 20);
         addObject(label2,getWidth()/2,getHeight()*8/9);
-        //labels for customization options
         label2.setFillColor(Color.BLACK);
+        
+        //tells users which components they are selecting for customization options
         Label cherry = new Label("Cherries", 20);
         cherry.setFillColor(Color.BLACK);
         addObject(cherry,getWidth()/6, getHeight()/5);
@@ -161,8 +128,10 @@ public class TitleScreen extends World
         
         //adding boxes that you can click for customizing
         //cherry buttons
+        //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox cherryButtonOne = new SuperTextBox(cherryOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(cherryButtonOne, getWidth()/6, getHeight()*2/5);
+        //first option default to selected
         cherryButtonOne.setIsSelected(true);
         cherryButtonOne.setValue(cherryOptOne);
         SuperTextBox cherryButtonTwo = new SuperTextBox(cherryOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
@@ -171,16 +140,20 @@ public class TitleScreen extends World
         SuperTextBox cherryButtonThree = new SuperTextBox(cherryOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(cherryButtonThree, getWidth()/6, getHeight()*4/5);
         cherryButtonThree.setValue(cherryOptThree);
+        //add each button to the corresponding arraylist
         cherryTextBoxes = new ArrayList<SuperTextBox>();
         cherryTextBoxes.add(cherryButtonOne);
         cherryTextBoxes.add(cherryButtonTwo);
         cherryTextBoxes.add(cherryButtonThree);
+        //creates the grey box that signifies selection on top of the first button
         cherrySelected = new Rectangle(cherryButtonOne.getWidth(),cherryButtonOne.getHeight(), 128);
         addObject(cherrySelected,cherryButtonOne.getX(),cherryButtonOne.getY());
         
         //poison ivy buttons
+        //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox poisonIvyButtonOne = new SuperTextBox(poisonIvyOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(poisonIvyButtonOne, getWidth()*2/6, getHeight()*2/5);
+        //first option default to selected
         poisonIvyButtonOne.setIsSelected(true);
         poisonIvyButtonOne.setValue(poisonIvyOptOne);
         SuperTextBox poisonIvyButtonTwo = new SuperTextBox(poisonIvyOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
@@ -189,16 +162,20 @@ public class TitleScreen extends World
         SuperTextBox poisonIvyButtonThree = new SuperTextBox(poisonIvyOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(poisonIvyButtonThree, getWidth()*2/6, getHeight()*4/5);
         poisonIvyButtonThree.setValue(poisonIvyOptThree);
+        //add each button to the corresponding arraylist
         poisonIvyTextBoxes = new ArrayList<SuperTextBox>();
         poisonIvyTextBoxes.add(poisonIvyButtonOne);
         poisonIvyTextBoxes.add(poisonIvyButtonTwo);
         poisonIvyTextBoxes.add(poisonIvyButtonThree);
+        //creates the grey box that signifies selection on top of the first button
         poisonIvySelected = new Rectangle(poisonIvyButtonOne.getWidth(),poisonIvyButtonOne.getHeight(), 128);
         addObject(poisonIvySelected,poisonIvyButtonOne.getX(),poisonIvyButtonOne.getY());
         
         //herbivore buttons
+        //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox herbButtonOne = new SuperTextBox(herbOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(herbButtonOne, getWidth()*3/6, getHeight()*2/5);
+        //first option default to selected
         herbButtonOne.setIsSelected(true);
         herbButtonOne.setValue(herbOptOne);
         SuperTextBox herbButtonTwo = new SuperTextBox(herbOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
@@ -207,16 +184,20 @@ public class TitleScreen extends World
         SuperTextBox herbButtonThree = new SuperTextBox(herbOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(herbButtonThree, getWidth()*3/6, getHeight()*4/5);
         herbButtonThree.setValue(herbOptThree);
+        //add each button to the corresponding arraylist
         herbTextBoxes = new ArrayList<SuperTextBox>();
         herbTextBoxes.add(herbButtonOne);
         herbTextBoxes.add(herbButtonTwo);
         herbTextBoxes.add(herbButtonThree);
+        //creates the grey box that signifies selection on top of the first button
         herbSelected = new Rectangle(herbButtonOne.getWidth(),herbButtonOne.getHeight(), 128);
         addObject(herbSelected,herbButtonOne.getX(),herbButtonOne.getY());
         
         //carnivore buttons
+        //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox carnButtonOne = new SuperTextBox(carnOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(carnButtonOne, getWidth()*4/6, getHeight()*2/5);
+        //first option default to selected
         carnButtonOne.setIsSelected(true);
         carnButtonOne.setValue(carnOptOne);
         SuperTextBox carnButtonTwo = new SuperTextBox(carnOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
@@ -225,16 +206,20 @@ public class TitleScreen extends World
         SuperTextBox carnButtonThree = new SuperTextBox(carnOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(carnButtonThree, getWidth()*4/6, getHeight()*4/5);
         carnButtonThree.setValue(carnOptThree);
+        //add each button to the corresponding arraylist
         carnTextBoxes = new ArrayList<SuperTextBox>();
         carnTextBoxes.add(carnButtonOne);
         carnTextBoxes.add(carnButtonTwo);
         carnTextBoxes.add(carnButtonThree);
+        //creates the grey box that signifies selection on top of the first button
         carnSelected = new Rectangle(carnButtonOne.getWidth(),carnButtonOne.getHeight(), 128);
         addObject(carnSelected,carnButtonOne.getX(),carnButtonOne.getY());
         
         //shelter buttons
+        //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox shelterButtonOne = new SuperTextBox(shelterOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(shelterButtonOne, getWidth()*5/6, getHeight()*2/5);
+        //first option default to selected
         shelterButtonOne.setIsSelected(true);
         shelterButtonOne.setValue(shelterOptOne);
         SuperTextBox shelterButtonTwo = new SuperTextBox(shelterOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
@@ -243,87 +228,120 @@ public class TitleScreen extends World
         SuperTextBox shelterButtonThree = new SuperTextBox(shelterOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(shelterButtonThree, getWidth()*5/6, getHeight()*4/5);
         shelterButtonThree.setValue(shelterOptThree);
+        //add each button to the corresponding arraylist
         shelterTextBoxes = new ArrayList<SuperTextBox>();
         shelterTextBoxes.add(shelterButtonOne);
         shelterTextBoxes.add(shelterButtonTwo);
         shelterTextBoxes.add(shelterButtonThree);
+        //creates the grey box that signifies selection on top of the first button
         shelterSelected = new Rectangle(shelterButtonOne.getWidth(),shelterButtonOne.getHeight(), 128);
         addObject(shelterSelected,shelterButtonOne.getX(),shelterButtonOne.getY());
     }
     
+    /**
+     * This method with activate when the user clicks on a button they want to select
+     * should darken option that has been selected and deselect the options that 
+     * were not chose
+     */
     public void checkForSelection()
     {
+        //get all the buttons in the world
         ArrayList<SuperTextBox> allBoxes = (ArrayList<SuperTextBox>) getObjects(SuperTextBox.class);
         for(SuperTextBox here : allBoxes)
         {
+            //cycles through all the buttons
             if(Greenfoot.mouseClicked(here))
             {
+                //if the mouse is clicked, check where the mouse is
                 MouseInfo mouse = Greenfoot.getMouseInfo();
                 if(mouse!=null){
                    mx = mouse.getX();
                    my = mouse.getY();
                 }
+                //create a tiny invisible rectangle at the location of the mouse press 
                 Rectangle checker = new Rectangle(1,1,0);
                 addObject(checker,mx,my);
+                //get all the buttons that the checker rectangle is currently touching; basically whatever the user is trying to select
                 ArrayList<SuperTextBox> textBoxes = checker.getIntersectingTextBoxes();
                 for(SuperTextBox box : textBoxes)
                 {
+                    //cycle thrugh every button that the checker rectangle is touching
                     for(SuperTextBox test : cherryTextBoxes)
                     {
+                        //for every cherry button in the world check if that is the button being clicked by the user
                         if(test.equals(box))
                         {
+                            //if this specific cherry button is being selected, deselect every cherry button in the world
                             for(SuperTextBox cherryLabels : cherryTextBoxes)
                             {
                                 cherryLabels.setIsSelected(false);
                             }
+                            //set the one selected cherry button to be the only selected one
                             box.setIsSelected(true);
                         }
                     }
+                    //cycle thrugh every button that the checker rectangle is touching
                     for(SuperTextBox test : poisonIvyTextBoxes)
                     {
+                        //for every poison ivy button in the world check if that is the button being clicked by the user
                         if(test.equals(box))
                         {
+                            //if this specific poison ivy button is being selected, deselect every poison ivy button in the world
                             for(SuperTextBox poisonIvyLabels : poisonIvyTextBoxes)
                             {
                                 poisonIvyLabels.setIsSelected(false);
                             }
+                            //set the one selected poison ivy button to be the only selected one
                             box.setIsSelected(true);
                         }
                     }
+                    //cycle thrugh every button that the checker rectangle is touching
                     for(SuperTextBox test : herbTextBoxes)
                     {
+                        //for every herbivore button in the world check if that is the button being clicked by the user
                         if(test.equals(box))
                         {
+                            //if this specific herbivore button is being selected, deselect every herbivore button in the world
                             for(SuperTextBox herbLabels : herbTextBoxes)
                             {
                                 herbLabels.setIsSelected(false);
                             }
+                            //set the one selected herbivore button to be the only selected one
                             box.setIsSelected(true);
                         }
                     }
+                    //cycle thrugh every button that the checker rectangle is touching
                     for(SuperTextBox test : carnTextBoxes)
                     {
+                        //for every carnivore button in the world check if that is the button being clicked by the user
                         if(test.equals(box))
                         {
+                            //if this specific carnivore button is being selected, deselect every carnivore button in the world
                             for(SuperTextBox carnLabels : carnTextBoxes)
                             {
                                 carnLabels.setIsSelected(false);
                             }
+                            //set the one selected carnivore button to be the only selected one
                             box.setIsSelected(true);
                         }
                     }
+                    //cycle thrugh every button that the checker rectangle is touching
                     for(SuperTextBox test : shelterTextBoxes)
                     {
+                        //for every shelter button in the world check if that is the button being clicked by the user
                         if(test.equals(box))
                         {
+                            //if this specific shelter button is being selected, deselect every shelter button in the world
                             for(SuperTextBox shelterLabels : shelterTextBoxes)
                             {
                                 shelterLabels.setIsSelected(false);
                             }
+                            //set the one selected shelter button to be the only selected one
                             box.setIsSelected(true);
                         }
                     }
                 }
+                //remove the rectangle doing the checking
                 removeObject(checker);
             }
         }
@@ -372,6 +390,50 @@ public class TitleScreen extends World
                     }
                 }
             }
+        }
+    }
+    
+    public void startMethod()
+    {
+        if(Greenfoot.isKeyDown("space"))
+        {
+            for(SuperTextBox cherryLabels : cherryTextBoxes)
+            {
+                if(cherryLabels.checkSelected())
+                {
+                    cherryNum = cherryLabels.getValue();
+                }
+            }
+            for(SuperTextBox poisonIvyLabels : poisonIvyTextBoxes)
+            {
+                if(poisonIvyLabels.checkSelected())
+                {
+                    poisonIvyNum = poisonIvyLabels.getValue();
+                }
+            }
+            for(SuperTextBox herbLabels : herbTextBoxes)
+            {
+                if(herbLabels.checkSelected())
+                {
+                    herbNum = herbLabels.getValue();
+                }
+            }
+            for(SuperTextBox carnLabels : carnTextBoxes)
+            {
+                if(carnLabels.checkSelected())
+                {
+                    carnNum = carnLabels.getValue();
+                }
+            }
+            for(SuperTextBox shelterLabels : shelterTextBoxes)
+            {
+                if(shelterLabels.checkSelected())
+                {
+                    shelterNum = shelterLabels.getValue();
+                }
+            }
+            MainWorld mainworld = new MainWorld(cherryNum, poisonIvyNum, herbNum, carnNum, shelterNum);
+            Greenfoot.setWorld(mainworld);
         }
     }
 }
