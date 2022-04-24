@@ -9,6 +9,13 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 public class MainWorld extends World {
+    
+    // World Positions;
+    private static int minX = 50;
+    private static int maxX = 750;
+    private static int minY = 50;
+    private static int maxY = 450;
+    
     private int dayNumber;
     private int currentTime = 0;
     private int dayLength = 600;
@@ -33,6 +40,7 @@ public class MainWorld extends World {
     Font boringFont = new Font("Times New Roman", false, false, 14);
     SuperTextBox bigPlantLabel;
 
+        
     /**
      * Constructor for objects of class MainWorld.
      * 
@@ -163,5 +171,25 @@ public class MainWorld extends World {
         double yLength = a.getY() - b.getY();
         distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
         return (float) distance;
+    }
+    
+    public static boolean onEdge(int x, int y){
+        if (x >= maxX || x <= minX){
+            return true;    
+        }   else if (y >= maxY || y <= minY){
+            return true;
+        }
+        return false;
+    }
+    public static void PlaceOnEdge (Actor obj){
+        int x = obj.getX();
+        int y = obj.getY();
+        if (x >= maxX || x <= minX){
+            x = (x>=maxX)?maxX:minX;    
+        }   else if (y >= maxY || y <= minY){
+            y = (y>=maxY)?maxY:minY;   
+        }
+        
+        obj.setLocation(x,y);
     }
 }

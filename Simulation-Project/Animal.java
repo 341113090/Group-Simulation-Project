@@ -60,9 +60,10 @@ public class Animal extends Animator {
                 break;
         }
 
-        System.out.println(state);
+        //System.out.println(state);
 
         Behaviour();
+        Animations();
     }
 
     protected void Behaviour() {
@@ -106,7 +107,7 @@ public class Animal extends Animator {
             direction = "Right";
         }
         
-        System.out.println(direction+","+getRotation());
+        //System.out.println(direction+","+getRotation());
         
     }
 }

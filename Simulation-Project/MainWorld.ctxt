@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=MainWorld
+<<<<<<< Updated upstream
 comment0.text=\n\ Write\ a\ description\ of\ class\ MainWorld\ here.\n\ \n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=cherry\ poisonIvy\ herb\ carn\ shelter
 comment1.target=MainWorld(int,\ int,\ int,\ int,\ int)
@@ -10,10 +11,30 @@ comment2.text=\n\ In\ the\ act\ method,\ the\ world\ keeps\ track\ of\ how\ many
 comment3.params=
 comment3.target=void\ updatePlantLabels()
 comment3.text=\n\ This\ code\ updates\ the\ plant\ labels\ whenever.\ Uses\ the\ same\ instantiating\n\ code\ but\ just\ gets\ the\ new\ values\ from\ the\ cherry\ and\ poison\ ivy\ class\n\ instead\ of\ just\ being\ 0.\n
+=======
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ MainWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=cherry\ poisonIvy\ herb\ carn\ shelter
+comment1.target=MainWorld(int,\ int,\ int,\ int,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MainWorld.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ In\ the\ act\ method,\ the\ world\ keeps\ track\ of\ how\ many\ cherries\ and\ ivies\r\n\ there\ are.\r\n
+comment3.params=
+comment3.target=void\ updatePlantLabels()
+comment3.text=\r\n\ This\ code\ updates\ the\ plant\ labels\ whenever.\ Uses\ the\ same\ instantiating\r\n\ code\ but\ just\ gets\ the\ new\ values\ from\ the\ cherry\ and\ poison\ ivy\ class\r\n\ instead\ of\ just\ being\ 0.\r\n
+>>>>>>> Stashed changes
 comment4.params=
 comment4.target=void\ timeManager()
 comment5.params=transparency
 comment5.target=greenfoot.GreenfootImage\ drawNight(double)
 comment6.params=a\ b
 comment6.target=float\ getDistance(greenfoot.Actor,\ greenfoot.Actor)
+<<<<<<< Updated upstream
 numComments=7
+=======
+comment7.params=x\ y
+comment7.target=boolean\ onEdge(int,\ int)
+comment8.params=obj
+comment8.target=void\ PlaceOnEdge(greenfoot.Actor)
+numComments=9
+>>>>>>> Stashed changes
