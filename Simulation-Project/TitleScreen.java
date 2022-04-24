@@ -2,49 +2,66 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class TitleScreen here.
+ * This is the titlescreen before you get into the simulation
+ * You can change the number of each element you want inside before the sim starts
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nathan Thian
+ * @version April 24, 2022
  */
 public class TitleScreen extends World
 {
+    //the font that is used for everything
     Font boringFont = new Font ("Times New Roman", false, false, 14);
+    
     //different options for selections
     //change as you see fit
-    
+    //options for cherry
     private Integer cherryOptOne = new Integer(5);
     private Integer cherryOptTwo = new Integer(10);
     private Integer cherryOptThree = new Integer(15);
+    //options for poisonivy
     private Integer poisonIvyOptOne = new Integer(5);
     private Integer poisonIvyOptTwo = new Integer(10);
     private Integer poisonIvyOptThree = new Integer(15);
+    //options for herbivores
     private Integer herbOptOne = new Integer(5);
     private Integer herbOptTwo = new Integer(10);
     private Integer herbOptThree = new Integer(15);
+    //options for carnivores
     private Integer carnOptOne = new Integer(5);
     private Integer carnOptTwo = new Integer(10);
     private Integer carnOptThree = new Integer(15);
+    //options for number of shelters
     private Integer shelterOptOne = new Integer(5);
     private Integer shelterOptTwo = new Integer(10);
     private Integer shelterOptThree = new Integer(15);
+    
+    //these variables keep track of the mouse's position on the screen
     private int mx = 0;
     private int my = 0;
+    
+    //these variables keep track of the number that the user has selected for the components in the mian world
     private int cherryNum = 0;
     private int poisonIvyNum = 0;
     private int herbNum = 0;
     private int carnNum = 0;
     private int shelterNum = 0;
+    
+    //these arraylists keep track of all the differen types of option buttons for each type of componenet
     ArrayList<SuperTextBox> cherryTextBoxes;
     ArrayList<SuperTextBox> poisonIvyTextBoxes;
     ArrayList<SuperTextBox> carnTextBoxes;
     ArrayList<SuperTextBox> herbTextBoxes;
     ArrayList<SuperTextBox> shelterTextBoxes;
+    
+    //these rectangles are the shaded boxes that show up on selected options on the screen
     Rectangle cherrySelected;
     Rectangle poisonIvySelected;
     Rectangle carnSelected;
     Rectangle herbSelected;
     Rectangle shelterSelected;
+    
+    //this is the background for the titlescreen
     GreenfootImage background = new GreenfootImage("TitleBackground.png");
     
     /**
