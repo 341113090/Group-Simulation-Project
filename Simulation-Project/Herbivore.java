@@ -161,7 +161,20 @@ public class Herbivore extends Animal {
         return 0;
 
     }
-
+    
+    public double eatHerbivore(int damage) {
+        if (curHealth >= damage) {
+            curHealth -= damage;// temporary, will depend on plant health
+            return damage;
+        } else {
+            int lastHealth = (int)curHealth;
+            curHealth = 0;
+            
+            
+            getWorld().removeObject(this);
+            return lastHealth;
+        }
+    }
     ////////// OLD //////////
 
     /**
