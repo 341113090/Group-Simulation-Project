@@ -349,43 +349,56 @@ public class TitleScreen extends World
     
     public void showSelection()
     {
+        //get all the buttons in the world
         ArrayList<SuperTextBox> allBoxes = (ArrayList<SuperTextBox>) getObjects(SuperTextBox.class);
         for(SuperTextBox textBox : allBoxes)
         {
+            //cycle through every button in the world
             if(textBox.checkSelected())
             {
+                //if this specific button is indeed selected...
                 for(SuperTextBox yes : cherryTextBoxes)
                 {
+                    //if this specific button is a cherry button
                     if(yes.equals(textBox))
                     {
+                        //move the cherry rectangle that darkens the selection to this specific button
                         cherrySelected.setLocation(yes.getX(),yes.getY());
                     }
                 }
                 for(SuperTextBox yes : poisonIvyTextBoxes)
                 {
+                    //if this specific button is a poison ivy button
                     if(yes.equals(textBox))
                     {
+                        //move the poison ivy rectangle that darkens the selection to this specific button
                         poisonIvySelected.setLocation(yes.getX(),yes.getY());
                     }
                 }
                 for(SuperTextBox yes : herbTextBoxes)
                 {
+                    //if this specific button is a herbivore button
                     if(yes.equals(textBox))
                     {
+                        //move the herbivore rectangle that darkens the selection to this specific button
                         herbSelected.setLocation(yes.getX(),yes.getY());
                     }
                 }
                 for(SuperTextBox yes : carnTextBoxes)
                 {
+                    //if this specific button is a carnivore button
                     if(yes.equals(textBox))
                     {
+                        //move the carnivore rectangle that darkens the selection to this specific button
                         carnSelected.setLocation(yes.getX(),yes.getY());
                     }
                 }
                 for(SuperTextBox yes : shelterTextBoxes)
                 {
+                    //if this specific button is a shelter button
                     if(yes.equals(textBox))
                     {
+                        //move the shelter rectangle that darkens the selection to this specific button
                         shelterSelected.setLocation(yes.getX(),yes.getY());
                     }
                 }
@@ -393,12 +406,18 @@ public class TitleScreen extends World
         }
     }
     
+    /**
+     * this method will transition the simulation from title screen into the actual simulation when space bar is pressed
+     */
     public void startMethod()
     {
         if(Greenfoot.isKeyDown("space"))
         {
+            //loop through every different array of the different components' buttons
             for(SuperTextBox cherryLabels : cherryTextBoxes)
             {
+                //get the cherry option that is selected and set that button's 
+                //value as the value for cherries that will be used in the main world
                 if(cherryLabels.checkSelected())
                 {
                     cherryNum = cherryLabels.getValue();
@@ -406,6 +425,8 @@ public class TitleScreen extends World
             }
             for(SuperTextBox poisonIvyLabels : poisonIvyTextBoxes)
             {
+                //get the poison ivy option that is selected and set that button's 
+                //value as the value for poison ivies that will be used in the main world
                 if(poisonIvyLabels.checkSelected())
                 {
                     poisonIvyNum = poisonIvyLabels.getValue();
@@ -413,6 +434,8 @@ public class TitleScreen extends World
             }
             for(SuperTextBox herbLabels : herbTextBoxes)
             {
+                //get the herbivore option that is selected and set that button's 
+                //value as the value for herbivores that will be used in the main world
                 if(herbLabels.checkSelected())
                 {
                     herbNum = herbLabels.getValue();
@@ -420,6 +443,8 @@ public class TitleScreen extends World
             }
             for(SuperTextBox carnLabels : carnTextBoxes)
             {
+                //get the carnivore option that is selected and set that button's 
+                //value as the value for carnivores that will be used in the main world
                 if(carnLabels.checkSelected())
                 {
                     carnNum = carnLabels.getValue();
@@ -427,12 +452,16 @@ public class TitleScreen extends World
             }
             for(SuperTextBox shelterLabels : shelterTextBoxes)
             {
+                //get the shelter option that is selected and set that button's 
+                //value as the value for shelters that will be used in the main world
                 if(shelterLabels.checkSelected())
                 {
                     shelterNum = shelterLabels.getValue();
                 }
             }
+            //instantiate a new world (which is the actual simulation world) using the options selected here
             MainWorld mainworld = new MainWorld(cherryNum, poisonIvyNum, herbNum, carnNum, shelterNum);
+            //transition to that new world
             Greenfoot.setWorld(mainworld);
         }
     }
