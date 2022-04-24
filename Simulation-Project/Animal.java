@@ -30,6 +30,7 @@ public class Animal extends Animator {
 
     //
     protected int time;
+    protected String direction;
 
     /**
      * Act - do whatever the Animal wants to do. This method is called whenever
@@ -95,6 +96,17 @@ public class Animal extends Animator {
     }
 
     protected void Animations() {
-
+        if (rotation > 45&& rotation <= 135){
+            direction = "Down";
+        }   else if (rotation > 135&& rotation <= 225){
+            direction = "Left";
+        }   else if (rotation > 225&& rotation <= 305){
+            direction = "Up";
+        }   else{
+            direction = "Right";
+        }
+        
+        System.out.println(direction+","+getRotation());
+        
     }
 }
