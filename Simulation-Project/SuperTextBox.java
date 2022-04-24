@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
 /**
  * A flexible single- or multi-line Text Box.
  * 
@@ -23,21 +23,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SuperTextBox extends Actor
 {
 
-    private GreenfootImage image;
-    private String[] text;
-    private boolean centered;
-    private boolean bordered;
-    private Color backColor;
-    private Color foreColor;
-    private Color borderColor;
-    private Font font;
-    private int[] centeredXs;
-    private int numLines;
-    private int vSpace;
-    private int width, height;
-    private int padding;
-    private int fontSize;
-    private int borderThickness;
+    protected GreenfootImage image;
+    protected String[] text;
+    protected boolean centered;
+    protected boolean bordered;
+    protected Color backColor;
+    protected Color foreColor;
+    protected Color borderColor;
+    protected Font font;
+    protected int[] centeredXs;
+    protected int numLines;
+    protected int vSpace;
+    protected int width, height;
+    protected int padding;
+    protected int fontSize;
+    protected int borderThickness;
+    
+    //Nathan's variables
+    protected boolean isSelected = false;
+    protected boolean hasBox = false;
+    ArrayList<Rectangle> rectangles;
+    protected int myValue = 0;
 
     /**
      *  Simple Constructor - One line text box
@@ -374,5 +380,93 @@ public class SuperTextBox extends Actor
         }
         return 0;
 
+    }
+    /**
+     * Nathan's method
+     * Changes whether box is selected or not
+     */
+    protected void setIsSelected(boolean x)
+    {
+        this.isSelected = x;
+    }
+    
+    /**
+     * Nathan's method
+     */
+    public void act()
+    {
+        rectangles = (ArrayList<Rectangle>)getIntersectingObjects(Rectangle.class);
+        for(Rectangle box : rectangles)
+        {
+            hasBox = true;
+        }
+    }
+    
+    /**
+     * Nathan's method
+     * returns whether box is selected or not
+     */
+    public boolean checkSelected()
+    {
+        return isSelected;
+    }
+    
+    /**
+     * Nathan's method
+     * returns width
+     */
+    public int getWidth()
+    {
+        return width;
+    }
+    
+    /**
+     * Nathan's method
+     * returns height
+     */
+    public int getHeight()
+    {
+        return height;
+    }
+    
+    /**
+     * Nathan's method
+     * returns hasBox
+     */
+    public boolean getHasBox()
+    {
+        return hasBox;
+    }
+    
+    /**
+     * Nathan's method
+     * sets hasBox
+     */
+    public void toggleHasBox()
+    {
+        hasBox = !hasBox;
+    }
+    
+    /**
+     * Returns an array of all the rectangles that the textbox is touching
+     */
+    public ArrayList<Rectangle> getIntersectingRectangles (){
+        return (ArrayList<Rectangle>)getIntersectingObjects(Rectangle.class);
+    }
+    
+    /**
+     * Sets the value that the textBox holds
+     */
+    public void setValue(int x)
+    {
+        myValue = x;
+    }
+    
+    /**
+     * gets the value of the textbox
+     */
+    public int getValue()
+    {
+        return myValue;
     }
 }
