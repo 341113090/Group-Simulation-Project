@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.target=Rectangle
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Rectangle\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ These\ rectangles\ are\ used\ in\ the\ title\ screen\ class\ to\ darken\ options\ \r\n\ and\ also\ to\ detect\ for\ buttons\r\n\ \r\n\ @author\ Nathan\ Thian\ \r\n\ @version\ April\ 24,\ 2022\r\n
 comment1.params=xx\ yy\ trans
 comment1.target=Rectangle(int,\ int,\ int)
-comment1.text=\r\n\ Constructor\ for\ rectangle\r\n
+comment1.text=\r\n\ Constructor\ for\ rectangle.\r\n\ xx\ is\ the\ width\r\n\ yy\ is\ height\r\n\ trans\ is\ the\ transparency\ of\ the\ rectangle's\ image\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Rectangle\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.text=\r\n\ A\r\n
 comment3.params=
 comment3.target=java.util.ArrayList\ getIntersectingTextBoxes()
 comment3.text=\r\n\ Returns\ an\ array\ of\ all\ the\ textboxes\ that\ the\ rectangle\ is\ touching\r\n
