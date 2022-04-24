@@ -34,6 +34,8 @@ public class MainWorld extends World
         startNumHerb = herb;
         startNumCarn = carn;
         startNumShelter = shelter;
+        GreenfootImage image = new GreenfootImage("Background.png");
+        this.setBackground(image);
         
         //Set the cherry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
