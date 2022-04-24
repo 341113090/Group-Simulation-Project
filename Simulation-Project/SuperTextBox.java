@@ -19,6 +19,9 @@ import java.util.ArrayList;
  * 
  * @author Jordan Cohen
  * @version 1.0 (November 30, 2021)
+ * 
+ * Modified by Nathan Thian to have additional functionality
+ * April 24, 2022
  */
 public class SuperTextBox extends Actor
 {
@@ -40,9 +43,11 @@ public class SuperTextBox extends Actor
     protected int borderThickness;
     
     //Nathan's variables
+    //is this textbox(button) selected?
     protected boolean isSelected = false;
-    protected boolean hasBox = false;
+    //arraylist rectangles
     ArrayList<Rectangle> rectangles;
+    //value that this textbox(button) has
     protected int myValue = 0;
 
     /**
@@ -381,6 +386,7 @@ public class SuperTextBox extends Actor
         return 0;
 
     }
+    
     /**
      * Nathan's method
      * Changes whether box is selected or not
@@ -390,17 +396,6 @@ public class SuperTextBox extends Actor
         this.isSelected = x;
     }
     
-    /**
-     * Nathan's method
-     */
-    public void act()
-    {
-        rectangles = (ArrayList<Rectangle>)getIntersectingObjects(Rectangle.class);
-        for(Rectangle box : rectangles)
-        {
-            hasBox = true;
-        }
-    }
     
     /**
      * Nathan's method
@@ -427,24 +422,6 @@ public class SuperTextBox extends Actor
     public int getHeight()
     {
         return height;
-    }
-    
-    /**
-     * Nathan's method
-     * returns hasBox
-     */
-    public boolean getHasBox()
-    {
-        return hasBox;
-    }
-    
-    /**
-     * Nathan's method
-     * sets hasBox
-     */
-    public void toggleHasBox()
-    {
-        hasBox = !hasBox;
     }
     
     /**
