@@ -21,6 +21,7 @@ public class MainWorld extends World
     Font funFont = new Font ("Comic Sans MS", false, false, 16);
     Font boringFont = new Font ("Times New Roman", false, false, 14);
     SuperTextBox bigPlantLabel;
+    
     /**
      * Constructor for objects of class MainWorld.
      * 
@@ -36,7 +37,6 @@ public class MainWorld extends World
         startNumShelter = shelter;
         GreenfootImage image = new GreenfootImage("Background.png");
         this.setBackground(image);
-        
         //Set the cherry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);

@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+
 /**
- * Title screen before entering sim. Also customize stuff here.
+ * Write a description of class TitleScreen here.
  * 
- * @author Nathan Thian
- * @version April 20, 2022
+ * @author (your name) 
+ * @version (a version number or a date)
  */
 public class TitleScreen extends World
 {

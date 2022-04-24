@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
-
 /**
  * A flexible single- or multi-line Text Box.
  * 
@@ -23,6 +22,7 @@ import java.util.ArrayList;
  */
 public class SuperTextBox extends Actor
 {
+
     protected GreenfootImage image;
     protected String[] text;
     protected boolean centered;
@@ -44,7 +44,7 @@ public class SuperTextBox extends Actor
     protected boolean hasBox = false;
     ArrayList<Rectangle> rectangles;
     protected int myValue = 0;
-    
+
     /**
      *  Simple Constructor - One line text box
      *  
@@ -381,7 +381,6 @@ public class SuperTextBox extends Actor
         return 0;
 
     }
-    
     /**
      * Nathan's method
      * Changes whether box is selected or not
