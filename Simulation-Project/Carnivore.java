@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @version April 24, 2022
  */
 public class Carnivore extends Animal {
-
+    private static int numCarnivores = 0;
     private Herbivore targetHerbivore;    
 
     private ArrayList<Herbivore> herbivores;
@@ -18,7 +18,7 @@ public class Carnivore extends Animal {
     ////////// CONSTRUCTOR //////////
  
     public Carnivore() {
-
+        numCarnivores++;
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Side"));
@@ -201,6 +201,16 @@ public class Carnivore extends Animal {
             setRotation(rotation);
         } else
             move(mySpeed);
+    }
+    
+    public static int getNumCarnivores()
+    {
+        return numCarnivores;
+    }
+    
+    public static void setNumCarnivores(int xx)
+    {
+        numCarnivores = xx;
     }
 
 }

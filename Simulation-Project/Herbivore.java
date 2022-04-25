@@ -21,11 +21,12 @@ public class Herbivore extends Animal {
     protected double healthDecay = 0.1; // How fast animals health goes down, hunger
     protected double altruism = 0.5; // Chance of animal giving up its spot
 
-
+    private static int numHerbivores = 0;
     ////////// CONSTRUCTOR //////////
 
     public Herbivore() {
         super();
+        numHerbivores++;
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Side"));
@@ -254,5 +255,15 @@ public class Herbivore extends Animal {
             setRotation(rotation);
         } else
             move(speed);
+    }
+    
+    public static int getNumHerbivores()
+    {
+        return numHerbivores;
+    }
+    
+    public static void setNumHerbivores(int xx)
+    {
+        numHerbivores = xx;
     }
 }
