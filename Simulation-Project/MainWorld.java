@@ -67,6 +67,7 @@ public class MainWorld extends World {
         PoisonIvy.setNumPoisonIvy(0);
         Herbivore.setNumHerbivores(0);
         Carnivore.setNumCarnivores(0);
+        Shelter.setNumShelters(0);
         // Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
@@ -169,6 +170,7 @@ public class MainWorld extends World {
     public void updateLeftLabels() {
         numPoisonIvy = PoisonIvy.getNumPoisonIvy();
         numCherry = Cherry.getNumCherries();
+        numShelter = Shelter.getNumShelters();
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
         String shelterLabel = new String("Number of Shelters in the World: " + numShelter);
