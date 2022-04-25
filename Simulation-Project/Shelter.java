@@ -51,13 +51,25 @@ public class Shelter extends Actor
     private int limitAnimals;
     private int curAnimals;
     private Animal typeAnimal;
+    private static int numShelters = 0;
     GreenfootImage s = new GreenfootImage("Plants.png");
     GreenfootImage shelter = AnimationManager.getSlice(s,3, 1, 48, 48);
     
     public Shelter(){
+        numShelters++;
         limitAnimals = 2;
         curAnimals = 0;
         this.setImage(shelter);
+    }
+    
+    public static int getNumShelters()
+    {
+        return numShelters;
+    }
+    
+    public static void setNumShelters(int xx)
+    {
+        numShelters = xx;
     }
     
     public void act()

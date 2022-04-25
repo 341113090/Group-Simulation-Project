@@ -32,18 +32,19 @@ public class MainWorld extends World {
     private int numPoisonIvy;
     private int numHerbivore;
     private int numCarnivore;
+    private int numShelter;
     private int startNumCherry = 0;
     private int startNumPoisonIvy = 0;
     private int startNumHerb = 0;
     private int startNumCarn = 0;
     private int startNumShelter = 0;
 
-    private String[] plantLabels = new String[2];
-    private String[] animalLabels = new String[2];
+    private String[] leftLabels = new String[3];
+    private String[] rightLabels = new String[3];
     Font funFont = new Font("Comic Sans MS", false, false, 16);
     Font boringFont = new Font("Times New Roman", false, false, 14);
-    SuperTextBox bigPlantLabel;
-    SuperTextBox bigAnimalLabel;
+    SuperTextBox bigLeftLabel;
+    SuperTextBox bigRightLabel;
 
         
     /**
@@ -69,28 +70,32 @@ public class MainWorld extends World {
         // Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
+        String shelterLabel = new String("Number of Shelters in the World: " + numShelter);
         String herbivoreLabel = new String("Number of Herbivores in the World: " + numHerbivore);
         String carnivoreLabel = new String("Number of Carnivores in the World: " + numCarnivore);
+        String dayLabel = new String("Day number in the World: " + dayNumber);
         // sets the indexes of the plant label to each of the cherry and ivy label
-        plantLabels[0] = cherryLabel;
-        plantLabels[1] = poisonivyLabel;
+        leftLabels[0] = cherryLabel;
+        leftLabels[1] = poisonivyLabel;
+        leftLabels[2] = shelterLabel;
         // sets the indexes of the animal label to each of the herbivore and carnivore label
-        animalLabels[0] = herbivoreLabel;
-        animalLabels[1] = carnivoreLabel;
+        rightLabels[0] = herbivoreLabel;
+        rightLabels[1] = carnivoreLabel;
+        rightLabels[2] = dayLabel;
         // instantiate the textbox at the top
-        bigPlantLabel = new SuperTextBox(plantLabels, boringFont, this.getWidth()/2, false);
-        bigAnimalLabel = new SuperTextBox(animalLabels, boringFont, this.getWidth()/2, false);
+        bigLeftLabel = new SuperTextBox(leftLabels, boringFont, this.getWidth()/2, false);
+        bigRightLabel = new SuperTextBox(rightLabels, boringFont, this.getWidth()/2, false);
         // values for location of the textbox
-        int tempY = bigPlantLabel.getImage().getHeight() / 2;
-        double tempX = bigPlantLabel.getImage().getWidth();
+        int tempY = bigLeftLabel.getImage().getHeight() / 2;
+        double tempX = bigRightLabel.getImage().getWidth();
         // actually puts the textbox on the world
-        addObject(bigPlantLabel, (int)(tempX/2), tempY);
-        addObject(bigAnimalLabel, (int)(tempX*1.5), tempY);
+        addObject(bigLeftLabel, (int)(tempX/2), tempY);
+        addObject(bigRightLabel, (int)(tempX*1.5), tempY);
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumCherry; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);               
-            int yy = bigPlantLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new Cherry(), xx, yy);
         }
         // makes startNumCherry number of cherries on the screen in random locations
@@ -101,7 +106,8 @@ public class MainWorld extends World {
             addObject(new PoisonIvy(), xx, yy);
         }
         // update the label
-        updatePlantLabels();
+        updateLeftLabels();
+        updateRightLabels();
         // spawning in shelters based on selected parameters
         if(shelter == 2)
         {
@@ -150,8 +156,8 @@ public class MainWorld extends World {
      */
     public void act() {
         // update the plant label
-        updatePlantLabels();
-        updateAnimalLabels();
+        updateLeftLabels();
+        updateRightLabels();
         timeManager();
     }
 
@@ -160,14 +166,16 @@ public class MainWorld extends World {
      * code but just gets the new values from the cherry and poison ivy class
      * instead of just being 0.
      */
-    public void updatePlantLabels() {
+    public void updateLeftLabels() {
         numPoisonIvy = PoisonIvy.getNumPoisonIvy();
         numCherry = Cherry.getNumCherries();
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
-        plantLabels[0] = cherryLabel;
-        plantLabels[1] = poisonivyLabel;
-        bigPlantLabel.update(plantLabels);
+        String shelterLabel = new String("Number of Shelters in the World: " + numShelter);
+        leftLabels[0] = cherryLabel;
+        leftLabels[1] = poisonivyLabel;
+        leftLabels[2] = shelterLabel;
+        bigLeftLabel.update(leftLabels);
     }
     
     /**
@@ -175,14 +183,16 @@ public class MainWorld extends World {
      * code but just gets the new values from the harbivore and animals class
      * instead of just being 0.
      */
-    public void updateAnimalLabels() {
+    public void updateRightLabels() {
         numHerbivore = Herbivore.getNumHerbivores();
         numCarnivore = Carnivore.getNumCarnivores();
         String carnivoreLabel = new String("Number of Carnivores in the World: " + numCarnivore);
         String herbivoreLabel = new String("Number of Herbivores in the World: " + numHerbivore);
-        animalLabels[0] = herbivoreLabel;
-        animalLabels[1] = carnivoreLabel;
-        bigAnimalLabel.update(animalLabels);
+        String dayLabel = new String("Day Number in the World: " + dayNumber);
+        rightLabels[0] = herbivoreLabel;
+        rightLabels[1] = carnivoreLabel;
+        rightLabels[2] = dayLabel;
+        bigRightLabel.update(rightLabels);
     }
 
     private void timeManager() {
