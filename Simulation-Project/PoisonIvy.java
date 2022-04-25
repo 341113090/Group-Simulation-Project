@@ -23,7 +23,7 @@ public class PoisonIvy extends Plant
         isToxic = true;
         wantsCarry = false;
         //getter not needed
-        healthLimit = 100;
+        healthLimit = 750;
         selfHealSpeed = 3;
     }
     

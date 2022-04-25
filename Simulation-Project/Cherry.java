@@ -22,7 +22,7 @@ public class Cherry extends Plant
         isToxic = false;
         wantsCarry = false;
         //getter not needed
-        healthLimit = 150;
+        healthLimit = 750;
         selfHealSpeed = 3;
         
     }
