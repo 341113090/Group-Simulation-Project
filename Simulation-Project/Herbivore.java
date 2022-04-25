@@ -14,6 +14,8 @@ public class Herbivore extends Animal {
     private static int numHerbivores = 0;
     
     private int mySpeed = 2;
+    
+    private int numSeeds = 0;
 
     ////////// CONSTRUCTOR //////////
 
