@@ -37,8 +37,9 @@ public abstract class Plant extends Animator {
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
 
     public Plant() {
-        hpBar = new SuperStatBar(health, health, this, 24, 4, 10, Color.GREEN, Color.GREEN, false, Color.BLACK, 1);
-        isGettingEaten = false;
+        health = 200;
+        hpBar = new SuperStatBar(health, health, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
+        isGettingEaten = true;
     }
 
     public void addedToWorld(World w) {
@@ -64,7 +65,7 @@ public abstract class Plant extends Animator {
         }
         deathCheck();
 
-        isGettingEaten = false;
+        isGettingEaten = true;
     }
 
     // next methods actually are being used
@@ -82,6 +83,19 @@ public abstract class Plant extends Animator {
      * Note: Plant will give a seed based on the percent of health they lose to the
      * herbivore. Cherry will give three seeds if eaten from full health.
      */
+    public double eatPlant(int damage) {
+        isGettingEaten = true;
+        double actualTick = healthPerTick * toughness;// might be a problem later for statbar
+        if (health >= actualTick) {
+            health -= actualTick;// temporary, will depend on plant health
+            return actualTick;
+        } else {
+            int lastHealth = health;
+            health = 0;
+            return lastHealth;
+        }
+    }
+    
     public double eatPlant() {
         isGettingEaten = true;
         double actualTick = healthPerTick * toughness;// might be a problem later for statbar

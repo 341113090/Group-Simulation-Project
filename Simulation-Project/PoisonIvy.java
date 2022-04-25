@@ -18,7 +18,6 @@ public class PoisonIvy extends Plant
         this.setImage(ivy);
         toughness = .8;//poison ivey is weaker than cherry
         totalSeeds = 0;//poison ivey is less fertile
-        health = 200;
         healthPerTick = 8;
         isToxic = true;
         wantsCarry = false;
@@ -49,7 +48,7 @@ public class PoisonIvy extends Plant
      */
     public void deathCheck()
     {
-        if(health == 0){
+        if(health <= 0){
             numPoisonIvy--;
             getWorld().removeObject(this);
         }
