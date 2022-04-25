@@ -1,21 +1,21 @@
 #BlueJ class context
 comment0.target=TitleScreen
-comment0.text=\n\ This\ is\ the\ titlescreen\ before\ you\ get\ into\ the\ simulation\n\ You\ can\ change\ the\ number\ of\ each\ element\ you\ want\ inside\ before\ the\ sim\ starts\n\ \n\ @author\ Nathan\ Thian\n\ @version\ April\ 24,\ 2022\n
+comment0.text=\r\n\ This\ is\ the\ titlescreen\ before\ you\ get\ into\ the\ simulation\r\n\ You\ can\ change\ the\ number\ of\ each\ element\ you\ want\ inside\ before\ the\ sim\ starts\r\n\ \r\n\ @author\ Nathan\ Thian\r\n\ @version\ April\ 24,\ 2022\r\n
 comment1.params=
 comment1.target=TitleScreen()
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ TitleScreen.\n\ \n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TitleScreen.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ The\ main\ world\ act\ loop\n\ keeps\ track\ of\ everything\ that\ happens\ and\ allows\ user\ to\ interact\n
+comment2.text=\r\n\ The\ main\ world\ act\ loop\r\n\ keeps\ track\ of\ everything\ that\ happens\ and\ allows\ user\ to\ interact\r\n
 comment3.params=
 comment3.target=void\ prepare()
-comment3.text=\n\ Prepare\ the\ world\ for\ the\ start\ of\ the\ program.\n\ That\ is\:\ create\ the\ labels\ to\ show\ the\ name\ of\ the\ game\n\ as\ well\ as\ how\ to\ start\n
+comment3.text=\r\n\ Prepare\ the\ world\ for\ the\ start\ of\ the\ program.\r\n\ That\ is\:\ create\ the\ labels\ to\ show\ the\ name\ of\ the\ game\r\n\ as\ well\ as\ how\ to\ start\r\n
 comment4.params=
 comment4.target=void\ checkForSelection()
-comment4.text=\n\ This\ method\ with\ activate\ when\ the\ user\ clicks\ on\ a\ button\ they\ want\ to\ select\n\ should\ darken\ option\ that\ has\ been\ selected\ and\ deselect\ the\ options\ that\ \n\ were\ not\ chose\n
+comment4.text=\r\n\ This\ method\ with\ activate\ when\ the\ user\ clicks\ on\ a\ button\ they\ want\ to\ select\r\n\ should\ darken\ option\ that\ has\ been\ selected\ and\ deselect\ the\ options\ that\ \r\n\ were\ not\ chose\r\n
 comment5.params=
 comment5.target=void\ showSelection()
 comment6.params=
 comment6.target=void\ startMethod()
-comment6.text=\n\ this\ method\ will\ transition\ the\ simulation\ from\ title\ screen\ into\ the\ actual\ simulation\ when\ space\ bar\ is\ pressed\n
+comment6.text=\r\n\ this\ method\ will\ transition\ the\ simulation\ from\ title\ screen\ into\ the\ actual\ simulation\ when\ space\ bar\ is\ pressed\r\n
 numComments=7
