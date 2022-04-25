@@ -17,8 +17,8 @@ public class PoisonIvy extends Plant
         numPoisonIvy++;
         this.setImage(ivy);
         toughness = .8;//poison ivey is weaker than cherry
-        totalSeeds = 0;//poison ivey is less fertile
         health = 200;
+        maxHealth = health;
         healthPerTick = 8;
         isToxic = true;
         wantsCarry = false;

@@ -22,7 +22,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public abstract class Plant extends Animator {
     // getter required
     protected double toughness;
-    protected int totalSeeds;
+    protected int maxHealth;
     protected int health;
     protected int healthPerTick;
     protected boolean isToxic;
@@ -123,12 +123,13 @@ public abstract class Plant extends Animator {
     public int giveHealth() {
         return healthPerTick;
     }
-
+    
     /**
-     * Returns the number of seeds of the plant.
+     * Returns max health of plant
      */
-    public int getSeeds() {
-        return totalSeeds;
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 
     /**
