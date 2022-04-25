@@ -10,30 +10,37 @@ import java.util.ArrayList;
 public class Herbivore extends Animal {
     private Plant targetPlant;
     private ArrayList<Plant> plants;
+    
+    // Base stats
+    
+    protected double speed = 2; // Animal movement speed, increases more health decay when moving
+    protected int attack = 1; // Animal attack damage, decreases health
+    protected int maxHealth = 100; // Animal health/hp, decreases speed
+    protected int size;
+    protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
+    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected double altruism = 0.5; // Chance of animal giving up its spot
 
-    private int mySpeed = 2;
 
     ////////// CONSTRUCTOR //////////
 
     public Herbivore() {
-
+        super();
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Side"));
-        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
-        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
+        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
+        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
 
         addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Side"));
-        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
-        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
+        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
+        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
 
         setImage(animations[1].getImage(0));
 
         playAnimation("Walk Side");
+        curHealth = maxHealth;
 
-        state = State.Searching;
-
-        senseRange = 200;
     }
 
     ////////// GREENFOOT FUNCTIONS //////////
@@ -46,6 +53,14 @@ public class Herbivore extends Animal {
         setRotation(rotation);
 
         setRotation(0);
+        
+        // Health Decay
+        if (state != State.InShelter)curHealth -= healthDecay;
+        
+        // Check if dead
+        if (curHealth <=0){
+            getWorld().removeObject(this);    
+        }
     }
 
     public void started() {
@@ -63,24 +78,17 @@ public class Herbivore extends Animal {
      * its sensory range
      * It will then switch its state to following
      */
-    private int randomDirectionDelay = 60;
+    private int randomDirectionDelay=60;
+    private int waitTime;
 
     protected void Searching() {
         if (time < randomDirectionDelay) {
             time++;
         } else {
             time = 0;
+            waitTime = Greenfoot.getRandomNumber(randomDirectionDelay)+randomDirectionDelay/2;
             rotation = Greenfoot.getRandomNumber(360);
             
-            if (rotation > 45&& rotation <= 135){
-               System.out.println("Down");
-            }   else if (rotation > 135&& rotation <= 225){
-               System.out.println("Left");
-            }   else if (rotation > 225&& rotation <= 305){
-               System.out.println("Up");
-            }   else{
-               System.out.println("Right");
-            }
         }
         
         // Check if at edge
@@ -90,12 +98,11 @@ public class Herbivore extends Animal {
         }
          
         setRotation(rotation);
-        move(mySpeed);
-        System.out.println(getRotation());
+        move(speed);
         
 
         if (targetClosestPlant() == 1) {
-            //state = State.Following;
+            state = State.Following;
         }
         
         
@@ -109,23 +116,24 @@ public class Herbivore extends Animal {
      */
     ///// TODO: FIGURE OUT IF HERBIVORES SHOULD ATTACK CARNIVORES OR JUST RUN AWAY
     protected void Following() {
+        // Prevent error and animal from eating already eaten plant
+        if (targetPlant == null || targetPlant.getWorld() == null){
+            state = State.Searching;
+            System.out.println("stop");
+            return;
+        }
+        
+        // Move towards selected plant
+        MoveTowardsObject(targetPlant);
         turnTowards(targetPlant.getX(), targetPlant.getY());
         rotation = getRotation();
 
-        move(mySpeed);
+        move(speed);
 
         if (this.getNeighbours(10, true, Plant.class).size() > 0) {
             // If I was able to eat, increase by life by Plant's nibble power
 
             state = State.Attacking;
-            /*
-             * double tryToEat = targetPlant.eatPlant();
-             * if (tryToEat > 0 && curHealth < maxHealth)
-             * {
-             * curHealth += tryToEat;
-             * }
-             */
-
         }
     
         
@@ -143,9 +151,26 @@ public class Herbivore extends Animal {
         }
         playAnimation("Idle "+direction);
     }
+    protected void Night() {
+        Shelter target = targetShelter();
+        // Temp night
+        if (MainWorld.getDistance(this, target) <= 5){
+            playAnimation("Hidden");
+        }   else {
+            turnTowards(target.getX(), target.getY());
+            rotation = getRotation();
 
+            move(speed);
+            playAnimation("Walk "+direction);
+        }
+        if (!MainWorld.night){
+            state = State.Searching;
+            playAnimation("Walk "+direction);
+        }
+    }   
     ////////// FUNCTIONS //////////
 
+    
     private int targetClosestPlant() {
 
         double closestTargetDistance = 0;
@@ -154,10 +179,10 @@ public class Herbivore extends Animal {
         // Get a list of all plants in the World, cast it to ArrayList
         // for easy management
 
-        numplants = getWorld().getObjects(Plant.class).size();
+        numplants = getWorld().getObjects(Shelter.class).size();
 
         plants = (ArrayList) getObjectsInRange(senseRange, Plant.class);
-
+        System.out.println(plants.size());  
         if (plants.size() > 0) {
 
             // set the first one as my target
@@ -178,10 +203,10 @@ public class Herbivore extends Animal {
                 if (distanceToActor < closestTargetDistance) {
                     targetPlant = o;
                     closestTargetDistance = distanceToActor;
-                    return 1;
                 }
 
             }
+                    return 1;
 
         }
         return 0;
@@ -219,7 +244,7 @@ public class Herbivore extends Animal {
             }
 
         } else {
-            move(mySpeed);
+            move(speed);
         }
     }
 
@@ -228,6 +253,6 @@ public class Herbivore extends Animal {
             rotation = Greenfoot.getRandomNumber(360);
             setRotation(rotation);
         } else
-            move(mySpeed);
+            move(speed);
     }
 }

@@ -8,7 +8,6 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Animator extends SuperSmoothMover
-
 {
     protected static int fps = 6;
 
@@ -34,15 +33,15 @@ public class Animator extends SuperSmoothMover
         if (playing) {
             // Playing currently set animations
             timer++;
-            if (timer >= 60.0 / (double) fps) {
-                System.out.println(curFrame);
+            if (timer >= 60.0 / (double) fps) { // Tick forward at the speed of the fps
                 timer = 0;
                 curFrame++;
 
                 // Reset frame timer to zero if at end of animation
                 if (curFrame < animations[curAnim].getFrames()) {
-                    setImage(animations[curAnim].getFrame(curFrame));
+                    setImage(animations[curAnim].getFrame(curFrame)); // Set current frame
                 } else {
+                    // Return to first frame if at end
                     curFrame = 0;
                     setImage(animations[curAnim].getFrame(curFrame));
                 }
@@ -80,7 +79,6 @@ public class Animator extends SuperSmoothMover
             animations[animations.length - 1] = anim;
             System.out.println(temp.length);
         } else {
-            System.out.println("first");
             animations = new Animation[1];
             animations[0] = anim;
         }

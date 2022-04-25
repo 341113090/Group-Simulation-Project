@@ -20,6 +20,7 @@ public class MainWorld extends World {
     private int currentTime = 0;
     private int dayLength = 600;
     private int nightLength = 300;
+    private int nightTransitionTime = 60;
     private double maxDarkness = 100;
 
     public static boolean night;
@@ -75,7 +76,7 @@ public class MainWorld extends World {
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumCherry; i++) {
             Random random = new Random();
-            int xx = 100 + random.nextInt(600);
+            int xx = 100 + random.nextInt(600);               
             int yy = bigPlantLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new Cherry(), xx, yy);
         }
@@ -100,8 +101,14 @@ public class MainWorld extends World {
         // addObject(new Shelter(), 750, 275);
         addObject(new Shelter(), 750, 350);
         addObject(new Shelter(), 750, 425);
-
-        addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
+        
+        Random random = new Random();
+        // Spawn animals
+        for (int i = 0; i < 8; i++){
+            
+            addObject(new Herbivore(), random.nextInt(700)+50, random.nextInt(500)+50);
+        }
+        //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
         fg = new Foreground();
         addObject(fg, getWidth() / 2, getHeight() / 2);
 
@@ -139,10 +146,12 @@ public class MainWorld extends World {
         if (currentTime > dayLength) {
             night = true;
             double transparency = 0;
-            if (currentTime - dayLength < nightLength / 2) {
-                transparency = (double) (currentTime - dayLength) / (double) nightLength * 2;
-            } else {
-                transparency = 1 - (double) (currentTime - dayLength - nightLength / 2.0) / (double) nightLength * 2;
+            if (currentTime - dayLength < nightTransitionTime) {
+                transparency = (double) (currentTime - dayLength) / (double) nightTransitionTime;
+            } else if (currentTime-dayLength > nightLength-nightTransitionTime) {
+                transparency = 1 - (double) (currentTime - dayLength - (nightLength-nightTransitionTime)) / (double) nightTransitionTime;
+            }   else {
+                transparency = 1;
             }
             drawNight(transparency * maxDarkness);
 
@@ -156,6 +165,7 @@ public class MainWorld extends World {
     }
 
     private GreenfootImage drawNight(double transparency) {
+        if (transparency <=0) transparency = 0;
         GreenfootImage dark = new GreenfootImage(getWidth(), getHeight());
         dark.setColor(Color.BLACK);
         dark.fillRect(0, 0, dark.getWidth(), dark.getHeight());
