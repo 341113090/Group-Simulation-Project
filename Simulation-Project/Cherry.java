@@ -16,8 +16,8 @@ public class Cherry extends Plant
         numCherries++;
         this.setImage(cherry);
         toughness = .4;
-        health = 200;
-        maxHealth = health;
+        health = 1000;
+        totalSeeds = 3;
         healthPerTick = 8;
         isToxic = false;
         wantsCarry = false;

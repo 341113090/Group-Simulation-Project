@@ -37,7 +37,8 @@ public abstract class Plant extends Animator {
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
 
     public Plant() {
-        hpBar = new SuperStatBar(health, health, this, 24, 4, 10, Color.GREEN, Color.GREEN, false, Color.BLACK, 1);
+        health = 1000;
+        hpBar = new SuperStatBar(health, health, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         isGettingEaten = false;
     }
 
