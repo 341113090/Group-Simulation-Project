@@ -63,7 +63,7 @@ public class MainWorld extends World {
         // Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
-        // sets the indexes of the plant label to each of the cherry and ivy label
+        //// sets the indexes of the plant label to each of the cherry and ivy label
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
         // instantiate the textbox at the top
