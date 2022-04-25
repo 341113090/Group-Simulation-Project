@@ -32,9 +32,10 @@ public class TitleScreen extends World
     private Integer carnOptTwo = new Integer(10);
     private Integer carnOptThree = new Integer(15);
     //options for number of shelters
-    private Integer shelterOptOne = new Integer(5);
-    private Integer shelterOptTwo = new Integer(10);
-    private Integer shelterOptThree = new Integer(15);
+    private Integer shelterOptOne = new Integer(2);
+    private Integer shelterOptTwo = new Integer(4);
+    private Integer shelterOptThree = new Integer(6);
+    private Integer shelterOptFour = new Integer(8);
     
     //these variables keep track of the mouse's position on the screen
     private int mx = 0;
@@ -218,21 +219,25 @@ public class TitleScreen extends World
         //shelter buttons
         //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox shelterButtonOne = new SuperTextBox(shelterOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
-        addObject(shelterButtonOne, getWidth()*5/6, getHeight()*2/5);
+        addObject(shelterButtonOne, getWidth()*5/6, getHeight()*2/6);
         //first option default to selected
         shelterButtonOne.setIsSelected(true);
         shelterButtonOne.setValue(shelterOptOne);
         SuperTextBox shelterButtonTwo = new SuperTextBox(shelterOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
-        addObject(shelterButtonTwo, getWidth()*5/6, getHeight()*3/5);
+        addObject(shelterButtonTwo, getWidth()*5/6, getHeight()*3/6);
         shelterButtonTwo.setValue(shelterOptTwo);
         SuperTextBox shelterButtonThree = new SuperTextBox(shelterOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
-        addObject(shelterButtonThree, getWidth()*5/6, getHeight()*4/5);
+        addObject(shelterButtonThree, getWidth()*5/6, getHeight()*4/6);
         shelterButtonThree.setValue(shelterOptThree);
+        SuperTextBox shelterButtonFour = new SuperTextBox(shelterOptFour.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
+        addObject(shelterButtonFour, getWidth()*5/6, getHeight()*5/6);
+        shelterButtonFour.setValue(shelterOptFour);
         //add each button to the corresponding arraylist
         shelterTextBoxes = new ArrayList<SuperTextBox>();
         shelterTextBoxes.add(shelterButtonOne);
         shelterTextBoxes.add(shelterButtonTwo);
         shelterTextBoxes.add(shelterButtonThree);
+        shelterTextBoxes.add(shelterButtonFour);
         //creates the grey box that signifies selection on top of the first button
         shelterSelected = new Rectangle(shelterButtonOne.getWidth(),shelterButtonOne.getHeight(), 128);
         addObject(shelterSelected,shelterButtonOne.getX(),shelterButtonOne.getY());
