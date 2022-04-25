@@ -14,8 +14,6 @@ public class Carnivore extends Animal {
     private ArrayList<Herbivore> herbivores;
 
     private int mySpeed = 3;
-    
-    private static int numCarnivore = 0;
 
     ////////// CONSTRUCTOR //////////
  
@@ -205,13 +203,4 @@ public class Carnivore extends Animal {
             move(mySpeed);
     }
 
-    public static int getNumCarnivores()
-    {
-        return numCarnivore;
-    }
-    
-    public static void setNumCarnivores(int xx)
-    {
-        numCarnivore = xx;
-    }
 }

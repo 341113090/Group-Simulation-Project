@@ -30,8 +30,6 @@ public class MainWorld extends World {
 
     private int numCherry;
     private int numPoisonIvy;
-    private int numHerbivore;
-    private int numCarnivore;
     private int startNumCherry = 0;
     private int startNumPoisonIvy = 0;
     private int startNumHerb = 0;
@@ -62,8 +60,6 @@ public class MainWorld extends World {
         // Set the cherry and poison ivy count to 0 every reset
         Cherry.setNumCherries(0);
         PoisonIvy.setNumPoisonIvy(0);
-        Herbivore.setNumHerbivores(0);
-        Carnivore.setNumCarnivores(0);
         // Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
@@ -93,7 +89,6 @@ public class MainWorld extends World {
         }
         // update the label
         updatePlantLabels();
-<<<<<<< HEAD
         // spawning in shelters
         addObject(new Shelter(), 50, 125);// add more shelter when theres an image
         addObject(new Shelter(), 50, 200);
@@ -114,39 +109,6 @@ public class MainWorld extends World {
             addObject(new Herbivore(), random.nextInt(700)+50, random.nextInt(500)+50);
         }
         //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
-=======
-        // spawning in shelters based on selected parameters
-        if(shelter == 2)
-        {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-        } else if(shelter == 4)
-        {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-            addObject(new Shelter(), 50, 200);
-            addObject(new Shelter(), 725, 325);
-        } else if(shelter == 6)
-        {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-            addObject(new Shelter(), 50, 200);
-            addObject(new Shelter(), 725, 200);
-            addObject(new Shelter(), 50, 325);
-            addObject(new Shelter(), 725, 325);
-        } else if(shelter == 8)
-        {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-            addObject(new Shelter(), 50, 200);
-            addObject(new Shelter(), 725, 200);
-            addObject(new Shelter(), 50, 325);
-            addObject(new Shelter(), 725, 325);
-            addObject(new Shelter(), 50, 425);
-            addObject(new Shelter(), 725, 425);
-        }
-        addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
->>>>>>> bd7e7db804a3e7735629275b2bfe50ceffc7e5b2
         fg = new Foreground();
         addObject(fg, getWidth() / 2, getHeight() / 2);
 

@@ -17,6 +17,7 @@ public class Cherry extends Plant
         this.setImage(cherry);
         toughness = .4;
         totalSeeds = 3;
+        health = 200;
         healthPerTick = 8;
         isToxic = false;
         wantsCarry = false;
@@ -38,7 +39,7 @@ public class Cherry extends Plant
     
     public void deathCheck()
     {
-        if(health <= 0){
+        if(health == 0){
             numCherries--;
             getWorld().removeObject(this);
         }
