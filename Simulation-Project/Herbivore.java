@@ -71,13 +71,35 @@ public class Herbivore extends Animal {
         } else {
             time = 0;
             rotation = Greenfoot.getRandomNumber(360);
+            
+            if (rotation > 45&& rotation <= 135){
+               System.out.println("Down");
+            }   else if (rotation > 135&& rotation <= 225){
+               System.out.println("Left");
+            }   else if (rotation > 225&& rotation <= 305){
+               System.out.println("Up");
+            }   else{
+               System.out.println("Right");
+            }
         }
+        
+        // Check if at edge
+        if (MainWorld.onEdge(getX(), getY())){
+            rotation = Greenfoot.getRandomNumber(360);
+            MainWorld.PlaceOnEdge(this);
+        }
+         
         setRotation(rotation);
         move(mySpeed);
+        System.out.println(getRotation());
+        
 
         if (targetClosestPlant() == 1) {
-            state = State.Following;
+            //state = State.Following;
         }
+        
+        
+        playAnimation("Walk "+direction);
     }
 
     /**
@@ -105,6 +127,9 @@ public class Herbivore extends Animal {
              */
 
         }
+    
+        
+        playAnimation("Walk "+direction);
     }
 
     protected void Attacking() {
@@ -116,6 +141,7 @@ public class Herbivore extends Animal {
             state = State.Searching;
 
         }
+        playAnimation("Idle "+direction);
     }
 
     ////////// FUNCTIONS //////////

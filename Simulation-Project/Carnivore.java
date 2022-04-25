@@ -116,7 +116,7 @@ public class Carnivore extends Animal {
     }
 
     protected void Attacking() {
-        double tryToEat = targetHerbivore.eatHerbivore();
+        double tryToEat = targetHerbivore.eatHerbivore(attack);
         if (tryToEat > 0 && curHealth < maxHealth) {
             curHealth += tryToEat;
         }
@@ -185,7 +185,7 @@ public class Carnivore extends Animal {
         if (this.getNeighbours(30, true, Herbivore.class).size() > 0) {
             // If I was able to eat, increase by life by Herbivore's nibble power
 
-            double tryToEat = targetHerbivore.eatHerbivore();
+            double tryToEat = targetHerbivore.eatHerbivore(attack);
             if (tryToEat > 0 && curHealth < maxHealth) {
                 curHealth += tryToEat;
             }
