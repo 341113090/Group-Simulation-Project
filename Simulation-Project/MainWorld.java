@@ -16,7 +16,7 @@ public class MainWorld extends World {
     private static int minY = 50;
     private static int maxY = 450;
     
-    private int dayNumber;
+    private int dayNumber = 1;
     private int currentTime = 0;
     private int dayLength = 600;
     private int nightLength = 300;
@@ -211,9 +211,10 @@ public class MainWorld extends World {
                 transparency = 1;
             }
             drawNight(transparency * maxDarkness);
-
+            
             if (currentTime > dayLength + nightLength) {
                 currentTime = 0;
+                dayNumber++;
             }
         } else {
             night = false;
