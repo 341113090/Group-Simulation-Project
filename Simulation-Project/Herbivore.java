@@ -11,6 +11,8 @@ public class Herbivore extends Animal {
     private Plant targetPlant;
     private ArrayList<Plant> plants;
 
+    private static int numHerbivore = 0;
+    
     private int mySpeed = 2;
 
     ////////// CONSTRUCTOR //////////
@@ -229,5 +231,15 @@ public class Herbivore extends Animal {
             setRotation(rotation);
         } else
             move(mySpeed);
+    }
+    
+    public static int getNumHerbivores()
+    {
+        return numHerbivore;
+    }
+    
+    public static void setNumHerbivores(int xx)
+    {
+        numHerbivore = xx;
     }
 }
