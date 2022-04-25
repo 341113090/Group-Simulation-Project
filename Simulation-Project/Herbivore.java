@@ -11,14 +11,14 @@ public class Herbivore extends Animal {
     private Plant targetPlant;
     private ArrayList<Plant> plants;
 
-    private static int numHerbivore = 0;
+    private static int numHerbivores = 0;
     
     private int mySpeed = 2;
 
     ////////// CONSTRUCTOR //////////
 
     public Herbivore() {
-
+        numHerbivores++;
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Side"));
@@ -235,11 +235,11 @@ public class Herbivore extends Animal {
     
     public static int getNumHerbivores()
     {
-        return numHerbivore;
+        return numHerbivores;
     }
     
     public static void setNumHerbivores(int xx)
     {
-        numHerbivore = xx;
+        numHerbivores = xx;
     }
 }

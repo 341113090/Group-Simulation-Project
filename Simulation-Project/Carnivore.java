@@ -15,12 +15,13 @@ public class Carnivore extends Animal {
 
     private int mySpeed = 3;
     
-    private static int numCarnivore = 0;
+    private static int numCarnivores = 0;
 
     ////////// CONSTRUCTOR //////////
  
     public Carnivore() {
-
+        numCarnivores++;
+        
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Side"));
@@ -207,11 +208,11 @@ public class Carnivore extends Animal {
 
     public static int getNumCarnivores()
     {
-        return numCarnivore;
+        return numCarnivores;
     }
     
     public static void setNumCarnivores(int xx)
     {
-        numCarnivore = xx;
+        numCarnivores = xx;
     }
 }

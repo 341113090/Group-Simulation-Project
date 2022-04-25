@@ -38,9 +38,11 @@ public class MainWorld extends World {
     private int startNumShelter = 0;
 
     private String[] plantLabels = new String[2];
+    private String[] animalLabels = new String[2];
     Font funFont = new Font("Comic Sans MS", false, false, 16);
     Font boringFont = new Font("Times New Roman", false, false, 14);
     SuperTextBox bigPlantLabel;
+    SuperTextBox bigAnimalLabel;
 
         
     /**
@@ -66,16 +68,23 @@ public class MainWorld extends World {
         // Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
+        String herbivoreLabel = new String("Number of Herbivores in the World: " + numHerbivore);
+        String carnivoreLabel = new String("Number of Carnivores in the World: " + numCarnivore);
         // sets the indexes of the plant label to each of the cherry and ivy label
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
+        // sets the indexes of the animal label to each of the herbivore and carnivore label
+        animalLabels[0] = herbivoreLabel;
+        animalLabels[1] = carnivoreLabel;
         // instantiate the textbox at the top
-        bigPlantLabel = new SuperTextBox(plantLabels, boringFont, this.getWidth(), false);
+        bigPlantLabel = new SuperTextBox(plantLabels, boringFont, this.getWidth()/2, false);
+        bigAnimalLabel = new SuperTextBox(animalLabels, boringFont, this.getWidth()/2, false);
         // values for location of the textbox
         int tempY = bigPlantLabel.getImage().getHeight() / 2;
-        int tempX = bigPlantLabel.getImage().getWidth() / 2;
+        double tempX = bigPlantLabel.getImage().getWidth();
         // actually puts the textbox on the world
-        addObject(bigPlantLabel, tempX, tempY);
+        addObject(bigPlantLabel, (int)(tempX/2), tempY);
+        addObject(bigAnimalLabel, (int)(tempX*1.5), tempY);
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumCherry; i++) {
             Random random = new Random();
@@ -92,6 +101,7 @@ public class MainWorld extends World {
         }
         // update the label
         updatePlantLabels();
+        updateAnimalLabels();
         // spawning in shelters based on selected parameters
         if(shelter == 2)
         {
@@ -135,7 +145,7 @@ public class MainWorld extends World {
     public void act() {
         // update the plant label
         updatePlantLabels();
-
+        updateAnimalLabels();
         timeManager();
     }
 
@@ -152,6 +162,21 @@ public class MainWorld extends World {
         plantLabels[0] = cherryLabel;
         plantLabels[1] = poisonivyLabel;
         bigPlantLabel.update(plantLabels);
+    }
+    
+    /**
+     * This code updates the animals labels whenever. Uses the same instantiating
+     * code but just gets the new values from the harbivore and animals class
+     * instead of just being 0.
+     */
+    public void updateAnimalLabels() {
+        numHerbivore = Herbivore.getNumHerbivores();
+        numCarnivore = Carnivore.getNumCarnivores();
+        String carnivoreLabel = new String("Number of Carnivores in the World: " + numCarnivore);
+        String herbivoreLabel = new String("Number of Herbivores in the World: " + numHerbivore);
+        animalLabels[0] = herbivoreLabel;
+        animalLabels[1] = carnivoreLabel;
+        bigAnimalLabel.update(animalLabels);
     }
 
     private void timeManager() {
