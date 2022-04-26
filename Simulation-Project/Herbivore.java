@@ -23,7 +23,7 @@ public class Herbivore extends Animal {
     protected int attackDistance = 50;
 
     private static int numHerbivores = 0;
-    ////////// CONSTRUCTOR //////////
+    ////////// CONSTRUCTOR /////////
 
     public Herbivore() {
         super();
@@ -42,7 +42,7 @@ public class Herbivore extends Animal {
 
         playAnimation("Walk Side");
         curHealth = maxHealth;
-
+        
     }
 
     ////////// GREENFOOT FUNCTIONS //////////
@@ -51,6 +51,7 @@ public class Herbivore extends Animal {
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
+        hpBar.update((int)curHealth);
         super.act();
         setRotation(rotation);
 
@@ -63,6 +64,11 @@ public class Herbivore extends Animal {
         if (curHealth <=0){
             getWorld().removeObject(this);    
         }
+    }
+    
+    public void addedToWorld(World w) {
+        w.addObject(hpBar, getX(), getY());
+        hpBar.update((int)curHealth);
     }
 
     public void started() {

@@ -56,10 +56,16 @@ public class Carnivore extends Animal {
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-         super.act();
+        hpBar.update((int)curHealth);
+        super.act();
         setRotation(rotation);
 
         setRotation(0);
+    }
+    
+    public void addedToWorld(World w) {
+        w.addObject(hpBar, getX(), getY());
+        hpBar.update((int)curHealth);
     }
 
     public void started() {

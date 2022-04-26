@@ -35,10 +35,12 @@ public class Animal extends Animator {
     protected int time;
     protected String direction;
     
+    SuperStatBar hpBar;
     public Animal(){
+        maxHealth = 100;
         state = State.Searching;
         curHealth = maxHealth;
-        
+        hpBar = new SuperStatBar(maxHealth, (int)curHealth, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 1000, 1000, 1, 1, 1, 16, 16, "Hidden"));
@@ -80,6 +82,7 @@ public class Animal extends Animator {
         Behaviour();
         Animations();
     }
+
 
     protected void Behaviour() {
         if (MainWorld.night){
