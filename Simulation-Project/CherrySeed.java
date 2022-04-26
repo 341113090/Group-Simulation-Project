@@ -14,6 +14,7 @@ public class CherrySeed extends Actor
      */
     private int seeds;
     private int totalActs, actCounter;
+    private static boolean canSprout = false;
     GreenfootImage Plants = new GreenfootImage("Plants.png");
     GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
     
@@ -23,23 +24,32 @@ public class CherrySeed extends Actor
         this.totalActs = totalActs;
         actCounter = totalActs;
     }
+    
     /**
      * CherrySeed will remove itself after two seconds after spawning and drop
      * one cherry in place of it
      */
     public void act()
     {
-        if (actCounter > 0){
-            actCounter--;
-            if (actCounter < 60){
-                cherryseed.setTransparency (actCounter * 2);
+        if(canSprout)
+        {
+            if (actCounter > 0){
+                actCounter--;
+                if (actCounter < 60){
+                    cherryseed.setTransparency (actCounter * 2);
+                }
+            } else {
+                Cherry cherry = new Cherry();
+                if(this.getX()<500 && this.getX()>75){
+                    getWorld().addObject(cherry, this.getX(), this.getY());
+                }
+                getWorld().removeObject(this);
             }
-        } else {
-            Cherry cherry = new Cherry();
-            if(this.getX()<500 && this.getX()>75){
-                getWorld().addObject(cherry, this.getX(), this.getY());
-            }
-            getWorld().removeObject(this);
         }
+    }
+    
+    public static void toggleCanSprout(boolean x)
+    {
+        canSprout = x;
     }
 }

@@ -106,6 +106,20 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(400);
             addObject(new PoisonIvy(), xx, yy);
         }
+        // makes startNumHerb number of herbivores on the screen in random locations
+        for (int i = 0; i < startNumHerb; i++) {
+            Random random = new Random();
+            int xx = 100 + random.nextInt(600);
+            int yy = 50 + random.nextInt(400);
+            addObject(new Herbivore(), xx, yy);
+        }
+        // makes startNumCarn number of carnivores on the screen in random locations
+        for (int i = 0; i < startNumCarn; i++) {
+            Random random = new Random();
+            int xx = 100 + random.nextInt(600);
+            int yy = 50 + random.nextInt(400);
+            addObject(new Carnivore(), xx, yy);
+        }
         // update the label
         updateLeftLabels();
         updateRightLabels();
@@ -141,11 +155,6 @@ public class MainWorld extends World {
             addObject(new Shelter(), 725, 425);
         }
         Random random = new Random();
-        // Spawn animals
-        for (int i = 0; i < 8; i++){
-            
-            addObject(new Herbivore(), random.nextInt(700)+50, random.nextInt(500)+50);
-        }
         //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
         fg = new Foreground();
         addObject(fg, getWidth() / 2, getHeight() / 2);
@@ -161,6 +170,14 @@ public class MainWorld extends World {
         updateLeftLabels();
         updateRightLabels();
         timeManager();
+        poopTime();
+        if(night)
+        {
+            CherrySeed.toggleCanSprout(true);
+        } else
+        {
+            CherrySeed.toggleCanSprout(false);
+        }
     }
 
     /**
@@ -200,7 +217,6 @@ public class MainWorld extends World {
 
     private void timeManager() {
         currentTime++;
-
         if (currentTime > dayLength) {
             night = true;
             double transparency = 0;
@@ -222,6 +238,8 @@ public class MainWorld extends World {
             drawNight(0);
         }
     }
+    
+    
 
     private GreenfootImage drawNight(double transparency) {
         if (transparency <=0) transparency = 0;
@@ -260,5 +278,41 @@ public class MainWorld extends World {
         }
         
         obj.setLocation(x,y);
+    }
+    
+    public int getCurrentTime()
+    {
+        return currentTime;
+    }
+    
+    public void poopTime()
+    {
+        if(currentTime >= 150)
+        {
+            ArrayList<Herbivore> herbs = (ArrayList<Herbivore>) getObjects(Herbivore.class);
+            if(currentTime == 450)
+            {
+                for(Herbivore herb : herbs)
+                {
+                    if(herb.getNumSeeds() != 0)
+                    {
+                        herb.setPoopTime(145/herb.getNumSeeds());
+                    }
+                }
+            }
+            if(currentTime >= 450)
+            {
+                for(Herbivore herb : herbs)
+                {
+                    if((herb.getNumSeeds() != 0) && (herb.getPoopTime() != 0))
+                    {
+                        if(((currentTime-150)%herb.getPoopTime()) == 0)
+                        {
+                            herb.dropSeed();
+                        }
+                    }
+                }
+            }
+        }
     }
 }
