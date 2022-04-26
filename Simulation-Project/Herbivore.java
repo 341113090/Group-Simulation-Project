@@ -31,6 +31,7 @@ public class Herbivore extends Animal {
 
     public Herbivore() {
         super();
+        
         numHerbivores++;
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
@@ -59,7 +60,7 @@ public class Herbivore extends Animal {
         setRotation(rotation);
         animalPoop();
         setRotation(0);
-        
+        System.out.println("number seeds:" + numSeeds);
         // Health Decay
         if (state != State.InShelter)curHealth -= healthDecay;
         
@@ -73,7 +74,7 @@ public class Herbivore extends Animal {
     }
 
     public void stopped() {
-        System.out.println("How");
+        //System.out.println("How");
     }
 
     ////////// STATES //////////
@@ -125,7 +126,7 @@ public class Herbivore extends Animal {
         // Prevent error and animal from eating already eaten plant
         if (targetPlant == null || targetPlant.getWorld() == null){
             state = State.Searching;
-            System.out.println("stop");
+            //System.out.println("stop");
             return;
         }
         
@@ -157,10 +158,10 @@ public class Herbivore extends Animal {
         if (tryToEat > 0 && curHealth < maxHealth) {
             curHealth += tryToEat;
             healthEaten += tryToEat;
-            System.out.println("Health eaten:" + healthEaten);
+            //System.out.println("Health eaten:" + healthEaten);
             if(healthEaten >= (targetPlant.getMaxHealth()/50))
             {
-                numSeeds++;
+                this.numSeeds++;
                 healthEaten = 0;
             }
         }
@@ -201,7 +202,7 @@ public class Herbivore extends Animal {
         numplants = getWorld().getObjects(Shelter.class).size();
 
         plants = (ArrayList) getObjectsInRange(senseRange, Plant.class);
-        System.out.println(plants.size());  
+        //System.out.println(plants.size());  
         if (plants.size() > 0) {
 
             // set the first one as my target
