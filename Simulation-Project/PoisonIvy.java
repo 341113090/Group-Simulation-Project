@@ -11,6 +11,8 @@ public class PoisonIvy extends Plant
     private static int numPoisonIvy = 0;
     GreenfootImage ivy = AnimationManager.getSlice(Plants,12, 3);
     private double toxicityTakenAway = 10;
+    private int day = MainWorld.dayNumber;
+    private int nextDay = day + 1;
     
     public PoisonIvy()
     {
@@ -55,11 +57,19 @@ public class PoisonIvy extends Plant
         }
     }
     
+    public void reproduce(){
+        if(day == nextDay){
+            nextDay++;
+            
+        }
+    }
+    
     /**
      * Calls superclass act().
      */
     public void act()
     {
+        day = MainWorld.dayNumber;
         super.act();
     }
 }

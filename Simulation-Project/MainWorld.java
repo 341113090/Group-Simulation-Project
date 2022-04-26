@@ -16,7 +16,7 @@ public class MainWorld extends World {
     private static int minY = 50;
     private static int maxY = 450;
     
-    private int dayNumber = 1;
+    public static int dayNumber = 1;
     private int currentTime = 0;
     private int dayLength = 600;
     private int nightLength = 300;
