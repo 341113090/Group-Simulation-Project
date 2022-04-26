@@ -22,12 +22,14 @@ public class Animal extends Animator {
     protected int maxHealth; // Animal health/hp, decreases speed
     protected int size;
     protected int senseRange; // How far animal can detect threats/food, increases health decay
+    protected int attackRange; // How far animal can eat/attack
     protected double healthDecay; // How fast animals health goes down, hunger
     protected double altruism; // Chance of animal giving up its spot
 
     //
     protected double curHealth;
     protected double rotation;
+    
 
     //
     protected int time;
@@ -83,6 +85,8 @@ public class Animal extends Animator {
         if (MainWorld.night){
             state = State.Night;
         }
+        
+        
     }
 
     ///// STATES /////

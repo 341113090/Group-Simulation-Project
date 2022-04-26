@@ -20,6 +20,7 @@ public class Herbivore extends Animal {
     protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
     protected double healthDecay = 0.1; // How fast animals health goes down, hunger
     protected double altruism = 0.5; // Chance of animal giving up its spot
+    protected int attackDistance = 50;
 
     private static int numHerbivores = 0;
     ////////// CONSTRUCTOR //////////
@@ -142,11 +143,17 @@ public class Herbivore extends Animal {
     }
 
     protected void Attacking() {
+        
+        if (targetPlant == null || targetPlant.getWorld() == null){
+            state = State.Searching;
+            return;
+        }
+        
         double tryToEat = targetPlant.eatPlant();
         if (tryToEat > 0 && curHealth < maxHealth) {
             curHealth += tryToEat;
         }
-        if (targetPlant == null || targetPlant.getWorld() == null) {
+        if (MainWorld.getDistance(targetPlant, this) > attackDistance || targetPlant == null || targetPlant.getWorld() == null) {
             state = State.Searching;
 
         }
@@ -223,7 +230,6 @@ public class Herbivore extends Animal {
             curHealth = 0;
             
             
-            getWorld().removeObject(this);
             return lastHealth;
         }
     }

@@ -109,6 +109,7 @@ public class MainWorld extends World {
         // update the label
         updateLeftLabels();
         updateRightLabels();
+        addObject(new Carnivore(), 300, 300);
         // spawning in shelters based on selected parameters
         if(shelter == 2)
         {
