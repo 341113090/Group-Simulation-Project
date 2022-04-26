@@ -215,7 +215,7 @@ public class MainWorld extends World {
         rightLabels[2] = dayLabel;
         bigRightLabel.update(rightLabels);
     }
-
+    
     private void timeManager() {
         currentTime++;
         if (currentTime > dayLength) {

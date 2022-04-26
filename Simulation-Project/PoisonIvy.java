@@ -60,7 +60,17 @@ public class PoisonIvy extends Plant
     public void reproduce(){
         if(day == nextDay){
             nextDay++;
-            getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()-50);
+            if(this.getX() >= 650 || this.getY() <= 100){ // too right and too high
+                getWorld().addObject(new PoisonIvy(), this.getX() - 50, this.getY()+50);
+            } else if(this.getX() >= 650 || this.getY() <= 400){//too right and too low
+                getWorld().addObject(new PoisonIvy(), this.getX() - 50, this.getY()-50);
+            } else if(this.getX() <= 150 || this.getY() <= 100){//too left and too high
+                getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()+50);
+            } else if(this.getX() >= 150 || this.getY() <= 400){//too left and too low
+                getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()-50);
+            } else{
+                getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()-50);
+            }            
         }
     }
     
