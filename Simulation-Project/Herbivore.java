@@ -11,9 +11,8 @@ public class Herbivore extends Animal {
     private Plant targetPlant;
     private ArrayList<Plant> plants;
     
-    private int numSeeds;
-    
     // Base stats
+    
     protected double speed = 2; // Animal movement speed, increases more health decay when moving
     protected int attack = 1; // Animal attack damage, decreases health
     protected int maxHealth = 100; // Animal health/hp, decreases speed
@@ -21,11 +20,7 @@ public class Herbivore extends Animal {
     protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
     protected double healthDecay = 0.1; // How fast animals health goes down, hunger
     protected double altruism = 0.5; // Chance of animal giving up its spot
-    private int poopTime;
-    private int specialTimer = 0;
-    private boolean isPoopTime = false;
-    private int currentTime = 0;
-    private double healthEaten = 0;
+    protected int attackDistance = 50;
 
     private static int numHerbivores = 0;
     ////////// CONSTRUCTOR //////////
@@ -61,8 +56,6 @@ public class Herbivore extends Animal {
 
         setRotation(0);
         
-        animalPoop();
-        
         // Health Decay
         if (state != State.InShelter)curHealth -= healthDecay;
         
@@ -76,7 +69,7 @@ public class Herbivore extends Animal {
     }
 
     public void stopped() {
-        //System.out.println("How");
+        System.out.println("How");
     }
 
     ////////// STATES //////////
@@ -128,7 +121,7 @@ public class Herbivore extends Animal {
         // Prevent error and animal from eating already eaten plant
         if (targetPlant == null || targetPlant.getWorld() == null){
             state = State.Searching;
-            //System.out.println("stop");
+            System.out.println("stop");
             return;
         }
         
@@ -150,24 +143,22 @@ public class Herbivore extends Animal {
     }
 
     protected void Attacking() {
+        
+        if (targetPlant == null || targetPlant.getWorld() == null){
+            state = State.Searching;
+            return;
+        }
+        
         double tryToEat = targetPlant.eatPlant();
         if (tryToEat > 0 && curHealth < maxHealth) {
             curHealth += tryToEat;
-            healthEaten += tryToEat;
-            System.out.println("Health eaten:" + healthEaten);
-            if(healthEaten >= (targetPlant.getMaxHealth()/65))
-            {
-                numSeeds++;
-                healthEaten = 0;
-            }
         }
-        if (targetPlant == null || targetPlant.getWorld() == null) {
+        if (MainWorld.getDistance(targetPlant, this) > attackDistance || targetPlant == null || targetPlant.getWorld() == null) {
             state = State.Searching;
 
         }
         playAnimation("Idle "+direction);
     }
-    
     protected void Night() {
         Shelter target = targetShelter();
         // Temp night
@@ -199,7 +190,7 @@ public class Herbivore extends Animal {
         numplants = getWorld().getObjects(Shelter.class).size();
 
         plants = (ArrayList) getObjectsInRange(senseRange, Plant.class);
-        //System.out.println(plants.size());  
+        System.out.println(plants.size());  
         if (plants.size() > 0) {
 
             // set the first one as my target
@@ -239,7 +230,6 @@ public class Herbivore extends Animal {
             curHealth = 0;
             
             
-            getWorld().removeObject(this);
             return lastHealth;
         }
     }
@@ -254,11 +244,12 @@ public class Herbivore extends Animal {
 
         if (this.getNeighbours(30, true, Plant.class).size() > 0) {
             // If I was able to eat, increase by life by Plant's nibble power
+
             double tryToEat = targetPlant.eatPlant();
             if (tryToEat > 0 && curHealth < maxHealth) {
                 curHealth += tryToEat;
-                
             }
+
         } else {
             move(speed);
         }
@@ -272,15 +263,6 @@ public class Herbivore extends Animal {
             move(speed);
     }
     
-    public void dropSeed()
-    {
-        int seedX = this.getX();
-        int seedY = this.getY();
-        MainWorld main = (MainWorld)this.getWorld();
-        CherrySeed seed = new CherrySeed(1);
-        main.addObject(seed, seedX, seedY);
-    }
-    
     public static int getNumHerbivores()
     {
         return numHerbivores;
@@ -290,56 +272,4 @@ public class Herbivore extends Animal {
     {
         numHerbivores = xx;
     }
-    
-    public void animalPoop()
-    {
-        /*
-        currentTime = ((MainWorld)getWorld()).getCurrentTime();
-        if(currentTime == 450)
-        {
-            if(numSeeds!=0)
-            {
-                poopTime = 150/this.numSeeds;
-                isPoopTime = true;
-            }
-        }
-        if(isPoopTime)
-        {
-            specialTimer++;
-            if((specialTimer == poopTime) && (numSeeds > 0))
-            {
-                CherrySeed seed = new CherrySeed(1);
-                getWorld().addObject(seed, getX(),getY());
-                numSeeds--;
-            }
-        }
-        */
-       //testing do not return to real
-    }
-    
-    public void setIsPoopTime(boolean x)
-    {
-        this.isPoopTime = x;
-    }
-    
-    public void setSpecialTimer(int x)
-    {
-        specialTimer = x;
-    }
-    
-    public int getPoopTime()
-    {
-        return poopTime;
-    }
-    
-    public void setPoopTime(int x)
-    {
-        poopTime = x;
-    }
-    
-    public int getNumSeeds()
-    {
-        return numSeeds;
-    }
-    
 }

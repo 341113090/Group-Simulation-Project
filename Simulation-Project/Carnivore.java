@@ -14,6 +14,18 @@ public class Carnivore extends Animal {
     private ArrayList<Herbivore> herbivores;
 
     private int mySpeed = 3;
+    
+     // Base stats
+    
+    protected double speed = 2; // Animal movement speed, increases more health decay when moving
+    protected int attack = 1; // Animal attack damage, decreases health
+    protected int maxHealth = 100; // Animal health/hp, decreases speed
+    protected int size;
+    protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
+    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected double altruism = 0.5; // Chance of animal giving up its spot
+    protected int attackDistance = 50;
+
 
     ////////// CONSTRUCTOR //////////
  
@@ -92,6 +104,11 @@ public class Carnivore extends Animal {
     ///// TODO: FIGURE OUT IF CarnivoreS SHOULD ATTACK CARNIVORES OR JUST RUN AWAY
 
    protected void Following() {
+       if (targetHerbivore == null || targetHerbivore.getWorld() == null){
+            state = State.Searching;
+            return;
+        }
+        
         turnTowards(targetHerbivore.getX(), targetHerbivore.getY());
         rotation = getRotation();
 
@@ -116,11 +133,16 @@ public class Carnivore extends Animal {
     }
 
     protected void Attacking() {
+         
+        if (targetHerbivore == null || targetHerbivore.getWorld() == null){
+            state = State.Searching;
+            return;
+        }
         double tryToEat = targetHerbivore.eatHerbivore(attack);
         if (tryToEat > 0 && curHealth < maxHealth) {
             curHealth += tryToEat;
         }
-        if (targetHerbivore == null || targetHerbivore.getWorld() == null) {
+        if (MainWorld.getDistance(targetHerbivore, this) > attackDistance ||targetHerbivore == null || targetHerbivore.getWorld() == null) {
             state = State.Searching;
 
         }
