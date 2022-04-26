@@ -60,7 +60,7 @@ public class PoisonIvy extends Plant
     public void reproduce(){
         if(day == nextDay){
             nextDay++;
-            
+            getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()-50);
         }
     }
     
@@ -70,6 +70,7 @@ public class PoisonIvy extends Plant
     public void act()
     {
         day = MainWorld.dayNumber;
+        reproduce();
         super.act();
     }
 }
