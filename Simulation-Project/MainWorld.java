@@ -239,8 +239,6 @@ public class MainWorld extends World {
         }
     }
     
-    
-
     private GreenfootImage drawNight(double transparency) {
         if (transparency <=0) transparency = 0;
         GreenfootImage dark = new GreenfootImage(getWidth(), getHeight());
