@@ -113,6 +113,7 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(400);
             addObject(new Herbivore(), xx, yy);
         }
+        
         // makes startNumCarn number of carnivores on the screen in random locations
         for (int i = 0; i < startNumCarn; i++) {
             Random random = new Random();
@@ -120,10 +121,10 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(400);
             addObject(new Carnivore(), xx, yy);
         }
+        
         // update the label
         updateLeftLabels();
         updateRightLabels();
-        addObject(new Carnivore(), 300, 300);
         // spawning in shelters based on selected parameters
         if(shelter == 2)
         {
@@ -239,8 +240,6 @@ public class MainWorld extends World {
         }
     }
     
-    
-
     private GreenfootImage drawNight(double transparency) {
         if (transparency <=0) transparency = 0;
         GreenfootImage dark = new GreenfootImage(getWidth(), getHeight());
@@ -306,7 +305,7 @@ public class MainWorld extends World {
                 {
                     if((herb.getNumSeeds() != 0) && (herb.getPoopTime() != 0))
                     {
-                        if(((currentTime-150)%herb.getPoopTime()) == 0)
+                        if(((currentTime-450)%herb.getPoopTime()) == 0)
                         {
                             herb.dropSeed();
                         }
