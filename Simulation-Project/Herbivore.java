@@ -68,6 +68,7 @@ public class Herbivore extends Animal {
         // Check if dead
         if (curHealth <=0){
             getWorld().removeObject(this);    
+            numHerbivores--;
         }
     }
     
@@ -161,8 +162,8 @@ public class Herbivore extends Animal {
         }
         
         double tryToEatPlant = targetPlant.eatPlant();
-        if (tryToEatPlant > 0 && curHealth < maxHealth) {
-            curHealth += tryToEatPlant;
+        if (tryToEatPlant > 0) {
+            if (curHealth < maxHealth) curHealth += tryToEatPlant;
             healthEaten += tryToEatPlant;
             //System.out.println("Health eaten:" + healthEaten);
             if(healthEaten >= (targetPlant.getMaxHealth()/50))
@@ -178,7 +179,7 @@ public class Herbivore extends Animal {
         playAnimation("Idle "+direction);
     }
     protected void Night() {
-        Shelter target = targetShelter();
+        Shelter target = targetShelter(false);
         // Temp night
         if (MainWorld.getDistance(this, target) <= 5){
             playAnimation("Hidden");
