@@ -245,8 +245,7 @@ public class TitleScreen extends World
     
     /**
      * This method with activate when the user clicks on a button they want to select
-     * should darken option that has been selected and deselect the options that 
-     * were not chose
+     * and deselect the options that were not chosen
      */
     public void checkForSelection()
     {
@@ -352,6 +351,9 @@ public class TitleScreen extends World
         }
     }
     
+    /**
+     * This method will check if buttons are selected and make them darker to show selection
+     */
     public void showSelection()
     {
         //get all the buttons in the world
