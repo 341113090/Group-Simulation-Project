@@ -163,10 +163,10 @@ public class Herbivore extends Animal {
         
         double tryToEatPlant = targetPlant.eatPlant();
         if (tryToEatPlant > 0) {
-            if (curHealth < maxHealth) curHealth += tryToEatPlant;
+            curHealth += tryToEatPlant;
             healthEaten += tryToEatPlant;
             //System.out.println("Health eaten:" + healthEaten);
-            if(healthEaten >= (targetPlant.getMaxHealth()/50))
+            if(healthEaten >= (targetPlant.getMaxHealth()/2))
             {
                 this.numSeeds++;
                 healthEaten = 0;
