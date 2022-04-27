@@ -18,7 +18,7 @@ public class PoisonIvy extends Plant
     {
         numPoisonIvy++;
         this.setImage(ivy);
-        toughness = .8;//poison ivey is weaker than cherry
+        toughness = .5;//poison ivey is weaker than cherry
         health = 1000;
         maxHealth = health;
         healthPerTick = 8;
@@ -58,6 +58,9 @@ public class PoisonIvy extends Plant
     }
     
     public void reproduce(){
+        if(numPoisonIvy > 30){
+            return;
+        }
         if(day == nextDay){
             nextDay++;
             if(this.getX() >= 650 || this.getY() <= 100){ // too right and too high
