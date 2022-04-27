@@ -144,9 +144,9 @@ public class Carnivore extends Animal {
             state = State.Searching;
             return;
         }
-        double tryToEat = targetHerbivore.eatHerbivore(attack);
-        if (tryToEat > 0 && curHealth < maxHealth) {
-            curHealth += tryToEat;
+        double tryToEatHerbivore = targetHerbivore.eatHerbivore(attack);
+        if (tryToEatHerbivore > 0 && curHealth < maxHealth) {
+            curHealth += tryToEatHerbivore;
         }
         if (MainWorld.getDistance(targetHerbivore, this) > attackDistance ||targetHerbivore == null || targetHerbivore.getWorld() == null) {
             state = State.Searching;

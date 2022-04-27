@@ -160,10 +160,10 @@ public class Herbivore extends Animal {
             return;
         }
         
-        double tryToEat = targetPlant.eatPlant();
-        if (tryToEat > 0 && curHealth < maxHealth) {
-            curHealth += tryToEat;
-            healthEaten += tryToEat;
+        double tryToEatPlant = targetPlant.eatPlant();
+        if (tryToEatPlant > 0 && curHealth < maxHealth) {
+            curHealth += tryToEatPlant;
+            healthEaten += tryToEatPlant;
             //System.out.println("Health eaten:" + healthEaten);
             if(healthEaten >= (targetPlant.getMaxHealth()/50))
             {
@@ -302,25 +302,30 @@ public class Herbivore extends Animal {
     
     public void animalPoop()
     {
-        
         currentTime = ((MainWorld)getWorld()).getCurrentTime();
-        if(currentTime == 450)
+        if(currentTime == 600)
         {
             if(numSeeds!=0)
             {
-                poopTime = 150/this.numSeeds;
-                isPoopTime = true;
+                poopTime = 50/this.numSeeds;
+                //isPoopTime = true;
             }
         }
-        if(isPoopTime)
+        if(currentTime >=600)
         {
             specialTimer++;
             if((specialTimer == poopTime) && (numSeeds > 0))
             {
-                CherrySeed seed = new CherrySeed(1);
+                specialTimer = 0;
+                CherrySeed seed = new CherrySeed(60);
                 getWorld().addObject(seed, getX(),getY());
                 numSeeds--;
             }
+        }
+        if(currentTime == 0)
+        {
+            specialTimer = 0;
+            numSeeds = 0;
         }
         
        //testing do not return to real

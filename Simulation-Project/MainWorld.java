@@ -113,7 +113,6 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(400);
             addObject(new Herbivore(), xx, yy);
         }
-        
         // makes startNumCarn number of carnivores on the screen in random locations
         for (int i = 0; i < startNumCarn; i++) {
             Random random = new Random();
@@ -121,7 +120,6 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(400);
             addObject(new Carnivore(), xx, yy);
         }
-        
         // update the label
         updateLeftLabels();
         updateRightLabels();
@@ -172,10 +170,10 @@ public class MainWorld extends World {
         updateRightLabels();
         timeManager();
         //poopTime();
-        if(night)
+        if(currentTime == 0)
         {
             CherrySeed.toggleCanSprout(true);
-        } else
+        } else if(currentTime ==450)
         {
             CherrySeed.toggleCanSprout(false);
         }
