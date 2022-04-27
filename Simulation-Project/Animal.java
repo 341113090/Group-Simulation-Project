@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Animal extends Animator {
+public abstract class Animal extends Animator {
     public enum State {
         Waiting, Searching, Following, Attacking, Running, Night, InShelter
     }
