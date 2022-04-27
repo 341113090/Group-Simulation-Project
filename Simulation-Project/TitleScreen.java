@@ -16,21 +16,21 @@ public class TitleScreen extends World
     //different options for selections
     //change as you see fit
     //options for cherry
-    private Integer cherryOptOne = new Integer(5);
-    private Integer cherryOptTwo = new Integer(10);
-    private Integer cherryOptThree = new Integer(15);
+    private Integer cherryOptOne = new Integer(2);
+    private Integer cherryOptTwo = new Integer(4);
+    private Integer cherryOptThree = new Integer(6);
     //options for poisonivy
-    private Integer poisonIvyOptOne = new Integer(5);
-    private Integer poisonIvyOptTwo = new Integer(10);
-    private Integer poisonIvyOptThree = new Integer(15);
+    private Integer poisonIvyOptOne = new Integer(10);
+    private Integer poisonIvyOptTwo = new Integer(15);
+    private Integer poisonIvyOptThree = new Integer(20);
     //options for herbivores
-    private Integer herbOptOne = new Integer(5);
-    private Integer herbOptTwo = new Integer(10);
-    private Integer herbOptThree = new Integer(15);
+    private Integer herbOptOne = new Integer(3);
+    private Integer herbOptTwo = new Integer(6);
+    private Integer herbOptThree = new Integer(9);
     //options for carnivores
-    private Integer carnOptOne = new Integer(5);
-    private Integer carnOptTwo = new Integer(10);
-    private Integer carnOptThree = new Integer(15);
+    private Integer carnOptOne = new Integer(1);
+    private Integer carnOptTwo = new Integer(2);
+    private Integer carnOptThree = new Integer(3);
     //options for number of shelters
     private Integer shelterOptOne = new Integer(2);
     private Integer shelterOptTwo = new Integer(4);

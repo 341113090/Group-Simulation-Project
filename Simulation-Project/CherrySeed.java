@@ -39,9 +39,7 @@ public class CherrySeed extends Actor
                 }
             } else {
                 Cherry cherry = new Cherry();
-                if(this.getX()<500 && this.getX()>75){
-                    getWorld().addObject(cherry, this.getX(), this.getY());
-                }
+                getWorld().addObject(cherry, this.getX(), this.getY());
                 getWorld().removeObject(this);
             }
         }
