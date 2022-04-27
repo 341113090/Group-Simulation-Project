@@ -92,9 +92,9 @@ public abstract class Plant extends Animator {
      */
     public double eatPlant() {
         isGettingEaten = true;
-        double actualTick = healthPerTick * toughness;// might be a problem later for statbar
+        double actualTick = healthPerTick * toughness;
         if (health >= actualTick) {
-            health -= actualTick;// temporary, will depend on plant health
+            health -= actualTick;
             return actualTick;
         } else {
             int lastHealth = health;

@@ -110,7 +110,7 @@ public abstract class Animal extends Animator {
     }
 
     protected void Night() {
-        Shelter target = targetShelter();
+        Shelter target = targetShelter(false);
         // Temp night
         if (MainWorld.getDistance(this, target) <= 5){
             playAnimation("Hidden");
@@ -144,7 +144,7 @@ public abstract class Animal extends Animator {
         move(speed);
     }
     
-    protected Shelter targetShelter() {
+    protected Shelter targetShelter(boolean type) {
 
         double closestTargetDistance = 0;
         double distanceToActor;
@@ -153,6 +153,13 @@ public abstract class Animal extends Animator {
         
 
         ArrayList<Shelter> shelters= (ArrayList) getObjectsInRange(10000, Shelter.class);
+        
+        // Filter out shelters that aren't the correct type
+        for (int i = 0; i < shelters.size(); i++){
+            if (shelters.get(i).getTypeAnimal() != type){
+                shelters.remove(shelters.get(i));
+            }
+        }
         if (shelters.size() > 0) {
             
             // set the first one as my target

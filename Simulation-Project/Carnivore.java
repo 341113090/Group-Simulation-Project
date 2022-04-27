@@ -61,6 +61,15 @@ public class Carnivore extends Animal {
         setRotation(rotation);
 
         setRotation(0);
+        
+        // Health Decay
+        if (state != State.InShelter)curHealth -= healthDecay;
+        
+        // Check if dead
+        if (curHealth <=0){
+            getWorld().removeObject(this);   
+            numCarnivores--;
+        }
     }
     
     public void addedToWorld(World w) {
@@ -84,20 +93,32 @@ public class Carnivore extends Animal {
      * It will then switch its state to following
      */
      private int randomDirectionDelay = 60;
+    private int waitTime;
 
     protected void Searching() {
         if (time < randomDirectionDelay) {
             time++;
         } else {
             time = 0;
+            waitTime = Greenfoot.getRandomNumber(randomDirectionDelay)+randomDirectionDelay/2;
             rotation = Greenfoot.getRandomNumber(360);
+            
         }
+        
+        // Check if at edge
+        if (MainWorld.onEdge(getX(), getY())){
+            rotation = Greenfoot.getRandomNumber(360);
+            MainWorld.PlaceOnEdge(this);
+        }
+         
         setRotation(rotation);
-        move(mySpeed);
+        move(speed);
+        
 
         if (targetClosestHerbivore() == 1) {
             state = State.Following;
         }
+        
         
         playAnimation("Walk "+direction);
     }
@@ -155,6 +176,25 @@ public class Carnivore extends Animal {
         
         playAnimation("Idle "+direction);
     }
+    
+    protected void Night() {
+        Shelter target = targetShelter(true);
+        // Temp night
+        if (MainWorld.getDistance(this, target) <= 5){
+            playAnimation("Hidden");
+            System.out.println("Hidden");
+            state = State.InShelter;
+        }   else {
+            turnTowards(target.getX(), target.getY());
+            rotation = getRotation();
+
+            move(speed);
+            System.out.println("Moving");
+        }
+        if (!MainWorld.night){
+            state = State.Searching;
+        }
+    }
 
     ////////// FUNCTIONS //////////
     
@@ -190,10 +230,11 @@ public class Carnivore extends Animal {
                 if (distanceToActor < closestTargetDistance) {
                     targetHerbivore = o;
                     closestTargetDistance = distanceToActor;
-                    return 1;
                 }
 
             }
+            
+            return 1;
 
         }
         return 0;

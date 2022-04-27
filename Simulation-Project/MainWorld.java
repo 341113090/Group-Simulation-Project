@@ -1,6 +1,7 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Write a description of class MainWorld here.
@@ -242,6 +243,11 @@ public class MainWorld extends World {
             if (currentTime > dayLength + nightLength) {
                 currentTime = 0;
                 dayNumber++;
+                
+                List<Shelter> shelters = (List<Shelter>)getObjects(Shelter.class);
+                for (int i = 0; i < shelters.size(); i++){
+                    shelters.get(i).spawnNewAnimal();
+                }
             }
         } else {
             night = false;

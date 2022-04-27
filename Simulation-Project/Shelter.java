@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Code to copy paste into animal class: 
@@ -48,20 +49,25 @@ public class Shelter extends Actor
      * Act - do whatever the Shelter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int limitAnimals;
-    private int curAnimals;
-    private Animal typeAnimal;
+    private int sizeLimit = 2;
+    private int curSize = 0;
+    private boolean typeAnimal = false;
     private static int numShelters = 0;
     GreenfootImage s = new GreenfootImage("Plants.png");
     GreenfootImage shelter = AnimationManager.getSlice(s,3, 1, 48, 48);
     
+    private ArrayList<Animal> animals;
+    private int size;
+    
     public Shelter(){
         numShelters++;
-        limitAnimals = 2;
-        curAnimals = 0;
         this.setImage(shelter);
     }
-    
+    public Shelter(boolean type){
+        numShelters++;
+        this.setImage(shelter);
+        typeAnimal = type;
+    }
     public static int getNumShelters()
     {
         return numShelters;
@@ -81,25 +87,29 @@ public class Shelter extends Actor
      * This method checks when the limit of animals that can fit into a shelter.
      */
     public boolean limitHit(){
-        if(curAnimals == limitAnimals){
+        if(curSize >= sizeLimit){
             return true;
         }
         return false;
     }
     
-    public Animal getTypeAnimal(){
+    public boolean getTypeAnimal(){
         return typeAnimal;
     }
     
-    public void setTypeAnimal(Animal animal){
+    public void setTypeAnimal(boolean animal){
         typeAnimal = animal;
     }
     
-    public int getCurAnimals(){
-        return curAnimals;
+    public int calcSize(){
+        int size = 0;
+        for (int i  = 0; i < animals.size(); i++){
+            size += animals.get(i).size;
+        }
+        return size;
+    }
+    public void spawnNewAnimal(){
+        
     }
     
-    public void addCurAnimals(){
-        curAnimals++;
-    }
 }
