@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Harmful here.
  * 
- * @author (your name) 
+ * @author (Max) 
  * @version (a version number or a date)
  */
 public class PoisonIvy extends Plant
@@ -13,7 +13,10 @@ public class PoisonIvy extends Plant
     private double toxicityTakenAway = 10;
     private int day = MainWorld.dayNumber;
     private int nextDay = day + 1;
-    
+    /**
+     * Sets basic variables for health, toughness, toxicity, health limit
+     * and heal speed.
+     */
     public PoisonIvy()
     {
         numPoisonIvy++;
@@ -57,6 +60,10 @@ public class PoisonIvy extends Plant
         }
     }
     
+    /**
+     * This method allows the Poison Ivy to reproduce every day cycle until it caps
+     * at around 30. 
+     */
     public void reproduce(){
         if(numPoisonIvy > 30){
             return;

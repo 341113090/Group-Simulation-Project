@@ -3,15 +3,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class CherrySeed here.
  * 
- * @author (your name) 
+ * @author (Max, Nathan) 
  * @version (a version number or a date)
  */
 public class CherrySeed extends Actor
 {
-    /**
-     * Act - do whatever the CherrySeed wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private int seeds;
     private int totalActs, actCounter;
     private static boolean canSprout = false;
@@ -27,11 +23,11 @@ public class CherrySeed extends Actor
     
     /**
      * CherrySeed will remove itself after two seconds after spawning and drop
-     * one cherry in place of it
+     * one cherry in place of it.
      */
     public void act()
     {
-        if(canSprout)
+        if(canSprout) 
         {
             if (actCounter > 0){
                 actCounter--;
@@ -47,7 +43,9 @@ public class CherrySeed extends Actor
             }
         }
     }
-    
+    /**
+     * Ensures that the seeds will not grow into cherries during the night
+     */
     public static void toggleCanSprout(boolean x)
     {
         canSprout = x;
