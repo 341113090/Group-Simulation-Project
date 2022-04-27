@@ -170,10 +170,10 @@ public class MainWorld extends World {
         updateRightLabels();
         timeManager();
         //poopTime();
-        if(night)
+        if(currentTime == 0)
         {
             CherrySeed.toggleCanSprout(true);
-        } else
+        } else if(currentTime ==450)
         {
             CherrySeed.toggleCanSprout(false);
         }
