@@ -1,23 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CherrySeed here.
+ * Cherry seeds are pooped out by herbivores and will sprout into cherries at the start of each new day
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Max and Nathan
+ * @version April 27, 2022
  */
 public class CherrySeed extends Actor
 {
-    /**
-     * Act - do whatever the CherrySeed wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private int seeds;
     private int totalActs, actCounter;
     private static boolean canSprout = false;
     GreenfootImage Plants = new GreenfootImage("Plants.png");
     GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
     
+    /**
+     * Constructor for cherry seed. Creates a cherry with a set image and uses parameter to set the time it takes to sprout
+     */
     public CherrySeed (int totalActs){ // when calling this, set it to ~120(2 sec)
         this.setImage(cherryseed);
         cherryseed.scale(30,30);
@@ -48,6 +47,9 @@ public class CherrySeed extends Actor
         }
     }
     
+    /**
+     * Method that changes whether the cherry is allowed to sprout or not
+     */
     public static void toggleCanSprout(boolean x)
     {
         canSprout = x;

@@ -168,12 +168,15 @@ public class MainWorld extends World {
         // update the plant label
         updateLeftLabels();
         updateRightLabels();
+        //manages the time values and also night time
         timeManager();
-        //poopTime();
+        //if the current time is zero, aka new day, the cherry seeds are allowed to sprout
         if(currentTime == 0)
         {
             CherrySeed.toggleCanSprout(true);
-        } else if(currentTime ==450)
+        } 
+        //if the current time is 450, the cherry seeds cannot sprout anymore
+        else if(currentTime ==450)
         {
             CherrySeed.toggleCanSprout(false);
         }
@@ -185,15 +188,19 @@ public class MainWorld extends World {
      * instead of just being 0.
      */
     public void updateLeftLabels() {
+        //update the counter for all plants and shelters
         numPoisonIvy = PoisonIvy.getNumPoisonIvy();
         numCherry = Cherry.getNumCherries();
         numShelter = Shelter.getNumShelters();
+        //create new updated strings to be used in the display
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
         String shelterLabel = new String("Number of Shelters in the World: " + numShelter);
+        //update the display array to have the updated counters rather than the old ones
         leftLabels[0] = cherryLabel;
         leftLabels[1] = poisonivyLabel;
         leftLabels[2] = shelterLabel;
+        //push the updated array into the big display
         bigLeftLabel.update(leftLabels);
     }
     
@@ -203,14 +210,18 @@ public class MainWorld extends World {
      * instead of just being 0.
      */
     public void updateRightLabels() {
+        //update the counter for all animals
         numHerbivore = Herbivore.getNumHerbivores();
         numCarnivore = Carnivore.getNumCarnivores();
+        //create new updated strings to be used in the display
         String carnivoreLabel = new String("Number of Carnivores in the World: " + numCarnivore);
         String herbivoreLabel = new String("Number of Herbivores in the World: " + numHerbivore);
         String dayLabel = new String("Day Number in the World: " + dayNumber);
+        //update the display array to have the updated counters rather than the old ones
         rightLabels[0] = herbivoreLabel;
         rightLabels[1] = carnivoreLabel;
         rightLabels[2] = dayLabel;
+        //push the updated array into the big display
         bigRightLabel.update(rightLabels);
     }
     
@@ -277,39 +288,11 @@ public class MainWorld extends World {
         obj.setLocation(x,y);
     }
     
+    /**
+     * method that returns the current time of the world
+     */
     public int getCurrentTime()
     {
         return currentTime;
     }
-    /*
-    public void poopTime()
-    {
-        if(currentTime >= 150)
-        {
-            ArrayList<Herbivore> herbs = (ArrayList<Herbivore>) getObjects(Herbivore.class);
-            if(currentTime == 450)
-            {
-                for(Herbivore herb : herbs)
-                {
-                    if(herb.getNumSeeds() != 0)
-                    {
-                        herb.setPoopTime(145/herb.getNumSeeds());
-                    }
-                }
-            }
-            if(currentTime >= 450)
-            {
-                for(Herbivore herb : herbs)
-                {
-                    if((herb.getNumSeeds() != 0) && (herb.getPoopTime() != 0))
-                    {
-                        if(((currentTime-450)%herb.getPoopTime()) == 0)
-                        {
-                            herb.dropSeed();
-                        }
-                    }
-                }
-            }
-        }
-    }*/
 }

@@ -36,12 +36,20 @@ public abstract class Plant extends Animator {
     // misc
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
 
+    /**
+     * Constructor for plant
+     * Default sets health to 1000 and creates an hp bar
+     * initializes the plant as not getting eaten
+     */
     public Plant() {
         health  = 1000;
         hpBar = new SuperStatBar(health, health, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         isGettingEaten = false;
     }
 
+    /**
+     * When the polants are added to the world, their hp bar is added to the world at that location and updates
+     */
     public void addedToWorld(World w) {
         w.addObject(hpBar, getX(), getY());
         hpBar.update(health);
