@@ -125,34 +125,25 @@ public class MainWorld extends World {
         updateLeftLabels();
         updateRightLabels();
         // spawning in shelters based on selected parameters
-        if(shelter == 2)
+        if(shelter >= 2)
         {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-        } else if(shelter == 4)
+            addObject(new Shelter(false), 50, 125);
+            addObject(new Shelter(true), 725, 125);
+        } 
+        if(shelter >= 4)
         {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-            addObject(new Shelter(), 50, 200);
-            addObject(new Shelter(), 725, 325);
-        } else if(shelter == 6)
+            addObject(new Shelter(false), 50, 200);
+            addObject(new Shelter(true), 725, 325);
+        } 
+        if(shelter >= 6)
         {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-            addObject(new Shelter(), 50, 200);
-            addObject(new Shelter(), 725, 200);
-            addObject(new Shelter(), 50, 325);
-            addObject(new Shelter(), 725, 325);
-        } else if(shelter == 8)
+            addObject(new Shelter(true), 50, 325);
+            addObject(new Shelter(false), 725, 325);
+        } 
+        if(shelter >= 8)
         {
-            addObject(new Shelter(), 50, 125);
-            addObject(new Shelter(), 725, 125);
-            addObject(new Shelter(), 50, 200);
-            addObject(new Shelter(), 725, 200);
-            addObject(new Shelter(), 50, 325);
-            addObject(new Shelter(), 725, 325);
-            addObject(new Shelter(), 50, 425);
-            addObject(new Shelter(), 725, 425);
+            addObject(new Shelter(false), 50, 425);
+            addObject(new Shelter(true), 725, 425);
         }
         Random random = new Random();
         //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);

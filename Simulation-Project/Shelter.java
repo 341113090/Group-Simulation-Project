@@ -49,7 +49,7 @@ public class Shelter extends Actor
      * Act - do whatever the Shelter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int sizeLimit = 2;
+    private int sizeLimit = 3;
     private int curSize = 0;
     private boolean typeAnimal = false; // False is herbivore, true is carnivore
     private static int numShelters = 0;
@@ -57,7 +57,7 @@ public class Shelter extends Actor
     GreenfootImage shelter = AnimationManager.getSlice(s,3, 1, 48, 48);
     
     private ArrayList<Animal> animals;
-    private int size;
+    private int size = 0;
     
     public Shelter(){
         numShelters++;
@@ -126,15 +126,17 @@ public class Shelter extends Actor
                     getWorld().addObject(new Herbivore(speed, attack, size, altruism), getX(), getY());
                 }
                 
-                size = 0;
                 animals.clear();
+                
+                System.out.println(animals.size());
             }
         }
     }
     
     public boolean addAnimal(Animal a){
-        if (size+a.getSize() < sizeLimit){
-            size += a.getSize();
+        //System.out.println(size+","+a.getSize());
+        if (calcSize()+a.getSize() <= sizeLimit){
+            
             System.out.println(a);
             animals.add(a);
             

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Carnivore extends Animal {
     private static int numCarnivores = 0;
     private Herbivore targetHerbivore;    
+    protected boolean type = true;
 
     private ArrayList<Herbivore> herbivores;
 
