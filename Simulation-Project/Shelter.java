@@ -49,7 +49,7 @@ public class Shelter extends Actor
      * Act - do whatever the Shelter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int sizeLimit = 3;
+    private int sizeLimit = 6;
     private int curSize = 0;
     private boolean typeAnimal = false; // False is herbivore, true is carnivore
     private static int numShelters = 0;
@@ -113,33 +113,72 @@ public class Shelter extends Actor
         }
         return size;
     }
+    
+    public double generateRandomNumber(){
+        return (double)(Greenfoot.getRandomNumber((int)(Animal.randomness*2000))/(double)1000)-(Animal.randomness/2);
+    }
     public void spawnNewAnimal(){
-        for (int i  = 0; i < animals.size(); i++){
-            if ((i+1)%2==0){
-                Animal a = animals.get(i-1);
-                Animal b = animals.get(i);
+        if (animals.size() <= 1 ){
+            // Life always finds a way
+            if (animals.size() != 0&& typeAnimal){
+                getWorld().addObject(new Carnivore(), getX(), getY());
+            }   else {                    
+                getWorld().addObject(new Herbivore(), getX(), getY());
+            }
+            
+            return;
+        }
+        Animal a = animals.get(0);
+        Animal b = animals.get(1);
+        int animalSize = animals.size();
+        // Get top two animals with the most health
+        for (int i = 0; i < animals.size(); i++){
+            if (animals.get(i).getHealth() > a.getHealth()){
+                a = animals.get(i);
+            }   else if (animals.get(i) != a && animals.get(i).getHealth() > b.getHealth()){
+                b = animals.get(i);
+            }
+        }
+        
+        
+        // remove all old animals
+        for (int i = 0; i < animals.size(); i++){
+            if (animals.get(i) != a && animals.get(i) != b){
+                Animal anim = animals.get(i);
+                animals.remove(a);
+                getWorld().removeObject(anim);
+            }
+        }
+        
+        // Spawn in the original amount of animals + 1
+        for (int i  = 0; i < animalSize+(animalSize/3); i++){
                 
-                double speed = (a.getSpeed()+b.getSpeed())/2 + (Greenfoot.getRandomNumber((int)(Animal.randomness*1000))/1000);
-                int attack = (a.getAttack()+b.getAttack())/2 + (Greenfoot.getRandomNumber((int)(Animal.randomness*1000))/1000);
-                double size = (a.getSize()+b.getSize())/2 + (Greenfoot.getRandomNumber((int)(Animal.randomness*1000))/1000);
-                double altruism = (a.getAltruism()+b.getAltruism())/2+ (Greenfoot.getRandomNumber((int)(0.1*1000))/1000);
-                if (typeAnimal){
-                    getWorld().addObject(new Carnivore(speed, attack, size, altruism), getX(), getY());
-                }   else {                    
-                    getWorld().addObject(new Herbivore(speed, attack, size, altruism), getX(), getY());
-                }
+                spawn(a,b);
                 
                 animals.clear();
-            }
+            
+        }
+    }
+    
+    public void spawn(Animal a, Animal b){
+        double speed = (a.getSpeed()+b.getSpeed())/2 + generateRandomNumber();
+        double attack = (a.getAttack()+b.getAttack())/2 + generateRandomNumber();
+        double size = (a.getSize()+b.getSize())/2 + generateRandomNumber();
+        double altruism = (a.getAltruism()+b.getAltruism())/2+ (Greenfoot.getRandomNumber((int)(0.1*1000))/1000);
+        
+        if (typeAnimal){
+            getWorld().addObject(new Carnivore(speed, attack, size, altruism), getX(), getY());
+        }   else {                    
+            getWorld().addObject(new Herbivore(speed, attack, size, altruism), getX(), getY());
         }
     }
     
     public boolean addAnimal(Animal a){
-        System.out.println(typeAnimal +","+a.getType());
+        //System.out.println(typeAnimal +","+a.getType());
         //System.out.println(size+","+a.getSize());
         if (calcSize()+a.getSize() <= sizeLimit){
             
-            System.out.println(a);
+            //System.out.println(a.getSize());
             animals.add(a);
             
             return true;

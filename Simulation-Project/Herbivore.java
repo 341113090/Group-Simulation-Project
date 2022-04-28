@@ -45,7 +45,7 @@ public class Herbivore extends Animal {
         
     }
     
-    public Herbivore(double _speed, int _attack, double _size, double _altruism) {
+    public Herbivore(double _speed, double _attack, double _size, double _altruism) {
         super(_speed, _attack, _size, _altruism);
         
         numHerbivores++;
@@ -62,7 +62,6 @@ public class Herbivore extends Animal {
         setImage(animations[1].getImage(0));
 
         playAnimation("Walk Side");
-        SetValues();
         
     }
     
@@ -90,8 +89,6 @@ public class Herbivore extends Animal {
         setRotation(rotation);
         animalPoop();
         setRotation(0);
-        // Health Decay
-        if (state != State.InShelter)curHealth -= healthDecay;
         
         // Check if dead
         if (curHealth <=0){
@@ -189,7 +186,7 @@ public class Herbivore extends Animal {
             return;
         }
         
-        double tryToEatPlant = targetPlant.eatPlant();
+        double tryToEatPlant = targetPlant.eatPlant(attack);
         if (tryToEatPlant > 0) {
             curHealth += tryToEatPlant;
             healthEaten += tryToEatPlant;
@@ -260,12 +257,12 @@ public class Herbivore extends Animal {
 
     }
     
-    public double eatHerbivore(int damage) {
+    public double eatHerbivore(double damage) {
         if (curHealth >= damage) {
-            curHealth -= damage;// temporary, will depend on plant health
+            curHealth -= damage;
             return damage;
         } else {
-            int lastHealth = (int)curHealth;
+            double lastHealth = curHealth;
             curHealth = 0;
             
             

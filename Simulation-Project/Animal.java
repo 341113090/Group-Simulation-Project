@@ -20,12 +20,12 @@ public abstract class Animal extends Animator {
     // Animal variables
     protected double speed = 2; // Animal movement speed, increases more health decay when moving
     protected double healthDecay = 0.1; // How fast animals health goes down, hunger
-    protected int attack = 1; // Animal attack damage, decreases health
+    protected double attack = 1; // Animal attack damage, decreases health
     protected double attackDistance = 50;
     
-    protected double size = 1;
-    protected int maxHealth = 100; // Animal health/hp, decreases speed
-    protected double senseRange = 200; // How far animal can detect threats/food, increases health decay
+    protected double size = 3;
+    protected int maxHealth = 300; // Animal health/hp, decreases speed
+    protected double senseRange = 500; // How far animal can detect threats/food, increases health decay
     protected double altruism = 0.5; // Chance of animal giving up its spot
 
     //
@@ -33,12 +33,12 @@ public abstract class Animal extends Animator {
     protected double rotation;
     
     // Spawning Settings
-    protected double sizeHealthModifier = 2;
-    protected double speedDecayModifier = 0.1;
+    protected double sizeHealthModifier = 200;
+    protected double speedDecayModifier = 0.25;
     protected double attackDistanceModifier = 1.5;
     protected double attackSenseModifier = 1.5;
     
-    public static double randomness = 0.5;
+    public static double randomness = 0.3;
 
     //
     protected int time;
@@ -56,7 +56,7 @@ public abstract class Animal extends Animator {
         addAnimation(AnimationManager.createAnimation(img, 1000, 1000, 1, 1, 1, 16, 16, "Hidden"));
     }
     
-    public Animal(double _speed, int _attack, double _size, double _altruism){
+    public Animal(double _speed, double _attack, double _size, double _altruism){
         state = State.Searching;
         curHealth = maxHealth;
         hpBar = new SuperStatBar(maxHealth, (int)curHealth, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
@@ -70,8 +70,13 @@ public abstract class Animal extends Animator {
         senseRange = senseRange/(attack*attackSenseModifier);
         attackDistance  = attackDistance/(attack*attackDistanceModifier);
         altruism = _altruism;
+        size = _size;
+        maxHealth = (int)(size*sizeHealthModifier);
         
         curHealth = maxHealth;
+        
+        
+        //System.out.println(speed);
     }
     /**
      * Act - do whatever the Animal wants to do. This method is called whenever
@@ -109,9 +114,7 @@ public abstract class Animal extends Animator {
         Behaviour();
         Animations();
         
-        if (type){
-            System.out.println("bruh");
-        }
+        
     }
 
 
@@ -120,7 +123,8 @@ public abstract class Animal extends Animator {
             state = State.Night;
         }
         
-        
+        // Health Decay
+        if (state != State.InShelter)curHealth -= healthDecay;
     }
 
     ///// STATES /////
@@ -187,7 +191,7 @@ public abstract class Animal extends Animator {
             
             if (targetShelter.addAnimal(this)){
                 state = State.InShelter;
-                System.out.println("bruh");
+                //System.out.println("bruh");
             } else { // If no space find shelter again 
                 //Kinda sucks that i need to copy paste the whole ass shelter searching function but I don't have time and can't think of a better solution
                 double closestTargetDistance = 0;
@@ -240,6 +244,7 @@ public abstract class Animal extends Animator {
     protected void InShelter(){
         playAnimation("Hidden");
         if (!MainWorld.night){
+            curHealth = maxHealth;
             state = State.Searching;
         }
     }
@@ -313,9 +318,10 @@ public abstract class Animal extends Animator {
     
     ///// Getters /////
     public double getSpeed(){
+        
         return speed;
     }
-    public int getAttack(){
+    public double getAttack(){
         return attack;
     }
     public double getSize(){
@@ -326,6 +332,12 @@ public abstract class Animal extends Animator {
     }
     public boolean getType(){
         return type;
+    }
+    public double getHealth(){
+        return curHealth;
+    }
+    public double getMaxHealth(){
+        return curHealth;
     }
     
 }

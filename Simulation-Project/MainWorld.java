@@ -20,7 +20,7 @@ public class MainWorld extends World {
     public static int dayNumber = 1;
     private int currentTime = 0;
     private int dayLength = 600;
-    private int nightLength = 300;
+    private int nightLength = 800;
     private int nightTransitionTime = 60;
     private double maxDarkness = 100;
 
@@ -239,6 +239,26 @@ public class MainWorld extends World {
                 for (int i = 0; i < shelters.size(); i++){
                     shelters.get(i).spawnNewAnimal();
                 }
+                
+                // Get average speed attack, and size
+                List<Herbivore> herbivores= (List<Herbivore>)getObjects(Herbivore.class);
+                double speed = 0;
+                double attack = 0;
+                double size = 0;
+                for (int i = 0; i < herbivores.size(); i++){
+                    //System.out.println(herbivores.get(i).getSpeed());
+                    speed += herbivores.get(i).getSpeed();
+                    attack += herbivores.get(i).getAttack();
+                    size += herbivores.get(i).getSize();
+                }
+                speed = speed/herbivores.size();
+                attack = attack/herbivores.size();
+                size = size/herbivores.size();
+                System.out.println("Number of Herbivores: " +herbivores.size());
+                System.out.println("Average Speed: "+speed);
+                System.out.println("Average Attack: "+attack);
+                System.out.println("Average Size: "+size);
+                Herbivore.setNumHerbivores(herbivores.size());
             }
         } else {
             night = false;

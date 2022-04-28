@@ -37,7 +37,7 @@ public abstract class Plant extends Animator {
     protected GreenfootImage Plants = new GreenfootImage("Plants.png");
 
     /**
-     * Constructor for plant
+     * Constructor for plant 
      * Default sets health to 1000 and creates an hp bar
      * initializes the plant as not getting eaten
      */
@@ -93,6 +93,19 @@ public abstract class Plant extends Animator {
     public double eatPlant() {
         isGettingEaten = true;
         double actualTick = healthPerTick * toughness;
+        if (health >= actualTick) {
+            health -= actualTick;
+            return actualTick;
+        } else {
+            int lastHealth = health;
+            health = 0;
+            return lastHealth;
+        }
+    }
+    
+    public double eatPlant(double attack) {
+        isGettingEaten = true;
+        double actualTick = attack * toughness;
         if (health >= actualTick) {
             health -= actualTick;
             return actualTick;

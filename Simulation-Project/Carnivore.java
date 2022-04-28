@@ -14,16 +14,6 @@ public class Carnivore extends Animal {
 
     private ArrayList<Herbivore> herbivores;
     
-    // Base stats
-    
-    protected double speed = 3; // Animal movement speed, increases more health decay when moving
-    protected double healthDecay = 0.3; // How fast animals health goes down, hunger
-    protected int attackDistance = 50;
-    protected int attack = 2; // Animal attack damage, decreases health
-    protected int maxHealth = 100; // Animal health/hp, decreases speed
-    protected double size = 1;
-    protected int senseRange = 600; // How far animal can detect threats/food, increases health decay
-    protected double altruism = 0.5; // Chance of animal giving up its spot
 
 
     ////////// CONSTRUCTOR //////////
@@ -48,7 +38,7 @@ public class Carnivore extends Animal {
         SetValues();
     }
     
-    public Carnivore(double _speed, int _attack, double _size, double _altruism) {
+    public Carnivore(double _speed, double _attack, double _size, double _altruism) {
         
         super(_speed, _attack, _size, _altruism);
         numCarnivores++;
@@ -67,7 +57,6 @@ public class Carnivore extends Animal {
         playAnimation("Walk Side");
 
         state = State.Searching;
-        SetValues();
     }
     
     // Ok so i did not know that java does not have polymorphism
@@ -96,8 +85,6 @@ public class Carnivore extends Animal {
 
         setRotation(0);
         
-        // Health Decay
-        if (state != State.InShelter)curHealth -= healthDecay;
         
         // Check if dead
         if (curHealth <=0){
@@ -105,7 +92,6 @@ public class Carnivore extends Animal {
             numCarnivores--;
         }
         
-        System.out.println(type);
     }
     
     public void addedToWorld(World w) {
@@ -229,7 +215,7 @@ public class Carnivore extends Animal {
 
         numHerbivores = getWorld().getObjects(Herbivore.class).size();
 
-        herbivores = (ArrayList) getObjectsInRange(senseRange, Herbivore.class);
+        herbivores = (ArrayList) getObjectsInRange((int)senseRange, Herbivore.class);
 
         if (herbivores.size() > 0) {
 
