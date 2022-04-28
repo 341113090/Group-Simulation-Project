@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Harmful here.
+ * Poison Ivy plant. Reproduces just by surviving, unlike the cherry plant.
  * 
  * @author (Max) 
  * @version (a version number or a date)
