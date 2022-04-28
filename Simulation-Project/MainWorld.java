@@ -104,7 +104,7 @@ public class MainWorld extends World {
         for (int i = 0; i < startNumPoisonIvy; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = 50 + random.nextInt(400);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new PoisonIvy(), xx, yy);
         }
         // makes startNumHerb number of herbivores on the screen in random locations
@@ -158,9 +158,9 @@ public class MainWorld extends World {
         //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
         fg = new Foreground();
         addObject(fg, getWidth() / 2, getHeight() / 2);
-
+        dayNumber = 1;
     }
-
+    
     /**
      * In the act method, the world keeps track of how many cherries and ivies
      * there are.
@@ -172,12 +172,12 @@ public class MainWorld extends World {
         //manages the time values and also night time
         timeManager();
         //if the current time is zero, aka new day, the cherry seeds are allowed to sprout
-        if(currentTime == 0)
+        if(currentTime >= 0 && currentTime <= 200)
         {
             CherrySeed.toggleCanSprout(true);
         } 
         //if the current time is 450, the cherry seeds cannot sprout anymore
-        else if(currentTime ==450)
+        else if(currentTime >= 450)
         {
             CherrySeed.toggleCanSprout(false);
         }

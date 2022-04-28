@@ -331,7 +331,7 @@ public class Herbivore extends Animal {
                 numSeeds--;
             }
         }
-        if(currentTime == 0)
+        if(currentTime >= 0 && currentTime <= 50)
         {
             specialTimer = 0;
             numSeeds = 0;

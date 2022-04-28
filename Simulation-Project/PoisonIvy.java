@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Harmful here.
+ * Poison Ivy plant. Reproduces just by surviving, unlike the cherry plant.
  * 
  * @author (Max) 
  * @version (a version number or a date)
@@ -70,16 +70,16 @@ public class PoisonIvy extends Plant
         }
         if(day == nextDay){
             nextDay++;
-            if(this.getX() >= 650 || this.getY() <= 100){ // too right and too high
+            if(this.getX() >= 650 || this.getY() <= 120){ // too right and too high
                 getWorld().addObject(new PoisonIvy(), this.getX() - 50, this.getY()+50);
             } else if(this.getX() >= 650 || this.getY() <= 400){//too right and too low
                 getWorld().addObject(new PoisonIvy(), this.getX() - 50, this.getY()-50);
-            } else if(this.getX() <= 150 || this.getY() <= 100){//too left and too high
+            } else if(this.getX() <= 150 || this.getY() <= 120){//too left and too high
                 getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()+50);
             } else if(this.getX() >= 150 || this.getY() <= 400){//too left and too low
                 getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()-50);
             } else{
-                getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()-50);
+                getWorld().addObject(new PoisonIvy(), this.getX() + 50, this.getY()+50);
             }            
         }
     }
