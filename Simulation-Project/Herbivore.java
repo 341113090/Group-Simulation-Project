@@ -16,7 +16,7 @@ public class Herbivore extends Animal {
     protected double speed = 2; // Animal movement speed, increases more health decay when moving
     protected int attack = 1; // Animal attack damage, decreases health
     protected int maxHealth = 100; // Animal health/hp, decreases speed
-    protected int size;
+    protected double  size = 1;
     protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
     protected double healthDecay = 0.1; // How fast animals health goes down, hunger
     protected double altruism = 0.5; // Chance of animal giving up its spot
@@ -47,6 +47,26 @@ public class Herbivore extends Animal {
 
         playAnimation("Walk Side");
         curHealth = maxHealth;
+        
+    }
+    
+    public Herbivore(double _speed, int _attack, double _size, double _altruism) {
+        super(_speed, _attack, _size, _altruism);
+        
+        numHerbivores++;
+        ///// Setting up animations /////
+        GreenfootImage img = new GreenfootImage("spritesheet.png");
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Side"));
+        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
+        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
+
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Side"));
+        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
+        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
+
+        setImage(animations[1].getImage(0));
+
+        playAnimation("Walk Side");
         
     }
 

@@ -51,7 +51,7 @@ public class Shelter extends Actor
      */
     private int sizeLimit = 2;
     private int curSize = 0;
-    private boolean typeAnimal = false;
+    private boolean typeAnimal = false; // False is herbivore, true is carnivore
     private static int numShelters = 0;
     GreenfootImage s = new GreenfootImage("Plants.png");
     GreenfootImage shelter = AnimationManager.getSlice(s,3, 1, 48, 48);
@@ -109,7 +109,22 @@ public class Shelter extends Actor
         return size;
     }
     public void spawnNewAnimal(){
-        
+        for (int i  = 0; i < animals.size(); i++){
+            if ((i+1)%2==0){
+                Animal a = animals.get(i-1);
+                Animal b = animals.get(i);
+                
+                double speed = (a.getSpeed()+b.getSpeed())/2 + (Greenfoot.getRandomNumber((int)(Animal.randomness*1000))/1000);
+                int attack = (a.getAttack()+b.getAttack())/2 + (Greenfoot.getRandomNumber((int)(Animal.randomness*1000))/1000);
+                double size = (a.getSize()+b.getSize())/2 + (Greenfoot.getRandomNumber((int)(Animal.randomness*1000))/1000);
+                double altruism = (a.getAltruism()+b.getAltruism())/2+ (Greenfoot.getRandomNumber((int)(0.1*1000))/1000);
+                if (typeAnimal){
+                    getWorld().addObject(new Carnivore(speed, attack, size, altruism), getX(), getY());
+                }   else {                    
+                    getWorld().addObject(new Herbivore(speed, attack, size, altruism), getX(), getY());
+                }
+            }
+        }
     }
     
 }

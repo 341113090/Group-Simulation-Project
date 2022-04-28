@@ -17,19 +17,27 @@ public abstract class Animal extends Animator {
     protected Actor target;
 
     // Animal variables
-    protected double speed; // Animal movement speed, increases more health decay when moving
-    protected int attack; // Animal attack damage, decreases health
-    protected int maxHealth; // Animal health/hp, decreases speed
-    protected int size;
-    protected int senseRange; // How far animal can detect threats/food, increases health decay
-    protected int attackRange; // How far animal can eat/attack
-    protected double healthDecay; // How fast animals health goes down, hunger
-    protected double altruism; // Chance of animal giving up its spot
+    protected double speed = 2; // Animal movement speed, increases more health decay when moving
+    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected int attack = 1; // Animal attack damage, decreases health
+    protected double attackDistance = 50;
+    
+    protected double size = 1;
+    protected int maxHealth = 100; // Animal health/hp, decreases speed
+    protected double senseRange = 200; // How far animal can detect threats/food, increases health decay
+    protected double altruism = 0.5; // Chance of animal giving up its spot
 
     //
     protected double curHealth;
     protected double rotation;
     
+    // Spawning Settings
+    protected double sizeHealthModifier = 2;
+    protected double speedDecayModifier = 0.1;
+    protected double attackDistanceModifier = 1.5;
+    protected double attackSenseModifier = 1.5;
+    
+    public static double randomness = 0.5;
 
     //
     protected int time;
@@ -37,13 +45,30 @@ public abstract class Animal extends Animator {
     
     SuperStatBar hpBar;
     public Animal(){
-        maxHealth = 100;
         state = State.Searching;
         curHealth = maxHealth;
         hpBar = new SuperStatBar(maxHealth, (int)curHealth, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 1000, 1000, 1, 1, 1, 16, 16, "Hidden"));
+    }
+    
+    public Animal(double _speed, int _attack, double _size, double _altruism){
+        state = State.Searching;
+        curHealth = maxHealth;
+        hpBar = new SuperStatBar(maxHealth, (int)curHealth, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
+        
+        GreenfootImage img = new GreenfootImage("spritesheet.png");
+        addAnimation(AnimationManager.createAnimation(img, 1000, 1000, 1, 1, 1, 16, 16, "Hidden"));
+        
+        speed = _speed;
+        healthDecay = _speed*speedDecayModifier;
+        attack = _attack;
+        senseRange = senseRange/(attack*attackSenseModifier);
+        attackDistance  = attackDistance/(attack*attackDistanceModifier);
+        altruism = _altruism;
+        
+        curHealth = maxHealth;
     }
     /**
      * Act - do whatever the Animal wants to do. This method is called whenever
@@ -70,7 +95,6 @@ public abstract class Animal extends Animator {
                 break;
             case Night:
                 Night();
-
                 break;
             case InShelter:
                 InShelter();
@@ -143,6 +167,7 @@ public abstract class Animal extends Animator {
 
         move(speed);
     }
+
     
     protected Shelter targetShelter(boolean type) {
 
@@ -204,4 +229,19 @@ public abstract class Animal extends Animator {
         //System.out.println(direction+","+getRotation());
         
     }
+    
+    ///// Getters /////
+    public double getSpeed(){
+        return speed;
+    }
+    public int getAttack(){
+        return attack;
+    }
+    public double getSize(){
+        return size;
+    }
+    public double getAltruism(){
+        return altruism;
+    }
+    
 }

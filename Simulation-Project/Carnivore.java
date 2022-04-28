@@ -15,16 +15,16 @@ public class Carnivore extends Animal {
 
     private int mySpeed = 3;
     
-     // Base stats
+    // Base stats
     
     protected double speed = 2; // Animal movement speed, increases more health decay when moving
+    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected int attackDistance = 50;
     protected int attack = 1; // Animal attack damage, decreases health
     protected int maxHealth = 100; // Animal health/hp, decreases speed
-    protected int size;
-    protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
-    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected double size = 1;
+    protected int senseRange = 600; // How far animal can detect threats/food, increases health decay
     protected double altruism = 0.5; // Chance of animal giving up its spot
-    protected int attackDistance = 50;
 
 
     ////////// CONSTRUCTOR //////////
@@ -46,8 +46,28 @@ public class Carnivore extends Animal {
         playAnimation("Walk Side");
 
         state = State.Searching;
+    }
+    
+    public Carnivore(double _speed, int _attack, double _size, double _altruism) {
+        
+        super(_speed, _attack, _size, _altruism);
+        numCarnivores++;
+        ///// Setting up animations /////
+        GreenfootImage img = new GreenfootImage("spritesheet.png");
+        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Side"));
+        addAnimation(AnimationManager.createAnimation(img, 1 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Down"));
+        addAnimation(AnimationManager.createAnimation(img, 2 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Up"));
 
-        senseRange = 600;
+        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Side"));
+        addAnimation(AnimationManager.createAnimation(img, 1* 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Down"));
+        addAnimation(AnimationManager.createAnimation(img, 2 * 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Up"));
+
+        setImage(animations[1].getImage(0));
+
+        playAnimation("Walk Side");
+
+        state = State.Searching;
+
     }
     
     ////////// GREENFOOT FUNCTIONS //////////
