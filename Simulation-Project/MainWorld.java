@@ -20,7 +20,7 @@ public class MainWorld extends World {
     public static int dayNumber = 1;
     private int currentTime = 0;
     private int dayLength = 600;
-    private int nightLength = 800;
+    private int nightLength = 1000;
     private int nightTransitionTime = 60;
     private double maxDarkness = 100;
 

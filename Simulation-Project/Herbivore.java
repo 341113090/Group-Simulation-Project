@@ -271,33 +271,6 @@ public class Herbivore extends Animal {
     }
     ////////// OLD //////////
 
-    /**
-     * Private method, called by act(), that moves toward the target,
-     * or eats it if within range.
-     */
-    private void moveTowardOrEatPlant() {
-        turnTowards(targetPlant.getX(), targetPlant.getY());
-
-        if (this.getNeighbours(30, true, Plant.class).size() > 0) {
-            // If I was able to eat, increase by life by Plant's nibble power
-
-            double tryToEat = targetPlant.eatPlant();
-            if (tryToEat > 0 && curHealth < maxHealth) {
-                curHealth += tryToEat;
-            }
-
-        } else {
-            move(speed);
-        }
-    }
-
-    private void moveRandomly() {
-        if (Greenfoot.getRandomNumber(1000) == 50) {
-            rotation = Greenfoot.getRandomNumber(360);
-            setRotation(rotation);
-        } else
-            move(speed);
-    }
     
     public static int getNumHerbivores()
     {

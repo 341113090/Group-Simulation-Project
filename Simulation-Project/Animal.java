@@ -125,7 +125,9 @@ public abstract class Animal extends Animator {
         }
         
         // Health Decay
-        if (state != State.InShelter)curHealth -= healthDecay;
+        if (state != State.InShelter){
+            curHealth -= healthDecay;
+        }
     }
 
     ///// STATES /////
