@@ -108,11 +108,15 @@ public abstract class Animal extends Animator {
 
         Behaviour();
         Animations();
+        
+        if (type){
+            System.out.println("bruh");
+        }
     }
 
 
     protected void Behaviour() {
-        if (MainWorld.night){
+        if (MainWorld.night && state != State.InShelter){
             state = State.Night;
         }
         
@@ -234,7 +238,6 @@ public abstract class Animal extends Animator {
     }
     
     protected void InShelter(){
-        System.out.println("in shelter");
         playAnimation("Hidden");
         if (!MainWorld.night){
             state = State.Searching;
@@ -320,6 +323,9 @@ public abstract class Animal extends Animator {
     }
     public double getAltruism(){
         return altruism;
+    }
+    public boolean getType(){
+        return type;
     }
     
 }

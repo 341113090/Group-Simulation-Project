@@ -14,14 +14,6 @@ public class Herbivore extends Animal {
     
     // Base stats
     private int numSeeds;
-    protected double speed = 2; // Animal movement speed, increases more health decay when moving
-    protected int attack = 2; // Animal attack damage, decreases health
-    protected int maxHealth = 200; // Animal health/hp, decreases speed
-    protected double size = 1;
-    protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
-    protected double healthDecay = 0.2; // How fast animals health goes down, hunger
-    
-    protected double altruism = 0.5; // Chance of animal giving up its spot
     protected int attackDistance = 50;
     private int poopTime;
     private int specialTimer = 0;
@@ -49,6 +41,7 @@ public class Herbivore extends Animal {
 
         playAnimation("Walk Side");
         curHealth = maxHealth;
+        SetValues();
         
     }
     
@@ -69,7 +62,21 @@ public class Herbivore extends Animal {
         setImage(animations[1].getImage(0));
 
         playAnimation("Walk Side");
+        SetValues();
         
+    }
+    
+    // Ok so i did not know that java does not have polymorphism
+    public void SetValues(){
+        speed = 2; // Animal movement speed, increases more health decay when moving
+        healthDecay = 0.3; // How fast animals health goes down, hunger
+        attackDistance = 50;
+        attack = 2; // Animal attack damage, decreases health
+        maxHealth = 200; // Animal health/hp, decreases speed
+        size = 1;
+        senseRange = 200; // How far animal can detect threats/food, increases health decay
+        altruism = 0.5; // Chance of animal giving up its spot
+        type = false;
     }
 
     ////////// GREENFOOT FUNCTIONS //////////
@@ -221,7 +228,7 @@ public class Herbivore extends Animal {
 
         numplants = getWorld().getObjects(Shelter.class).size();
 
-        plants = (ArrayList) getObjectsInRange(senseRange, Plant.class);
+        plants = (ArrayList) getObjectsInRange((int)senseRange, Plant.class);
         //System.out.println(plants.size());  
         if (plants.size() > 0) {
 

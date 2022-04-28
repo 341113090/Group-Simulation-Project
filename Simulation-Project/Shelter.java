@@ -109,7 +109,7 @@ public class Shelter extends Actor
     public int calcSize(){
         int size = 0;
         for (int i  = 0; i < animals.size(); i++){
-            size += animals.get(i).size;
+            size += animals.get(i).getSize();
         }
         return size;
     }
@@ -135,6 +135,7 @@ public class Shelter extends Actor
     }
     
     public boolean addAnimal(Animal a){
+        System.out.println(typeAnimal +","+a.getType());
         //System.out.println(size+","+a.getSize());
         if (calcSize()+a.getSize() <= sizeLimit){
             

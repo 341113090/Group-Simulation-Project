@@ -10,11 +10,9 @@ import java.util.ArrayList;
 public class Carnivore extends Animal {
     private static int numCarnivores = 0;
     private Herbivore targetHerbivore;    
-    protected boolean type = true;
+    //protected boolean type = true;
 
     private ArrayList<Herbivore> herbivores;
-
-    private int mySpeed = 3;
     
     // Base stats
     
@@ -47,6 +45,7 @@ public class Carnivore extends Animal {
         playAnimation("Walk Side");
 
         state = State.Searching;
+        SetValues();
     }
     
     public Carnivore(double _speed, int _attack, double _size, double _altruism) {
@@ -68,8 +67,22 @@ public class Carnivore extends Animal {
         playAnimation("Walk Side");
 
         state = State.Searching;
-
+        SetValues();
     }
+    
+    // Ok so i did not know that java does not have polymorphism
+    public void SetValues(){
+        speed = 3; // Animal movement speed, increases more health decay when moving
+        healthDecay = 0.3; // How fast animals health goes down, hunger
+        attackDistance = 50;
+        attack = 2; // Animal attack damage, decreases health
+        maxHealth = 100; // Animal health/hp, decreases speed
+        size = 1;
+        senseRange = 600; // How far animal can detect threats/food, increases health decay
+        altruism = 0.5; // Chance of animal giving up its spot
+        type = true;
+    }
+
     
     ////////// GREENFOOT FUNCTIONS //////////
     /**
@@ -91,6 +104,8 @@ public class Carnivore extends Animal {
             getWorld().removeObject(this);   
             numCarnivores--;
         }
+        
+        System.out.println(type);
     }
     
     public void addedToWorld(World w) {
@@ -160,7 +175,7 @@ public class Carnivore extends Animal {
         turnTowards(targetHerbivore.getX(), targetHerbivore.getY());
         rotation = getRotation();
 
-        move(mySpeed);
+        move(speed);
 
         if (this.getNeighbours(10, true, Herbivore.class).size() > 0) {
             // If I was able to eat, increase by life by Herbivore's nibble power
@@ -266,7 +281,7 @@ public class Carnivore extends Animal {
             }
 
         } else {
-            move(mySpeed);
+            move(speed);
         }
     }
 
@@ -275,7 +290,7 @@ public class Carnivore extends Animal {
             rotation = Greenfoot.getRandomNumber(360);
             setRotation(rotation);
         } else
-            move(mySpeed);
+            move(speed);
     }
     
     public static int getNumCarnivores()
