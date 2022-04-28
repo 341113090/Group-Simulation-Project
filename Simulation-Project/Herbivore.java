@@ -14,11 +14,11 @@ public class Herbivore extends Animal {
     // Base stats
     private int numSeeds;
     protected double speed = 2; // Animal movement speed, increases more health decay when moving
-    protected int attack = 1; // Animal attack damage, decreases health
-    protected int maxHealth = 100; // Animal health/hp, decreases speed
-    protected double  size = 1;
+    protected int attack = 2; // Animal attack damage, decreases health
+    protected int maxHealth = 200; // Animal health/hp, decreases speed
+    protected double size = 1;
     protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
-    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected double healthDecay = 0.2; // How fast animals health goes down, hunger
     protected double altruism = 0.5; // Chance of animal giving up its spot
     protected int attackDistance = 50;
     private int poopTime;
