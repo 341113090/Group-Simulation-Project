@@ -320,6 +320,7 @@ public class Herbivore extends Animal {
     
     public void animalPoop()
     {
+        /*
         currentTime = ((MainWorld)getWorld()).getCurrentTime();
         if(currentTime == 600)
         {
@@ -345,6 +346,18 @@ public class Herbivore extends Animal {
             specialTimer = 0;
             numSeeds = 0;
         }
+        */
+       if(numSeeds > 0)
+       {
+           specialTimer++;
+           if(specialTimer == 60)
+           {
+               specialTimer = 0;
+               CherrySeed seed = new CherrySeed(60);
+               getWorld().addObject(seed, getX(), getY());
+               numSeeds--;
+           }
+       }
         
        //testing do not return to real
     }
