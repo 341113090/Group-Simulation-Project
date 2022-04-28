@@ -101,7 +101,7 @@ public class Carnivore extends Animal {
     }
 
     public void stopped() {
-        //System.out.println("How");
+        System.out.println("How");
     }
 
     ////////// STATES //////////
@@ -198,22 +198,7 @@ public class Carnivore extends Animal {
     }
     
     protected void Night() {
-        Shelter target = targetShelter(true);
-        // Temp night
-        if (MainWorld.getDistance(this, target) <= 5){
-            playAnimation("Hidden");
-            //System.out.println("Hidden");
-            state = State.InShelter;
-        }   else {
-            turnTowards(target.getX(), target.getY());
-            rotation = getRotation();
-
-            move(speed);
-            //System.out.println("Moving");
-        }
-        if (!MainWorld.night){
-            state = State.Searching;
-        }
+        super.Night();
     }
 
     ////////// FUNCTIONS //////////

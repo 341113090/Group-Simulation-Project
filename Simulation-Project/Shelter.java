@@ -62,11 +62,13 @@ public class Shelter extends Actor
     public Shelter(){
         numShelters++;
         this.setImage(shelter);
+        animals = new ArrayList();
     }
     public Shelter(boolean type){
         numShelters++;
         this.setImage(shelter);
         typeAnimal = type;
+        animals = new ArrayList();
     }
     public static int getNumShelters()
     {
@@ -123,7 +125,22 @@ public class Shelter extends Actor
                 }   else {                    
                     getWorld().addObject(new Herbivore(speed, attack, size, altruism), getX(), getY());
                 }
+                
+                size = 0;
+                animals.clear();
             }
+        }
+    }
+    
+    public boolean addAnimal(Animal a){
+        if (size+a.getSize() < sizeLimit){
+            size += a.getSize();
+            System.out.println(a);
+            animals.add(a);
+            
+            return true;
+        }   else {
+            return false;
         }
     }
     

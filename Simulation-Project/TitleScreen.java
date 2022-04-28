@@ -20,9 +20,9 @@ public class TitleScreen extends World
     private Integer cherryOptTwo = new Integer(4);
     private Integer cherryOptThree = new Integer(6);
     //options for poisonivy
-    private Integer poisonIvyOptOne = new Integer(10);
-    private Integer poisonIvyOptTwo = new Integer(15);
-    private Integer poisonIvyOptThree = new Integer(20);
+    private Integer poisonIvyOptOne = new Integer(5);
+    private Integer poisonIvyOptTwo = new Integer(10);
+    private Integer poisonIvyOptThree = new Integer(15);
     //options for herbivores
     private Integer herbOptOne = new Integer(3);
     private Integer herbOptTwo = new Integer(6);
