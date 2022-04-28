@@ -24,17 +24,17 @@ public class Cherry extends Plant
         this.setImage(cherry);
         //cherries take 40% damage from all sources
         toughness = .4;
-        health = 1000;
+        health = 200;
         maxHealth = health;
         //how much health they lose per bite; must be multiplied with toughness to get actual health lost
-        healthPerTick = 8;
+        healthPerTick = 2;
         //wont hurt herbs that try to eat it
         isToxic = false;
         //isnt a seed reproducing plant
         wantsCarry = false;
         //getter not needed
-        healthLimit = 750;
-        selfHealSpeed = 3;
+        healthLimit = 150;
+        selfHealSpeed = 2;
         
     }
     

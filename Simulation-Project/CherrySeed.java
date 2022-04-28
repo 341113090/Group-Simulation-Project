@@ -37,7 +37,9 @@ public class CherrySeed extends Actor
                 if (actCounter < 60){
                     cherryseed.setTransparency (actCounter * 2);
                 }
-            } else if (Cherry.getNumCherries() > 30){
+            } else if (Cherry.getNumCherries() > 29){
+                getWorld().removeObject(this);
+            } else if(this.getX() > 700 || this.getX()<100){
                 getWorld().removeObject(this);
             }else{
                 Cherry cherry = new Cherry();

@@ -18,10 +18,10 @@ public class Carnivore extends Animal {
     
     // Base stats
     
-    protected double speed = 2; // Animal movement speed, increases more health decay when moving
-    protected double healthDecay = 0.1; // How fast animals health goes down, hunger
+    protected double speed = 3; // Animal movement speed, increases more health decay when moving
+    protected double healthDecay = 0.3; // How fast animals health goes down, hunger
     protected int attackDistance = 50;
-    protected int attack = 1; // Animal attack damage, decreases health
+    protected int attack = 2; // Animal attack damage, decreases health
     protected int maxHealth = 100; // Animal health/hp, decreases speed
     protected double size = 1;
     protected int senseRange = 600; // How far animal can detect threats/food, increases health decay

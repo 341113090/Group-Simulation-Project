@@ -42,7 +42,7 @@ public abstract class Plant extends Animator {
      * initializes the plant as not getting eaten
      */
     public Plant() {
-        health  = 1000;
+        health  = 200;
         hpBar = new SuperStatBar(health, health, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         isGettingEaten = false;
     }

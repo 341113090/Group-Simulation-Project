@@ -22,14 +22,14 @@ public class PoisonIvy extends Plant
         numPoisonIvy++;
         this.setImage(ivy);
         toughness = .5;//poison ivey is weaker than cherry
-        health = 1000;
+        health = 200;
         maxHealth = health;
-        healthPerTick = 8;
+        healthPerTick = 2;
         isToxic = true;
         wantsCarry = false;
         //getter not needed
-        healthLimit = 750;
-        selfHealSpeed = 3;
+        healthLimit = 150;
+        selfHealSpeed = 2;
     }
     
     /**
@@ -62,10 +62,10 @@ public class PoisonIvy extends Plant
     
     /**
      * This method allows the Poison Ivy to reproduce every day cycle until it caps
-     * at around 30. 
+     * at around 30 and stops it from spawning on the number display at the top.
      */
     public void reproduce(){
-        if(numPoisonIvy > 30){
+        if(numPoisonIvy > 29){
             return;
         }
         if(day == nextDay){
