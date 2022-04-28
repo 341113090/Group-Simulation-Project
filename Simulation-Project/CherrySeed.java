@@ -13,7 +13,7 @@ public class CherrySeed extends Actor
     private static boolean canSprout = false;
     GreenfootImage Plants = new GreenfootImage("Plants.png");
     GreenfootImage cherryseed = AnimationManager.getSlice(Plants,9, 0);
-    
+
     /**
      * Constructor for cherry seed. Creates a cherry with a set image and uses parameter to set the time it takes to sprout
      */
@@ -23,13 +23,23 @@ public class CherrySeed extends Actor
         this.totalActs = totalActs;
         actCounter = totalActs;
     }
-    
+
     /**
      * CherrySeed will remove itself after two seconds after spawning and drop
      * one cherry in place of it
      */
     public void act()
     {
+        if(this.getX() > 650 || this.getX()<100)
+        {
+            if(this.getX() > 650)
+            {
+                setLocation(650, this.getY());
+            } else if (this.getX() < 100)
+            {
+                setLocation(100, this.getY());
+            }
+        }
         if(canSprout)
         {
             if (actCounter > 0){
@@ -39,16 +49,14 @@ public class CherrySeed extends Actor
                 }
             } else if (Cherry.getNumCherries() > 29){
                 getWorld().removeObject(this);
-            } else if(this.getX() > 700 || this.getX()<100){
-                getWorld().removeObject(this);
-            }else{
+            } else{
                 Cherry cherry = new Cherry();
                 getWorld().addObject(cherry, this.getX(), this.getY());
                 getWorld().removeObject(this);
             }
         }
     }
-    
+
     /**
      * Method that changes whether the cherry is allowed to sprout or not
      */
