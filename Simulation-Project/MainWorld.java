@@ -104,7 +104,7 @@ public class MainWorld extends World {
         for (int i = 0; i < startNumPoisonIvy; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = 50 + random.nextInt(400);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new PoisonIvy(), xx, yy);
         }
         // makes startNumHerb number of herbivores on the screen in random locations
