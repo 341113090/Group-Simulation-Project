@@ -82,7 +82,10 @@ public class Shelter extends Actor
     
     public void act()
     {
-        
+        // because it isn't clearing properly
+        if (animals.size() >0 && !MainWorld.night){
+            animals.clear();
+        }
     }
     
     /**
@@ -127,8 +130,6 @@ public class Shelter extends Actor
                 }
                 
                 animals.clear();
-                
-                System.out.println(animals.size());
             }
         }
     }
