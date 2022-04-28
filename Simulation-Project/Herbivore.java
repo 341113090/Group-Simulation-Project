@@ -18,7 +18,7 @@ public class Herbivore extends Animal {
     protected int attack = 1; // Animal attack damage, decreases health
     protected int maxHealth = 100; // Animal health/hp, decreases speed
     protected double  size = 1;
-    protected int senseRange = 200; // How far animal can detect threats/food, increases health decay
+    protected int senseRange = 100; // How far animal can detect threats/food, increases health decay
     protected double healthDecay = 0.1; // How fast animals health goes down, hunger
     protected double altruism = 0.5; // Chance of animal giving up its spot
     protected int attackDistance = 50;
@@ -203,6 +203,10 @@ public class Herbivore extends Animal {
         super.Night();
         
     }   
+    
+    protected void InShelter(){
+        super.InShelter();
+    }
     ////////// FUNCTIONS //////////
 
     

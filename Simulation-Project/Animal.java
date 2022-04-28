@@ -137,7 +137,10 @@ public abstract class Animal extends Animator {
     }
 
     protected void Night() {
-        
+        if (!MainWorld.night){
+            state = State.Searching;
+            return;
+        }
         // Get the closest shelter to start
         if (targetShelter== null ){
             double closestTargetDistance = 0;
@@ -180,6 +183,7 @@ public abstract class Animal extends Animator {
             
             if (targetShelter.addAnimal(this)){
                 state = State.InShelter;
+                System.out.println("bruh");
             } else { // If no space find shelter again 
                 //Kinda sucks that i need to copy paste the whole ass shelter searching function but I don't have time and can't think of a better solution
                 double closestTargetDistance = 0;
@@ -226,13 +230,11 @@ public abstract class Animal extends Animator {
 
             move(speed);
         }
-        if (!MainWorld.night){
-            state = State.Searching;
-        }
+        
     }
     
     protected void InShelter(){
-        
+        System.out.println("in shelter");
         playAnimation("Hidden");
         if (!MainWorld.night){
             state = State.Searching;
