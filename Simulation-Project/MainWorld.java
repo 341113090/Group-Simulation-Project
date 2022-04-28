@@ -10,13 +10,13 @@ import java.util.List;
  * @version (a version number or a date)
  */
 public class MainWorld extends World {
-    
+
     // World Positions;
     private static int minX = 50;
     private static int maxX = 750;
     private static int minY = 50;
     private static int maxY = 450;
-    
+
     public static int dayNumber = 1;
     private int currentTime = 0;
     private int dayLength = 600;
@@ -42,12 +42,15 @@ public class MainWorld extends World {
 
     private String[] leftLabels = new String[3];
     private String[] rightLabels = new String[3];
+    private String[] herbivoreLabels = new String[2];
+    private String[] carnivoreLabels = new String[2];
     Font funFont = new Font("Comic Sans MS", false, false, 16);
     Font boringFont = new Font("Times New Roman", false, false, 14);
     SuperTextBox bigLeftLabel;
     SuperTextBox bigRightLabel;
+    SuperTextBox bigHerbivoreLabel;
+    SuperTextBox bigCarnivoreLabel;
 
-        
     /**
      * Constructor for objects of class MainWorld.
      * 
@@ -93,6 +96,29 @@ public class MainWorld extends World {
         // actually puts the textbox on the world
         addObject(bigLeftLabel, (int)(tempX/2), tempY);
         addObject(bigRightLabel, (int)(tempX*1.5), tempY);
+
+        String herbSpeedLabel = new String("Average Speed of Herbivores: " + 0);
+        String herbAttackLabel = new String("Average Attack Power of Herbivores: " + 0);
+        herbivoreLabels[0] = herbSpeedLabel;
+        herbivoreLabels[1] = herbAttackLabel;
+        bigHerbivoreLabel = new SuperTextBox(herbivoreLabels, boringFont, this.getWidth()/2, false);
+        // values for location of the textbox
+        int herbTempY = bigHerbivoreLabel.getImage().getHeight() / 2;
+        double herbTempX = bigHerbivoreLabel.getImage().getWidth();
+        // actually puts the textbox on the world
+        addObject(bigHerbivoreLabel, (int)(herbTempX/2), this.getHeight()-herbTempY);
+
+        String carnSpeedLabel = new String("Average Speed of Carnivores: " + 0);
+        String carnAttackLabel = new String("Average Attack Power of Carnivores: " + 0);
+        herbivoreLabels[0] = carnSpeedLabel;
+        herbivoreLabels[1] = carnAttackLabel;
+        bigCarnivoreLabel = new SuperTextBox(carnivoreLabels, boringFont, this.getWidth()/2, false);
+        // values for location of the textbox
+        int carnTempY = bigCarnivoreLabel.getImage().getHeight() / 2;
+        double carnTempX = bigCarnivoreLabel.getImage().getWidth();
+        // actually puts the textbox on the world
+        addObject(bigCarnivoreLabel, (int)(carnTempX*1.5), this.getHeight()-carnTempY);
+        
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumCherry; i++) {
             Random random = new Random();
@@ -124,6 +150,8 @@ public class MainWorld extends World {
         // update the label
         updateLeftLabels();
         updateRightLabels();
+        updateBigHerbivoreLabels();
+        updateBigCarnivoreLabels();
         // spawning in shelters based on selected parameters
         if(shelter >= 2)
         {
@@ -150,18 +178,19 @@ public class MainWorld extends World {
         fg = new Foreground();
         addObject(fg, getWidth() / 2, getHeight() / 2);
         dayNumber = 1;
+
     }
-    
     /**
      * In the act method, the world keeps track of how many cherries and ivies
      * there are.
      */
     public void act() {
+        //manages the time values and also night time
+        timeManager();
         // update the plant label
         updateLeftLabels();
         updateRightLabels();
-        //manages the time values and also night time
-        timeManager();
+        updateBigHerbivoreLabels();
         //if the current time is zero, aka new day, the cherry seeds are allowed to sprout
         if(currentTime >= 0 && currentTime <= 200)
         {
@@ -195,7 +224,7 @@ public class MainWorld extends World {
         //push the updated array into the big display
         bigLeftLabel.update(leftLabels);
     }
-    
+
     /**
      * This code updates the animals labels whenever. Uses the same instantiating
      * code but just gets the new values from the harbivore and animals class
@@ -216,7 +245,57 @@ public class MainWorld extends World {
         //push the updated array into the big display
         bigRightLabel.update(rightLabels);
     }
+
+    /**
+     * This code updates the herbivore labels whenever. Uses the same instantiating 
+     * code but just gets new values from the herbivore class
+     */
+    public void updateBigHerbivoreLabels()
+    {
+        // Get average speed attack, and size
+        List<Herbivore> herbivores= (List<Herbivore>)getObjects(Herbivore.class);
+        double speed = 0;
+        double attack = 0;
+        for (int i = 0; i < herbivores.size(); i++){
+            //System.out.println(herbivores.get(i).getSpeed());
+            speed += herbivores.get(i).getSpeed();
+            attack += herbivores.get(i).getAttack();
+        }
+        speed = speed/herbivores.size();
+        attack = attack/herbivores.size();
+
+        String herbSpeedLabel = new String("Average Speed of Herbivores: " + speed);
+        String herbAttackLabel = new String("Average Attack Power of Herbivores: " + attack);
+        herbivoreLabels[0] = herbSpeedLabel;
+        herbivoreLabels[1] = herbAttackLabel;
+        bigHerbivoreLabel.update();
+    }
     
+    /**
+     * This code updates the carnivore labels whenever. Uses the same instantiating 
+     * code but just gets new values from the carnivore class
+     */
+    public void updateBigCarnivoreLabels()
+    {
+        // Get average speed attack, and size
+        List<Carnivore> carnivores= (List<Carnivore>)getObjects(Carnivore.class);
+        double speed = 0;
+        double attack = 0;
+        for (int i = 0; i < carnivores.size(); i++){
+            //System.out.println(herbivores.get(i).getSpeed());
+            speed += carnivores.get(i).getSpeed();
+            attack += carnivores.get(i).getAttack();
+        }
+        speed = speed/carnivores.size();
+        attack = attack/carnivores.size();
+
+        String carnSpeedLabel = new String("Average Speed of Carnivores: " + speed);
+        String carnAttackLabel = new String("Average Attack Power of Carnivores: " + attack);
+        carnivoreLabels[0] = carnSpeedLabel;
+        carnivoreLabels[1] = carnAttackLabel;
+        bigCarnivoreLabel.update();
+    }
+
     private void timeManager() {
         currentTime++;
         if (currentTime > dayLength) {
@@ -230,42 +309,21 @@ public class MainWorld extends World {
                 transparency = 1;
             }
             drawNight(transparency * maxDarkness);
-            
+
             if (currentTime > dayLength + nightLength) {
                 currentTime = 0;
                 dayNumber++;
-                
                 List<Shelter> shelters = (List<Shelter>)getObjects(Shelter.class);
                 for (int i = 0; i < shelters.size(); i++){
                     shelters.get(i).spawnNewAnimal();
                 }
-                
-                // Get average speed attack, and size
-                List<Herbivore> herbivores= (List<Herbivore>)getObjects(Herbivore.class);
-                double speed = 0;
-                double attack = 0;
-                double size = 0;
-                for (int i = 0; i < herbivores.size(); i++){
-                    //System.out.println(herbivores.get(i).getSpeed());
-                    speed += herbivores.get(i).getSpeed();
-                    attack += herbivores.get(i).getAttack();
-                    size += herbivores.get(i).getSize();
-                }
-                speed = speed/herbivores.size();
-                attack = attack/herbivores.size();
-                size = size/herbivores.size();
-                System.out.println("Number of Herbivores: " +herbivores.size());
-                System.out.println("Average Speed: "+speed);
-                System.out.println("Average Attack: "+attack);
-                System.out.println("Average Size: "+size);
-                Herbivore.setNumHerbivores(herbivores.size());
             }
         } else {
             night = false;
             drawNight(0);
         }
     }
-    
+
     private GreenfootImage drawNight(double transparency) {
         if (transparency <=0) transparency = 0;
         GreenfootImage dark = new GreenfootImage(getWidth(), getHeight());
@@ -284,7 +342,7 @@ public class MainWorld extends World {
         distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
         return (float) distance;
     }
-    
+
     public static boolean onEdge(int x, int y){
         if (x >= maxX || x <= minX){
             return true;    
@@ -293,6 +351,7 @@ public class MainWorld extends World {
         }
         return false;
     }
+
     public static void PlaceOnEdge (Actor obj){
         int x = obj.getX();
         int y = obj.getY();
@@ -301,10 +360,10 @@ public class MainWorld extends World {
         }   else if (y >= maxY || y <= minY){
             y = (y>=maxY)?maxY:minY;   
         }
-        
+
         obj.setLocation(x,y);
     }
-    
+
     /**
      * method that returns the current time of the world
      */
