@@ -30,7 +30,7 @@ public class TitleScreen extends World
     //options for carnivores
     private Integer carnOptOne = new Integer(0);
     private Integer carnOptTwo = new Integer(2);
-    private Integer carnOptThree = new Integer(3);
+    private Integer carnOptThree = new Integer(4);
     //options for number of shelters
     private Integer shelterOptOne = new Integer(2);
     private Integer shelterOptTwo = new Integer(4);

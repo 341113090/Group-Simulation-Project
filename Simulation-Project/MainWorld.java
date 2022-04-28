@@ -191,6 +191,7 @@ public class MainWorld extends World {
         updateLeftLabels();
         updateRightLabels();
         updateBigHerbivoreLabels();
+        updateBigCarnivoreLabels();
         //if the current time is zero, aka new day, the cherry seeds are allowed to sprout
         if(currentTime >= 0 && currentTime <= 200)
         {
