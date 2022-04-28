@@ -43,6 +43,7 @@ public abstract class Animal extends Animator {
     //
     protected int time;
     protected String direction;
+    protected boolean isLeft = false;
     
     protected Shelter targetShelter;
     
@@ -237,6 +238,7 @@ public abstract class Animal extends Animator {
             rotation = getRotation();
 
             move(speed);
+            playAnimation("Walk "+direction);
         }
         
     }
@@ -305,11 +307,19 @@ public abstract class Animal extends Animator {
         if (rotation > 45&& rotation <= 135){
             direction = "Down";
         }   else if (rotation > 135&& rotation <= 225){
-            direction = "Left";
+            direction = "Side";
+            if (!isLeft){
+                getImage().mirrorHorizontally();
+            }
+            isLeft = true;
         }   else if (rotation > 225&& rotation <= 305){
             direction = "Up";
         }   else{
-            direction = "Right";
+            direction = "Side";
+            if (isLeft){
+                getImage().mirrorHorizontally();
+            }
+            isLeft = false;;
         }
         
         //System.out.println(direction+","+getRotation());
