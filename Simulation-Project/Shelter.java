@@ -120,9 +120,7 @@ public class Shelter extends Actor
     public void spawnNewAnimal(){
         if (animals.size() <= 1 ){
             // Life always finds a way
-            if (animals.size() != 0&& typeAnimal){
-                getWorld().addObject(new Carnivore(), getX(), getY());
-            }   else {                    
+            if (animals.size() != 0&& !typeAnimal){
                 getWorld().addObject(new Herbivore(), getX(), getY());
             }
             
@@ -164,7 +162,7 @@ public class Shelter extends Actor
         double speed = (a.getSpeed()+b.getSpeed())/2 + generateRandomNumber();
         double attack = (a.getAttack()+b.getAttack())/2 + generateRandomNumber();
         double size = (a.getSize()+b.getSize())/2 + generateRandomNumber();
-        double altruism = (a.getAltruism()+b.getAltruism())/2+ (Greenfoot.getRandomNumber((int)(0.1*1000))/1000);
+        double altruism = (a.getAltruism()+b.getAltruism())/2+ generateRandomNumber();
         
         if (typeAnimal){
             getWorld().addObject(new Carnivore(speed, attack, size, altruism), getX(), getY());
