@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Herbivore extends Animal {
     private Plant targetPlant;
     private ArrayList<Plant> plants;
+    protected boolean type = false;
     
     // Base stats
     private int numSeeds;
@@ -81,7 +82,6 @@ public class Herbivore extends Animal {
         setRotation(rotation);
         animalPoop();
         setRotation(0);
-        System.out.println("number seeds:" + numSeeds);
         // Health Decay
         if (state != State.InShelter)curHealth -= healthDecay;
         
@@ -198,22 +198,10 @@ public class Herbivore extends Animal {
         }
         playAnimation("Idle "+direction);
     }
+    
     protected void Night() {
-        Shelter target = targetShelter(false);
-        // Temp night
-        if (MainWorld.getDistance(this, target) <= 5){
-            playAnimation("Hidden");
-        }   else {
-            turnTowards(target.getX(), target.getY());
-            rotation = getRotation();
-
-            move(speed);
-            playAnimation("Walk "+direction);
-        }
-        if (!MainWorld.night){
-            state = State.Searching;
-            playAnimation("Walk "+direction);
-        }
+        super.Night();
+        
     }   
     ////////// FUNCTIONS //////////
 

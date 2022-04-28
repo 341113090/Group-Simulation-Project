@@ -13,6 +13,7 @@ public abstract class Animal extends Animator {
     }
 
     protected State state;
+    protected boolean type; // False == herbivore, true == carnivore
 
     protected Actor target;
 
@@ -42,6 +43,8 @@ public abstract class Animal extends Animator {
     //
     protected int time;
     protected String direction;
+    
+    protected Shelter targetShelter;
     
     SuperStatBar hpBar;
     public Animal(){
@@ -134,18 +137,94 @@ public abstract class Animal extends Animator {
     }
 
     protected void Night() {
-        Shelter target = targetShelter(false);
-        // Temp night
-        if (MainWorld.getDistance(this, target) <= 5){
-            playAnimation("Hidden");
-            System.out.println("Hidden");
-            state = State.InShelter;
-        }   else {
-            turnTowards(target.getX(), target.getY());
+        
+        // Get the closest shelter to start
+        if (targetShelter== null ){
+            double closestTargetDistance = 0;
+            
+            
+            ArrayList<Shelter> shelters= (ArrayList) getObjectsInRange(10000, Shelter.class);
+            
+            // Filter out shelters that aren't the correct type
+            for (int i = 0; i < shelters.size(); i++){
+                if (shelters.get(i).getTypeAnimal() != type){
+                    shelters.remove(shelters.get(i));
+                }
+            }
+            if (shelters.size() > 0) {
+                
+                // set the first one as my target
+                targetShelter = shelters.get(0);
+                // Use method to get distance to target. This will be used
+                // to check if any other targets are closer
+                closestTargetDistance = MainWorld.getDistance(this, targetShelter);
+    
+                // Loop through the objects in the ArrayList to find the closest target
+                for (Shelter o : shelters) {
+    
+                    // Cast for use in generic method
+                    // Measure distance from me
+                    double distanceToActor = MainWorld.getDistance(this, o);
+                    if (distanceToActor < closestTargetDistance) {
+                        targetShelter = o;
+                        closestTargetDistance = distanceToActor;
+                    }
+    
+                }
+            
+            }
+        }
+        
+        if (MainWorld.getDistance(this, targetShelter) <= 5){
+            // Check if shelter has space
+            
+            if (targetShelter.addAnimal(this)){
+                state = State.InShelter;
+            } else { // If no space find shelter again 
+                //Kinda sucks that i need to copy paste the whole ass shelter searching function but I don't have time and can't think of a better solution
+                double closestTargetDistance = 0;
+                ArrayList<Shelter> shelters= (ArrayList) getObjectsInRange(10000, Shelter.class);
+                
+                // Filter out shelters that aren't the correct type
+                for (int i = 0; i < shelters.size(); i++){
+                    if (shelters.get(i).getTypeAnimal() != type){
+                        shelters.remove(shelters.get(i));
+                    }
+                }
+                if (shelters.size() > 0) {
+                    
+                    // grab first target that is not current target
+                    Shelter target = shelters.get(0);
+                    for (int i = 0; i < shelters.size(); i++){
+                        if (shelters.get(i) != targetShelter){
+                            target = shelters.get(i);
+                        }
+                    }
+                    
+                    // Use method to get distance to target. This will be used
+                    // to check if any other targets are closer
+                    closestTargetDistance = MainWorld.getDistance(this, targetShelter);
+        
+                    // Loop through the objects in the ArrayList to find the closest target
+                    for (Shelter o : shelters) {
+                        // Measure distance from me
+                        double distanceToActor = MainWorld.getDistance(this, o);
+                        if (o != targetShelter && distanceToActor < closestTargetDistance) {
+                            target = o;
+                            closestTargetDistance = distanceToActor;
+                        }
+    
+                    }
+                    targetShelter = target;
+            
+                }
+                
+            }
+        }   else { // Move towards currently set shelter
+            turnTowards(targetShelter.getX(), targetShelter.getY());
             rotation = getRotation();
 
             move(speed);
-            System.out.println("Moving");
         }
         if (!MainWorld.night){
             state = State.Searching;
@@ -154,8 +233,8 @@ public abstract class Animal extends Animator {
     
     protected void InShelter(){
         
-            playAnimation("Hidden");
-            if (!MainWorld.night){
+        playAnimation("Hidden");
+        if (!MainWorld.night){
             state = State.Searching;
         }
     }
@@ -197,11 +276,8 @@ public abstract class Animal extends Animator {
             for (Shelter o : shelters) {
 
                 // Cast for use in generic method
-                // Actor a = (Actor) o;
                 // Measure distance from me
                 distanceToActor = MainWorld.getDistance(this, o);
-                // If I find a plant closer than my current target, I will change
-                // targets
                 if (distanceToActor < closestTargetDistance) {
                     targetShelter = o;
                     closestTargetDistance = distanceToActor;
