@@ -197,6 +197,7 @@ public class Herbivore extends Animal {
         }
         playAnimation("Idle "+direction);
     }
+    
     protected void Night() {
         Shelter target = targetShelter(false);
         // Temp night
@@ -342,7 +343,7 @@ public class Herbivore extends Animal {
                 numSeeds--;
             }
         }
-        if(currentTime == 0)
+        if(currentTime >= 0 && currentTime <= 50)
         {
             specialTimer = 0;
             numSeeds = 0;

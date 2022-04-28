@@ -158,9 +158,9 @@ public class MainWorld extends World {
         //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
         fg = new Foreground();
         addObject(fg, getWidth() / 2, getHeight() / 2);
-
+        dayNumber = 1;
     }
-
+    
     /**
      * In the act method, the world keeps track of how many cherries and ivies
      * there are.
