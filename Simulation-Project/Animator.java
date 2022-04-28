@@ -70,14 +70,14 @@ public class Animator extends SuperSmoothMover
 
     public void addAnimation(Animation anim) {
         if (animations != null) {
-            System.out.println("Added new");
+            //System.out.println("Added new");
             Animation[] temp = new Animation[animations.length + 1];
             for (int i = 0; i < animations.length; i++) {
                 temp[i] = animations[i];
             }
             animations = temp;
             animations[animations.length - 1] = anim;
-            System.out.println(temp.length);
+            //System.out.println(temp.length);
         } else {
             animations = new Animation[1];
             animations[0] = anim;

@@ -81,7 +81,6 @@ public class Herbivore extends Animal {
         setRotation(rotation);
         animalPoop();
         setRotation(0);
-        System.out.println("number seeds:" + numSeeds);
         // Health Decay
         if (state != State.InShelter)curHealth -= healthDecay;
         

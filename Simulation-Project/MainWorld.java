@@ -172,12 +172,12 @@ public class MainWorld extends World {
         //manages the time values and also night time
         timeManager();
         //if the current time is zero, aka new day, the cherry seeds are allowed to sprout
-        if(currentTime == 0)
+        if(currentTime >= 0 && currentTime <= 200)
         {
             CherrySeed.toggleCanSprout(true);
         } 
         //if the current time is 450, the cherry seeds cannot sprout anymore
-        else if(currentTime ==450)
+        else if(currentTime >= 450)
         {
             CherrySeed.toggleCanSprout(false);
         }
