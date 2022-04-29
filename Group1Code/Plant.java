@@ -1,20 +1,8 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * THINGS THAT ANIMALS NEED TO DO:
- * <ul>
- * <li>Tell the Plant if it is eating it or not using setEating()
- * so the plant knows whether to regen or not.</li>
- * </ul>
- * <br>
- * 
- * <p>
- * Plants are eaten by herbivores and provide them with nutrients. Plants also
- * try and
- * survive until the end of the day so that they can reproduce. Poisonous plants
- * reproduce by surviving and edible plants reproduce by having their seeds
- * eaten.
- * </p>
+ * Superclass Plant. Gives similar functionality and attributes of a Plant 
+ * for subclasses to use. 
  * 
  * @author Nathan and Max
  * @version April 12, 2022
@@ -38,7 +26,7 @@ public abstract class Plant extends Animator {
 
     /**
      * Constructor for plant 
-     * Default sets health to 1000 and creates an hp bar
+     * Default sets health to 200 and creates an hp bar
      * initializes the plant as not getting eaten
      */
     public Plant() {

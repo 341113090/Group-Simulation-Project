@@ -14,7 +14,7 @@ public class PoisonIvy extends Plant
     private int day = MainWorld.dayNumber;
     private int nextDay = day + 1;
     /**
-     * Sets basic variables for health, toughness, toxicity, health limit
+     * Constructor for Poison Ivy. Sets the image and basic variables for health, toughness, toxicity, health limit
      * and heal speed.
      */
     public PoisonIvy()
@@ -85,7 +85,7 @@ public class PoisonIvy extends Plant
     }
     
     /**
-     * Calls superclass act().
+     * Calls superclass act()  and reproduces at the start of each day.
      */
     public void act()
     {

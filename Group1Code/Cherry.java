@@ -15,7 +15,8 @@ public class Cherry extends Plant
     GreenfootImage cherry = AnimationManager.getSlice(Plants, 13, 7);
     
     /**
-     * Constructor for cherry
+     * Constructor for cherry, sets the toughness, health, toxicity, heal speed,
+     * health recovery limit and health per tick. 
      */
     public Cherry()
     {
