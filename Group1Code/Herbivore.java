@@ -194,7 +194,6 @@ public class Herbivore extends Animal {
             curHealth += tryToEatPlant;
             healthEaten += tryToEatPlant;
             
-            
             //System.out.println("Health eaten:" + healthEaten);
             if(healthEaten >= (targetPlant.getMaxHealth()/2))
             {
@@ -288,85 +287,29 @@ public class Herbivore extends Animal {
         numHerbivores = xx;
     }
     
-    public void dropSeed()
-    {
-        int seedX = this.getX();
-        int seedY = this.getY();
-        MainWorld main = (MainWorld)this.getWorld();
-        CherrySeed seed = new CherrySeed(1);
-        main.addObject(seed, seedX, seedY);
-        
-    }
     
+    /**
+     * Method that controls when and how the seeds drop from herbivore
+     * made by Nathan (not sound)
+     */
     public void animalPoop()
     {
-        /*
-        currentTime = ((MainWorld)getWorld()).getCurrentTime();
-        if(currentTime == 600)
-        {
-            if(numSeeds!=0)
-            {
-                poopTime = 50/this.numSeeds;
-                //isPoopTime = true;
-            }
-        }
-        if(currentTime >=600)
-        {
-            specialTimer++;
-            if((specialTimer == poopTime) && (numSeeds > 0))
-            {
-                specialTimer = 0;
-                CherrySeed seed = new CherrySeed(60);
-                getWorld().addObject(seed, getX(),getY());
-                numSeeds--;
-            }
-        }
-        if(currentTime >= 0 && currentTime <= 50)
-        {
-            specialTimer = 0;
-            numSeeds = 0;
-        }
-        */
+        //if the number of seeds goes up then this method is called
        if(numSeeds > 0)
        {
+           //special timer starts going up
            specialTimer++;
+           //if a second has passed...
            if(specialTimer >= 60){
+               //reset the special timer
                specialTimer = 0;
+               //create a new cherry seed at the current location
                CherrySeed seed = new CherrySeed(60);
                getWorld().addObject(seed, getX(), getY());
+               //decrease the number of seeds in the herbivore
                numSeeds--;
                SoundPlayer.instance.playSeedDropSounds();
-               
            }
        }
-        
-       
-        
-       //testing do not return to real
-    }
-    
-    public void setIsPoopTime(boolean x)
-    {
-        this.isPoopTime = x;
-    }
-    
-    public void setSpecialTimer(int x)
-    {
-        specialTimer = x;
-    }
-    
-    public int getPoopTime()
-    {
-        return poopTime;
-    }
-    
-    public void setPoopTime(int x)
-    {
-        poopTime = x;
-    }
-    
-    public int getNumSeeds()
-    {
-        return numSeeds;
     }
 }
