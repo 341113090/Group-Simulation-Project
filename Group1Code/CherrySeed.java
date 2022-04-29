@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Cherry seeds are pooped out by herbivores and will sprout into cherries at the start of each new day
+ * Cherry seeds are pooped out by herbivores and will sprout into cherries at the start of each new day.
  * 
  * @author Max and Nathan
  * @version April 27, 2022
@@ -26,7 +26,8 @@ public class CherrySeed extends Actor
 
     /**
      * CherrySeed will remove itself after two seconds after spawning and drop
-     * one cherry in place of it
+     * one cherry in place of it. The CherrySeed will only spawn the seed when 
+     * it is night time. 
      */
     public void act()
     {
