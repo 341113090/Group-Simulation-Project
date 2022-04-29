@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class MainWorld here.
+ * The main world that the sim takes place in.
+ * 
+ * World constructor(inital spawns for everything)
+ * as well as ui (trackers) on top and bottom of the sim 
+ * made by Nathan
  * 
  * @author (your name)
  * @version (a version number or a date)
  */
 public class MainWorld extends World {
-
     // World Positions;
     private static int minX = 50;
     private static int maxX = 750;
@@ -29,40 +32,52 @@ public class MainWorld extends World {
     // Foreground object for night effects
     private Foreground fg;
 
+    
+    //values used in the initialization for the world
+    //num... counts the number of these currently
     private int numCherry;
     private int numPoisonIvy;
     private int numHerbivore;
     private int numCarnivore;
     private int numShelter;
+    //initialization values
     private int startNumCherry = 0;
     private int startNumPoisonIvy = 0;
     private int startNumHerb = 0;
     private int startNumCarn = 0;
     private int startNumShelter = 0;
 
+    //string arrays used for the labels on the top and bottom of the sim
     private String[] leftLabels = new String[3];
     private String[] rightLabels = new String[3];
     private String[] herbivoreLabels = new String[3];
     private String[] carnivoreLabels = new String[3];
-    Font funFont = new Font("Comic Sans MS", false, false, 16);
+    
+    //fonts used in the labels
     Font boringFont = new Font("Times New Roman", false, false, 11);
+    
+    //the actual big labels used on the top and bottom of the sim
     SuperTextBox bigLeftLabel;
     SuperTextBox bigRightLabel;
     SuperTextBox bigHerbivoreLabel;
     SuperTextBox bigCarnivoreLabel;
 
     /**
-     * Constructor for objects of class MainWorld.
-     * 
+     * Constructor for objects of class MainWorld. Adds all the ui and also
+     * the components into the world
      */
     public MainWorld(int cherry, int poisonIvy, int herb, int carn, int shelter) {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 500, 1);
+        
+        //sets the starting number of each component in accordance with parameters set
         startNumCherry = cherry;
         startNumPoisonIvy = poisonIvy;
         startNumHerb = herb;
         startNumCarn = carn;
         startNumShelter = shelter;
+        
+        //sets the image of the world
         GreenfootImage image = new GreenfootImage("Background.png");
         this.setBackground(image);
 
@@ -72,6 +87,7 @@ public class MainWorld extends World {
         Herbivore.setNumHerbivores(0);
         Carnivore.setNumCarnivores(0);
         Shelter.setNumShelters(0);
+        
         // Label that is displayed on top of the screen
         String cherryLabel = new String("Number of Cherries in the World: " + numCherry);
         String poisonivyLabel = new String("Number of Poison Ivy in the World: " + numPoisonIvy);
@@ -79,48 +95,53 @@ public class MainWorld extends World {
         String herbivoreLabel = new String("Number of Herbivores in the World: " + numHerbivore);
         String carnivoreLabel = new String("Number of Carnivores in the World: " + numCarnivore);
         String dayLabel = new String("Day number in the World: " + dayNumber);
+        String herbSpeedLabel = new String("Average Speed of Herbivores: " + 0);
+        String herbAttackLabel = new String("Average Attack Power of Herbivores: " + 0);
+        String herbSizeLabel = new String("Average Size fo Herbivores: " + 0);
+        String carnSpeedLabel = new String("Average Speed of Carnivores: " + 0);
+        String carnAttackLabel = new String("Average Attack Power of Carnivores: " + 0);
+        String carnSizeLabel = new String("Average Size of Carnivores: " + 0);
+        
         // sets the indexes of the plant label to each of the cherry and ivy label
         leftLabels[0] = cherryLabel;
         leftLabels[1] = poisonivyLabel;
         leftLabels[2] = shelterLabel;
+        
         // sets the indexes of the animal label to each of the herbivore and carnivore label
         rightLabels[0] = herbivoreLabel;
         rightLabels[1] = carnivoreLabel;
         rightLabels[2] = dayLabel;
-        // instantiate the textbox at the top
-        bigLeftLabel = new SuperTextBox(leftLabels, boringFont, this.getWidth()/2, false);
-        bigRightLabel = new SuperTextBox(rightLabels, boringFont, this.getWidth()/2, false);
-        // values for location of the textbox
-        int tempY = bigLeftLabel.getImage().getHeight() / 2;
-        double tempX = bigRightLabel.getImage().getWidth();
-        // actually puts the textbox on the world
-        addObject(bigLeftLabel, (int)(tempX/2), tempY);
-        addObject(bigRightLabel, (int)(tempX*1.5), tempY);
-
-        String herbSpeedLabel = new String("Average Speed of Herbivores: " + 0);
-        String herbAttackLabel = new String("Average Attack Power of Herbivores: " + 0);
-        String herbSizeLabel = new String("Average Size fo Herbivores: " + 0);
+        
+        //sets the indexes of the herbivore string array to each of the labels
         herbivoreLabels[0] = herbSpeedLabel;
         herbivoreLabels[1] = herbAttackLabel;
         herbivoreLabels[2] = herbSizeLabel;
-        bigHerbivoreLabel = new SuperTextBox(herbivoreLabels, boringFont, this.getWidth()/2, false);
-        // values for location of the textbox
-        int herbTempY = bigHerbivoreLabel.getImage().getHeight() / 2;
-        double herbTempX = bigHerbivoreLabel.getImage().getWidth();
-        // actually puts the textbox on the world
-        addObject(bigHerbivoreLabel, (int)(herbTempX/2), this.getHeight()-herbTempY);
-
-        String carnSpeedLabel = new String("Average Speed of Carnivores: " + 0);
-        String carnAttackLabel = new String("Average Attack Power of Carnivores: " + 0);
-        String carnSizeLabel = new String("Average Size of Carnivores: " + 0);
+        
+        //sets the indexes of the carnivore string array to each of the labels
         carnivoreLabels[0] = carnSpeedLabel;
         carnivoreLabels[1] = carnAttackLabel;
         carnivoreLabels[2] = carnSizeLabel;
+        
+        // instantiate the textbox at the top
+        bigLeftLabel = new SuperTextBox(leftLabels, boringFont, this.getWidth()/2, false);
+        bigRightLabel = new SuperTextBox(rightLabels, boringFont, this.getWidth()/2, false);
+        bigHerbivoreLabel = new SuperTextBox(herbivoreLabels, boringFont, this.getWidth()/2, false);
         bigCarnivoreLabel = new SuperTextBox(carnivoreLabels, boringFont, this.getWidth()/2, false);
+        
         // values for location of the textbox
+        int tempY = bigLeftLabel.getImage().getHeight() / 2;
+        double tempX = bigRightLabel.getImage().getWidth();
+        
+        //note tempY and tempX are used for both the left and right labels on top
+        int herbTempY = bigHerbivoreLabel.getImage().getHeight() / 2;
+        double herbTempX = bigHerbivoreLabel.getImage().getWidth();
         int carnTempY = bigCarnivoreLabel.getImage().getHeight() / 2;
         double carnTempX = bigCarnivoreLabel.getImage().getWidth();
+        
         // actually puts the textbox on the world
+        addObject(bigLeftLabel, (int)(tempX/2), tempY);
+        addObject(bigRightLabel, (int)(tempX*1.5), tempY);
+        addObject(bigHerbivoreLabel, (int)(herbTempX/2), this.getHeight()-herbTempY);
         addObject(bigCarnivoreLabel, (int)(carnTempX*1.5), this.getHeight()-carnTempY);
         
         // makes startNumCherry number of cherries on the screen in random locations
@@ -130,6 +151,7 @@ public class MainWorld extends World {
             int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new Cherry(), xx, yy);
         }
+        
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumPoisonIvy; i++) {
             Random random = new Random();
@@ -137,6 +159,7 @@ public class MainWorld extends World {
             int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new PoisonIvy(), xx, yy);
         }
+        
         // makes startNumHerb number of herbivores on the screen in random locations
         for (int i = 0; i < startNumHerb; i++) {
             Random random = new Random();
@@ -144,6 +167,7 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(350);
             addObject(new Herbivore(), xx, yy);
         }
+        
         // makes startNumCarn number of carnivores on the screen in random locations
         for (int i = 0; i < startNumCarn; i++) {
             Random random = new Random();
@@ -151,11 +175,13 @@ public class MainWorld extends World {
             int yy = 50 + random.nextInt(350);
             addObject(new Carnivore(), xx, yy);
         }
+        
         // update the label
         updateLeftLabels();
         updateRightLabels();
         updateBigHerbivoreLabels();
         updateBigCarnivoreLabels();
+        
         // spawning in shelters based on selected parameters
         if(shelter >= 2)
         {
@@ -177,6 +203,7 @@ public class MainWorld extends World {
             addObject(new Shelter(false), 50, 425);
             addObject(new Shelter(true), 725, 425);
         }
+        
         Random random = new Random();
         //addObject(new Herbivore(), getWidth() / 2, getHeight() / 2);
         fg = new Foreground();
@@ -184,9 +211,11 @@ public class MainWorld extends World {
         dayNumber = 1;
 
     }
+    
     /**
-     * In the act method, the world keeps track of how many cherries and ivies
-     * there are.
+     * In the act method, the world keeps track of how many components 
+     * there are in the world and also keeps track of time and manages 
+     * seed spawnings
      */
     public void act() {
         //manages the time values and also night time
@@ -258,6 +287,9 @@ public class MainWorld extends World {
     public void updateBigHerbivoreLabels()
     {
         // Get average speed attack, and size
+        
+        //Following code gets values from all herbivores in the world for the label
+        //created by Lu Wai
         List<Herbivore> herbivores= (List<Herbivore>)getObjects(Herbivore.class);
         double speed = 0;
         double attack = 0;
@@ -272,13 +304,15 @@ public class MainWorld extends World {
         attack = attack/herbivores.size();
         size = size/herbivores.size();
 
+        //back to labels made by Nathan
         String herbSpeedLabel = new String("Average Speed of Herbivores: " + speed);
         String herbAttackLabel = new String("Average Attack Power of Herbivores: " + attack);
         String herbSizeLabel = new String("Average Size of Herbivores: " + size);
-        
+        //updates herbivore label string arrays to the updated values
         herbivoreLabels[0] = herbSpeedLabel;
         herbivoreLabels[1] = herbAttackLabel;
         herbivoreLabels[2] = herbSizeLabel;
+        //actually updates the big ui counters
         bigHerbivoreLabel.update();
     }
     
@@ -288,7 +322,8 @@ public class MainWorld extends World {
      */
     public void updateBigCarnivoreLabels()
     {
-        // Get average speed attack, and size
+        //Following code gets values from all carnivores in the world for the label
+        //created by Lu Wai
         List<Carnivore> carnivores= (List<Carnivore>)getObjects(Carnivore.class);
         double speed = 0;
         double attack = 0;
@@ -303,12 +338,15 @@ public class MainWorld extends World {
         attack = attack/carnivores.size();
         size = size/carnivores.size();
 
+        //back to labels made by Nath
         String carnSpeedLabel = new String("Average Speed of Carnivores: " + speed);
         String carnAttackLabel = new String("Average Attack Power of Carnivores: " + attack);
         String carnSizeLabel = new String("Average Size of Carnivores: " + size);
+        //updates herbivore label string arrays to the updated values
         carnivoreLabels[0] = carnSpeedLabel;
         carnivoreLabels[1] = carnAttackLabel;
         carnivoreLabels[2] = carnSizeLabel;
+        //actually updates the big ui counters
         bigCarnivoreLabel.update();
     }
 
@@ -385,14 +423,12 @@ public class MainWorld extends World {
     }
 
     /**
-     * method that returns the current time of the world
+     * Method that returns the current time of the world
      */
     public int getCurrentTime()
     {
         return currentTime;
     }
-    
-    
     
     public void stopped () {
         SoundPlayer.instance.stopBackgroundMusic();
