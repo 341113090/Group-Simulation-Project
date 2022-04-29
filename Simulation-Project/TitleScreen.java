@@ -79,6 +79,8 @@ public class TitleScreen extends World
         
         //gets all the items on screen ready
         prepare();
+        
+        addObject(new SoundPlayer(), 1000, 1000);
     }
     
     /**
@@ -471,5 +473,14 @@ public class TitleScreen extends World
             //transition to that new world
             Greenfoot.setWorld(mainworld);
         }
+    }
+    
+    public void started () {
+        SoundPlayer.instance.playBackgroundMusic();
+    }
+    
+    
+    public void stopped () {
+        SoundPlayer.instance.stopBackgroundMusic();
     }
 }

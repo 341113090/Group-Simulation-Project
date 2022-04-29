@@ -30,6 +30,7 @@ public class CherrySeed extends Actor
      */
     public void act()
     {
+        
         if(this.getX() > 650 || this.getX()<100)
         {
             if(this.getX() > 650)
@@ -39,6 +40,7 @@ public class CherrySeed extends Actor
             {
                 setLocation(100, this.getY());
             }
+            
         }
         if(canSprout)
         {
@@ -53,6 +55,7 @@ public class CherrySeed extends Actor
                 Cherry cherry = new Cherry();
                 getWorld().addObject(cherry, this.getX(), this.getY());
                 getWorld().removeObject(this);
+                SoundPlayer.instance.playPlantGrowthSounds();
             }
         }
     }

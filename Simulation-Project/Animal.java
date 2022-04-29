@@ -308,20 +308,16 @@ public abstract class Animal extends Animator {
     protected void Animations() {
         if (rotation > 45&& rotation <= 135){
             direction = "Down";
+            isLeft = false;
         }   else if (rotation > 135&& rotation <= 225){
-            direction = "Side";
-            if (!isLeft){
-                getImage().mirrorHorizontally();
-            }
+            direction = "Left";
             isLeft = true;
         }   else if (rotation > 225&& rotation <= 305){
             direction = "Up";
+            isLeft = false;
         }   else{
-            direction = "Side";
-            if (isLeft){
-                getImage().mirrorHorizontally();
-            }
-            isLeft = false;;
+            direction = "Right";
+            isLeft = false;
         }
         
         //System.out.println(direction+","+getRotation());

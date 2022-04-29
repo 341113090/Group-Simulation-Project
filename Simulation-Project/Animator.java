@@ -87,4 +87,23 @@ public class Animator extends SuperSmoothMover
     public void setAnimations(Animation[] anim) {
         animations = anim;
     }
+    
+    public void flipAnimation(String name){
+        Animation anim = null;
+        for (int i = 0; i < animations.length; i++) {
+            // System.out.println(animations[i].getName().equals(name));
+            if (animations[i].getName().equals(name)) {
+                anim = animations[i];
+                break;
+            }
+        }
+        
+        if (anim == null){
+            return;
+        }
+        GreenfootImage[] images = anim.getNonDirectionalImages();
+        for (int i = 0; i < images.length; i++){
+            images[i].mirrorHorizontally();
+        }
+    }
 }

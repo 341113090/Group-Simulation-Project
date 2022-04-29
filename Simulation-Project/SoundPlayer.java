@@ -3,53 +3,65 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Class that is used to play all sounds in the simulation
  * 
+ * Credits: 
+ * backgroundMusic sound from 1pjiadd2 on https://freesound.org/people/1pjladd2/sounds/155362/
+ * seedDrop sound from darkorochi on https://freesound.org/people/DarkOrochi/sounds/322246/
+ * plantGrowth sound from yxmusic on https://freesound.org/people/YXMusic/sounds/423653/
+ * herbivoreEating sound from herrabilbo on https://freesound.org/people/HerraBilbo/sounds/360685/
+ * carnivoreEating sound from eminyildrim on https://freesound.org/people/EminYILDIRIM/sounds/536078/
+ * nightCycle is a combination of ambience1CricketsAtNight sound by messyacousticapocalypse666 on https://freesound.org/people/MessyAcousticApocalypse666/sounds/594779/ and  * owlHoot sound from breviceps https://freesound.org/people/Breviceps/sounds/465697/
+ *  
  * 
- * 
- * @author Nathan Thian
- * @version March 30, 2022
+ * @author Nathan Thian and Ethan Wong
+ * @version April 28, 2022
  */
 public class SoundPlayer extends Actor
 {
-    private GreenfootSound wind = new GreenfootSound("wind.wav");
-    private GreenfootSound ambience = new GreenfootSound("ambience.wav");
-    private GreenfootSound[] vroomSounds;
-    private int vroomSoundsIndex;
-    private GreenfootSound[] honkSounds;
-    private int honkSoundsIndex;
-    private GreenfootSound[] crushSounds;
-    private int crushSoundsIndex;
-    private GreenfootSound[] explosionSounds;
-    private int explosionSoundsIndex;
+    public static SoundPlayer instance;
+    
+    private GreenfootSound backgroundMusic = new GreenfootSound("backgroundMusic.wav");
+    private GreenfootSound nightCycleSounds = new GreenfootSound("nightCycle.wav");
+    
+    private GreenfootSound[] seedDropSounds;
+    private int seedDropSoundsIndex;
+    private GreenfootSound[] plantGrowthSounds;
+    private int plantGrowthSoundsIndex;
+    private GreenfootSound[] herbivoreEatingSounds;
+    private int herbivoreEatingSoundsIndex;
+    private GreenfootSound[] carnivoreEatingSounds;
+    private int carnivoreEatingSoundsIndex;
     
     /**
      * When the sound player is crated, it makes arrays for all the sounds that may be played at the same time
      */
     public SoundPlayer()
     {
+        instance = this;
+        
         //all index starts at 0 and all arrays have 20 copies of the sound
-        vroomSoundsIndex = 0;
-        vroomSounds = new GreenfootSound[20];
-        for(int i = 0;i < vroomSounds.length; i++)
+        seedDropSoundsIndex = 0;
+        seedDropSounds = new GreenfootSound[20];
+        for(int i = 0;i < seedDropSounds.length; i++)
         {
-            vroomSounds[i] = new GreenfootSound("vroom.wav");
+            seedDropSounds[i] = new GreenfootSound("seedDrop.mp3");
         }
-        honkSoundsIndex = 0;
-        honkSounds = new GreenfootSound[20];
-        for(int i = 0;i < honkSounds.length; i++)
+        plantGrowthSoundsIndex = 0;
+        plantGrowthSounds = new GreenfootSound[20];
+        for(int i = 0;i < plantGrowthSounds.length; i++)
         {
-            honkSounds[i] = new GreenfootSound("honk.wav");
+            plantGrowthSounds[i] = new GreenfootSound("plantGrowth.wav");
         }
-        crushSoundsIndex = 0;
-        crushSounds = new GreenfootSound[20];
-        for(int i = 0;i < crushSounds.length; i++)
+        herbivoreEatingSoundsIndex = 0;
+        herbivoreEatingSounds = new GreenfootSound[20];
+        for(int i = 0;i < herbivoreEatingSounds.length; i++)
         {
-            crushSounds[i] = new GreenfootSound("crush.wav");
+            herbivoreEatingSounds[i] = new GreenfootSound("herbivoreEating.wav");
         }
-        explosionSoundsIndex = 0;
-        explosionSounds = new GreenfootSound[20];
-        for(int i = 0;i < explosionSounds.length; i++)
+        carnivoreEatingSoundsIndex = 0;
+        carnivoreEatingSounds = new GreenfootSound[20];
+        for(int i = 0;i < carnivoreEatingSounds.length; i++)
         {
-            explosionSounds[i] = new GreenfootSound("explosion.wav");
+            carnivoreEatingSounds[i] = new GreenfootSound("carnivoreEating.wav");
         }
     }
     
@@ -63,74 +75,84 @@ public class SoundPlayer extends Actor
     
     
     /**
-     * Will play the ambience sound in an infinite loop
+     * Will play the backgroundMusic sound in an infinite loop
      */
-    public void playAmbience()
+    public void playBackgroundMusic()
     {
-        ambience.playLoop();
+        backgroundMusic.playLoop();
+    }
+    
+    public void stopBackgroundMusic()
+    {
+        backgroundMusic.stop();
     }
     
     /**
-     * Will play the wind sound once
+     * Will play the nightCycleSounds once
      */
-    public void playWind()
+    public void playNightCycleSounds()
     {
-        wind.play();
+        nightCycleSounds.playLoop();
+    }
+    
+    public void stopNightCycleSounds()
+    {
+        nightCycleSounds.stop();
     }
     
     /**
-     * Will play the vroom sound whenever called
+     * Will play the seedDropSounds whenever called
      */
-    public void playVroom()
+    public void playSeedDropSounds()
     {
-        vroomSounds[vroomSoundsIndex].play();
+        seedDropSounds[seedDropSoundsIndex].play();
         //once played once, the index switches to another copy so the sounds can be played simultaneously if needed
-        vroomSoundsIndex++;
-        if(vroomSoundsIndex > vroomSounds.length - 1)
+        seedDropSoundsIndex++;
+        if(seedDropSoundsIndex > seedDropSounds.length - 1)
         {
-            vroomSoundsIndex = 0;
+            seedDropSoundsIndex = 0;
         }
     }
     
     /**
-     * Will play the crush sound whenever called
+     * Will play the herbivoreEatingSounds whenever called
      */
-    public void playCrush()
+    public void playHerbivoreEatingSounds()
     {
-        crushSounds[crushSoundsIndex].play();
+        herbivoreEatingSounds[herbivoreEatingSoundsIndex].play();
         //once played once, the index switches to another copy so the sounds can be played simultaneously if needed
-        crushSoundsIndex++;
-        if(crushSoundsIndex > crushSounds.length - 1)
+        herbivoreEatingSoundsIndex++;
+        if(herbivoreEatingSoundsIndex > herbivoreEatingSounds.length - 1)
         {
-            crushSoundsIndex = 0;
+            herbivoreEatingSoundsIndex = 0;
         }
     }
     
     /**
-     * Will play the explosion sound whenever called
+     * Will play the carnivoreEatingSounds whenever called
      */
-    public void playExplosion()
+    public void playCarnivoreEatingSounds()
     {
-        explosionSounds[explosionSoundsIndex].play();
+        carnivoreEatingSounds[carnivoreEatingSoundsIndex].play();
         //once played once, the index switches to another copy so the sounds can be played simultaneously if needed
-        explosionSoundsIndex++;
-        if(explosionSoundsIndex > explosionSounds.length - 1)
+        carnivoreEatingSoundsIndex++;
+        if(carnivoreEatingSoundsIndex > carnivoreEatingSounds.length - 1)
         {
-            explosionSoundsIndex = 0;
+            carnivoreEatingSoundsIndex = 0;
         }
     }
     
     /**
-     * Will play the honk sound whenever called
+     * Will play the plantGrowthSounds whenever called
      */
-    public void playHonk()
+    public void playPlantGrowthSounds()
     {
-        honkSounds[honkSoundsIndex].play();
+        plantGrowthSounds[plantGrowthSoundsIndex].play();
         //once played once, the index switches to another copy so the sounds can be played simultaneously if needed
-        honkSoundsIndex++;
-        if(honkSoundsIndex > honkSounds.length - 1)
+        plantGrowthSoundsIndex++;
+        if(plantGrowthSoundsIndex > plantGrowthSounds.length - 1)
         {
-            honkSoundsIndex = 0;
+            plantGrowthSoundsIndex = 0;
         }
     }
 }

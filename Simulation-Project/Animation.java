@@ -48,7 +48,8 @@ class Animation {
     public GreenfootImage getImage(int i) {
         return nonDirectionalImages[i];
     }
-
+    
+    // Too lazy to change the name
     public GreenfootImage[] getNonDirectionalImages() {
         return nonDirectionalImages;
     }

@@ -22,14 +22,19 @@ public class Carnivore extends Animal {
         numCarnivores++;
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
-        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Side"));
+        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Left"));
+        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Right"));
         addAnimation(AnimationManager.createAnimation(img, 1 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Down"));
         addAnimation(AnimationManager.createAnimation(img, 2 * 16, 8 * 16, 1, 1, 1, 16, 16, "Idle Up"));
 
-        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Side"));
+        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Left"));
+        addAnimation(AnimationManager.createAnimation(img, 0 * 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Right"));
         addAnimation(AnimationManager.createAnimation(img, 1* 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Down"));
         addAnimation(AnimationManager.createAnimation(img, 2 * 16, 8 * 16, 1, 8, 8, 16, 16, "Walk Up"));
-
+        
+        flipAnimation("Idle Left");
+        flipAnimation("Walk Left");
+        
         setImage(animations[1].getImage(0));
 
         playAnimation("Walk Side");
@@ -193,6 +198,7 @@ public class Carnivore extends Animal {
         }
         if (MainWorld.getDistance(targetHerbivore, this) > attackDistance ||targetHerbivore == null || targetHerbivore.getWorld() == null) {
             state = State.Searching;
+            SoundPlayer.instance.playCarnivoreEatingSounds();
 
         }
         

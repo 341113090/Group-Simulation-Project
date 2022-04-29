@@ -29,17 +29,20 @@ public class Herbivore extends Animal {
         numHerbivores++;
         ///// Setting up animations /////
         GreenfootImage img = new GreenfootImage("spritesheet.png");
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Side"));
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Left"));
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Right"));
         addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
         addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
 
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Side"));
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Left"));        
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Right"));
         addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
         addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
+        
+        flipAnimation("Idle Left");
+        flipAnimation("Walk Left");
 
         setImage(animations[1].getImage(0));
-
-        playAnimation("Walk Side");
         curHealth = maxHealth;
         SetValues();
         
@@ -190,11 +193,14 @@ public class Herbivore extends Animal {
         if (tryToEatPlant > 0) {
             curHealth += tryToEatPlant;
             healthEaten += tryToEatPlant;
+            
+            
             //System.out.println("Health eaten:" + healthEaten);
             if(healthEaten >= (targetPlant.getMaxHealth()/2))
             {
                 this.numSeeds++;
                 healthEaten = 0;
+                SoundPlayer.instance.playHerbivoreEatingSounds();
             }
         }
         if (MainWorld.getDistance(targetPlant, this) > attackDistance || targetPlant == null || targetPlant.getWorld() == null) {
@@ -289,6 +295,7 @@ public class Herbivore extends Animal {
         MainWorld main = (MainWorld)this.getWorld();
         CherrySeed seed = new CherrySeed(1);
         main.addObject(seed, seedX, seedY);
+        
     }
     
     public void animalPoop()
@@ -323,14 +330,17 @@ public class Herbivore extends Animal {
        if(numSeeds > 0)
        {
            specialTimer++;
-           if(specialTimer == 60)
-           {
+           if(specialTimer >= 60){
                specialTimer = 0;
                CherrySeed seed = new CherrySeed(60);
                getWorld().addObject(seed, getX(), getY());
                numSeeds--;
+               SoundPlayer.instance.playSeedDropSounds();
+               
            }
        }
+        
+       
         
        //testing do not return to real
     }

@@ -127,14 +127,14 @@ public class MainWorld extends World {
         for (int i = 0; i < startNumCherry; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);               
-            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(350);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new Cherry(), xx, yy);
         }
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumPoisonIvy; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(350);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
             addObject(new PoisonIvy(), xx, yy);
         }
         // makes startNumHerb number of herbivores on the screen in random locations
@@ -317,6 +317,7 @@ public class MainWorld extends World {
         if (currentTime > dayLength) {
             night = true;
             double transparency = 0;
+            SoundPlayer.instance.playNightCycleSounds();
             if (currentTime - dayLength < nightTransitionTime) {
                 transparency = (double) (currentTime - dayLength) / (double) nightTransitionTime;
             } else if (currentTime-dayLength > nightLength-nightTransitionTime) {
@@ -337,6 +338,7 @@ public class MainWorld extends World {
         } else {
             night = false;
             drawNight(0);
+            SoundPlayer.instance.stopNightCycleSounds();
         }
     }
 
@@ -386,5 +388,12 @@ public class MainWorld extends World {
     public int getCurrentTime()
     {
         return currentTime;
+    }
+    
+    
+    
+    public void stopped () {
+        SoundPlayer.instance.stopBackgroundMusic();
+        SoundPlayer.instance.stopNightCycleSounds();
     }
 }
