@@ -42,10 +42,10 @@ public class MainWorld extends World {
 
     private String[] leftLabels = new String[3];
     private String[] rightLabels = new String[3];
-    private String[] herbivoreLabels = new String[2];
-    private String[] carnivoreLabels = new String[2];
+    private String[] herbivoreLabels = new String[3];
+    private String[] carnivoreLabels = new String[3];
     Font funFont = new Font("Comic Sans MS", false, false, 16);
-    Font boringFont = new Font("Times New Roman", false, false, 14);
+    Font boringFont = new Font("Times New Roman", false, false, 11);
     SuperTextBox bigLeftLabel;
     SuperTextBox bigRightLabel;
     SuperTextBox bigHerbivoreLabel;
@@ -99,8 +99,10 @@ public class MainWorld extends World {
 
         String herbSpeedLabel = new String("Average Speed of Herbivores: " + 0);
         String herbAttackLabel = new String("Average Attack Power of Herbivores: " + 0);
+        String herbSizeLabel = new String("Average Size fo Herbivores: " + 0);
         herbivoreLabels[0] = herbSpeedLabel;
         herbivoreLabels[1] = herbAttackLabel;
+        herbivoreLabels[2] = herbSizeLabel;
         bigHerbivoreLabel = new SuperTextBox(herbivoreLabels, boringFont, this.getWidth()/2, false);
         // values for location of the textbox
         int herbTempY = bigHerbivoreLabel.getImage().getHeight() / 2;
@@ -110,8 +112,10 @@ public class MainWorld extends World {
 
         String carnSpeedLabel = new String("Average Speed of Carnivores: " + 0);
         String carnAttackLabel = new String("Average Attack Power of Carnivores: " + 0);
-        herbivoreLabels[0] = carnSpeedLabel;
-        herbivoreLabels[1] = carnAttackLabel;
+        String carnSizeLabel = new String("Average Size of Carnivores: " + 0);
+        carnivoreLabels[0] = carnSpeedLabel;
+        carnivoreLabels[1] = carnAttackLabel;
+        carnivoreLabels[2] = carnSizeLabel;
         bigCarnivoreLabel = new SuperTextBox(carnivoreLabels, boringFont, this.getWidth()/2, false);
         // values for location of the textbox
         int carnTempY = bigCarnivoreLabel.getImage().getHeight() / 2;
@@ -123,28 +127,28 @@ public class MainWorld extends World {
         for (int i = 0; i < startNumCherry; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);               
-            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(350);
             addObject(new Cherry(), xx, yy);
         }
         // makes startNumCherry number of cherries on the screen in random locations
         for (int i = 0; i < startNumPoisonIvy; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(400);
+            int yy = bigLeftLabel.getImage().getHeight() / 2 + 30 + random.nextInt(350);
             addObject(new PoisonIvy(), xx, yy);
         }
         // makes startNumHerb number of herbivores on the screen in random locations
         for (int i = 0; i < startNumHerb; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = 50 + random.nextInt(400);
+            int yy = 50 + random.nextInt(350);
             addObject(new Herbivore(), xx, yy);
         }
         // makes startNumCarn number of carnivores on the screen in random locations
         for (int i = 0; i < startNumCarn; i++) {
             Random random = new Random();
             int xx = 100 + random.nextInt(600);
-            int yy = 50 + random.nextInt(400);
+            int yy = 50 + random.nextInt(350);
             addObject(new Carnivore(), xx, yy);
         }
         // update the label
@@ -257,18 +261,24 @@ public class MainWorld extends World {
         List<Herbivore> herbivores= (List<Herbivore>)getObjects(Herbivore.class);
         double speed = 0;
         double attack = 0;
+        double size = 0;
         for (int i = 0; i < herbivores.size(); i++){
             //System.out.println(herbivores.get(i).getSpeed());
             speed += herbivores.get(i).getSpeed();
             attack += herbivores.get(i).getAttack();
+            size += herbivores.get(i).getSize();
         }
         speed = speed/herbivores.size();
         attack = attack/herbivores.size();
+        size = size/herbivores.size();
 
         String herbSpeedLabel = new String("Average Speed of Herbivores: " + speed);
         String herbAttackLabel = new String("Average Attack Power of Herbivores: " + attack);
+        String herbSizeLabel = new String("Average Size of Herbivores: " + size);
+        
         herbivoreLabels[0] = herbSpeedLabel;
         herbivoreLabels[1] = herbAttackLabel;
+        herbivoreLabels[2] = herbSizeLabel;
         bigHerbivoreLabel.update();
     }
     
@@ -282,18 +292,23 @@ public class MainWorld extends World {
         List<Carnivore> carnivores= (List<Carnivore>)getObjects(Carnivore.class);
         double speed = 0;
         double attack = 0;
+        double size = 0;
         for (int i = 0; i < carnivores.size(); i++){
             //System.out.println(herbivores.get(i).getSpeed());
             speed += carnivores.get(i).getSpeed();
             attack += carnivores.get(i).getAttack();
+            size += carnivores.get(i).getSize();
         }
         speed = speed/carnivores.size();
         attack = attack/carnivores.size();
+        size = size/carnivores.size();
 
         String carnSpeedLabel = new String("Average Speed of Carnivores: " + speed);
         String carnAttackLabel = new String("Average Attack Power of Carnivores: " + attack);
+        String carnSizeLabel = new String("Average Size of Carnivores: " + size);
         carnivoreLabels[0] = carnSpeedLabel;
         carnivoreLabels[1] = carnAttackLabel;
+        carnivoreLabels[2] = carnSizeLabel;
         bigCarnivoreLabel.update();
     }
 
