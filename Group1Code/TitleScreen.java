@@ -134,8 +134,6 @@ public class TitleScreen extends World
         //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox cherryButtonOne = new SuperTextBox(cherryOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(cherryButtonOne, getWidth()/6, getHeight()*2/5);
-        //first option default to selected
-        cherryButtonOne.setIsSelected(true);
         cherryButtonOne.setValue(cherryOptOne);
         SuperTextBox cherryButtonTwo = new SuperTextBox(cherryOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(cherryButtonTwo, getWidth()/6, getHeight()*3/5);
@@ -143,6 +141,8 @@ public class TitleScreen extends World
         SuperTextBox cherryButtonThree = new SuperTextBox(cherryOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(cherryButtonThree, getWidth()/6, getHeight()*4/5);
         cherryButtonThree.setValue(cherryOptThree);
+        //first option default to selected
+        cherryButtonOne.setIsSelected(true);
         //add each button to the corresponding arraylist
         cherryTextBoxes = new ArrayList<SuperTextBox>();
         cherryTextBoxes.add(cherryButtonOne);
@@ -156,8 +156,6 @@ public class TitleScreen extends World
         //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox poisonIvyButtonOne = new SuperTextBox(poisonIvyOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(poisonIvyButtonOne, getWidth()*2/6, getHeight()*2/5);
-        //first option default to selected
-        poisonIvyButtonOne.setIsSelected(true);
         poisonIvyButtonOne.setValue(poisonIvyOptOne);
         SuperTextBox poisonIvyButtonTwo = new SuperTextBox(poisonIvyOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(poisonIvyButtonTwo, getWidth()*2/6, getHeight()*3/5);
@@ -165,6 +163,8 @@ public class TitleScreen extends World
         SuperTextBox poisonIvyButtonThree = new SuperTextBox(poisonIvyOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(poisonIvyButtonThree, getWidth()*2/6, getHeight()*4/5);
         poisonIvyButtonThree.setValue(poisonIvyOptThree);
+        //first option default to selected
+        poisonIvyButtonOne.setIsSelected(true);
         //add each button to the corresponding arraylist
         poisonIvyTextBoxes = new ArrayList<SuperTextBox>();
         poisonIvyTextBoxes.add(poisonIvyButtonOne);
@@ -178,8 +178,6 @@ public class TitleScreen extends World
         //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox herbButtonOne = new SuperTextBox(herbOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(herbButtonOne, getWidth()*3/6, getHeight()*2/5);
-        //first option default to selected
-        herbButtonOne.setIsSelected(true);
         herbButtonOne.setValue(herbOptOne);
         SuperTextBox herbButtonTwo = new SuperTextBox(herbOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(herbButtonTwo, getWidth()*3/6, getHeight()*3/5);
@@ -187,6 +185,8 @@ public class TitleScreen extends World
         SuperTextBox herbButtonThree = new SuperTextBox(herbOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(herbButtonThree, getWidth()*3/6, getHeight()*4/5);
         herbButtonThree.setValue(herbOptThree);
+        //first option default to selected
+        herbButtonOne.setIsSelected(true);
         //add each button to the corresponding arraylist
         herbTextBoxes = new ArrayList<SuperTextBox>();
         herbTextBoxes.add(herbButtonOne);
@@ -200,8 +200,6 @@ public class TitleScreen extends World
         //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox carnButtonOne = new SuperTextBox(carnOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(carnButtonOne, getWidth()*4/6, getHeight()*2/5);
-        //first option default to selected
-        carnButtonOne.setIsSelected(true);
         carnButtonOne.setValue(carnOptOne);
         SuperTextBox carnButtonTwo = new SuperTextBox(carnOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(carnButtonTwo, getWidth()*4/6, getHeight()*3/5);
@@ -209,6 +207,8 @@ public class TitleScreen extends World
         SuperTextBox carnButtonThree = new SuperTextBox(carnOptThree.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(carnButtonThree, getWidth()*4/6, getHeight()*4/5);
         carnButtonThree.setValue(carnOptThree);
+        //first option default to selected
+        carnButtonOne.setIsSelected(true);
         //add each button to the corresponding arraylist
         carnTextBoxes = new ArrayList<SuperTextBox>();
         carnTextBoxes.add(carnButtonOne);
@@ -222,8 +222,6 @@ public class TitleScreen extends World
         //sets buttons' values corresponding to the values set in the variables created during initialization
         SuperTextBox shelterButtonOne = new SuperTextBox(shelterOptOne.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(shelterButtonOne, getWidth()*5/6, getHeight()*2/6);
-        //first option default to selected
-        shelterButtonOne.setIsSelected(true);
         shelterButtonOne.setValue(shelterOptOne);
         SuperTextBox shelterButtonTwo = new SuperTextBox(shelterOptTwo.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(shelterButtonTwo, getWidth()*5/6, getHeight()*3/6);
@@ -234,6 +232,8 @@ public class TitleScreen extends World
         SuperTextBox shelterButtonFour = new SuperTextBox(shelterOptFour.toString(),Color.WHITE, Color.BLACK, boringFont,true,this.getWidth()/30,1,Color.BLACK); 
         addObject(shelterButtonFour, getWidth()*5/6, getHeight()*5/6);
         shelterButtonFour.setValue(shelterOptFour);
+        //first option default to selected
+        shelterButtonOne.setIsSelected(true);
         //add each button to the corresponding arraylist
         shelterTextBoxes = new ArrayList<SuperTextBox>();
         shelterTextBoxes.add(shelterButtonOne);
