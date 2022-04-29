@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The main world that the sim takes place in.
+ * The main world that the sim takes place in. There are animals and plants in the simulation. 
+ * For animals, there are herbivores and carnivores. Carnivores eat herbivores in order
+ * to gain health. Herbivores eat plants in order to gain health. When something is
+ * getting eaten it loses health. For plants, there are cherries and poison ivy.
+ * Cherries reproduce by seeds and poison ivies reproduce by surviving. When poison
+ * ivies survive until the next day, another poison ivy is spawned in a close proximity.
+ * When herbivores eat half of a cherry's health, it gets a cherry seed, which it will
+ * "poop" out after a short duration. These seeds will remain inactive until the next day
+ * at which point they will start to sprout into cherries at their location. 
  * 
  * World constructor(inital spawns for everything)
  * as well as ui (trackers) on top and bottom of the sim 
  * made by Nathan
  * 
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Nathan,Max, Lu Wai, Ethan)
+ * @version (April 29, 2022)
  */
 public class MainWorld extends World {
     // World Positions;
