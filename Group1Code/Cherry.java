@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Cherries are plants that are eaten by herbivores and reproduce by using seeds
- * PUT INTO HERBIVORE
- * IF FULL HEALTH CAN STILL EAT
- * THEN CHANGE THE PLANT HEALTH EATEN TO GET A SEED
+ * Cherries are plants that are eaten by herbivores and reproduce by using seeds.
  * 
  * @author Max and Nathan
  * @version April 27, 2022

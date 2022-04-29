@@ -91,6 +91,10 @@ public abstract class Plant extends Animator {
         }
     }
     
+    /**
+     * This method is used to override the eatPlant() without parameters when 
+     * the Herbivore is attacking it. 
+     */
     public double eatPlant(double attack) {
         isGettingEaten = true;
         double actualTick = attack * toughness;
