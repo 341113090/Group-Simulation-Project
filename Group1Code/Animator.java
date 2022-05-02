@@ -1,14 +1,19 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Animation system integrating Mr. Cohens Animation and AnimationManager
- * classes
+ * An animation system integrating Mr.Cohens Animation and AnimationManager classes
+ * 
+ * <br> Animator acts as a superclass which handles any and all animations
  * 
  * @author (Lu-Wai)
  * @version (a version number or a date)
  */
-public class Animator extends SuperSmoothMover
+public abstract class Animator extends SuperSmoothMover
 {
+    
+    /**
+     * The frames per second for all animations
+     */
     protected static int fps = 6;
 
     protected Animation[] animations;
@@ -18,13 +23,14 @@ public class Animator extends SuperSmoothMover
     private int timer;
 
     /**
-     * Constructor for objects of class Animator
+     * Constructor for objects of class Animator, does nothing lmao
      */
     public Animator() {
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * The act method of animator plays the animations when the boolean <i>playing<i> is true
+     * <br> It loops all the frames of the animation
      * 
      * @param y a sample parameter for a method
      * @return the sum of x and y
@@ -49,7 +55,11 @@ public class Animator extends SuperSmoothMover
         }
 
     }
-
+    
+    /**
+     * Takes a string for the name of the animation
+     * <br> If an animation with a matching name is found, that animation is set to play
+     */
     public void playAnimation(String name) {
         playing = true;
         for (int i = 0; i < animations.length; i++) {
@@ -61,6 +71,10 @@ public class Animator extends SuperSmoothMover
         }
     }
 
+    /**
+     * Takes a int for the index of the animation
+     * <br> If an animation at that index is found, that animation is set to play
+     */
     public void playAnimation(int index) {
         playing = true;
         if (index >= 0 && index < animations.length) {
@@ -68,6 +82,9 @@ public class Animator extends SuperSmoothMover
         }
     }
 
+    /**
+     * Takes an Animation object and adds it into the current animations
+     */
     public void addAnimation(Animation anim) {
         if (animations != null) {
             //System.out.println("Added new");
@@ -83,11 +100,21 @@ public class Animator extends SuperSmoothMover
             animations[0] = anim;
         }
     }
-
+    
+    
+    /**
+     * Sets the list of all the animations
+     */
     public void setAnimations(Animation[] anim) {
         animations = anim;
     }
     
+    
+    /**
+     * Takes a string for the name of the animation
+     * <br> If an animation with a matching name is found, the animations will have all its frames flipped.
+     * <br> Used to flip animations for Left, Right versions
+     */
     public void flipAnimation(String name){
         Animation anim = null;
         for (int i = 0; i < animations.length; i++) {

@@ -2,9 +2,10 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Herbivore here.
+ * Herbivore Class
+ * Contains the behavior for most states, the herbivores animations, and the mechanisms for dropping seeds
  * 
- * @author (your name)
+ * @author (Lu-Wai and Ethan)
  * @version (a version number or a date)
  */
 public class Herbivore extends Animal {
@@ -22,25 +23,13 @@ public class Herbivore extends Animal {
     private double healthEaten = 0;
     private static int numHerbivores = 0;
     ////////// CONSTRUCTOR /////////
-
+    
+    /** Constructor of the herbivore*/
     public Herbivore() {
         super();
         
         numHerbivores++;
-        ///// Setting up animations /////
-        GreenfootImage img = new GreenfootImage("spritesheet.png");
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Left"));
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Right"));
-        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
-        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
-
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Left"));        
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Right"));
-        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
-        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
-        
-        flipAnimation("Idle Left");
-        flipAnimation("Walk Left");
+        SetAnimations();
 
         setImage(animations[1].getImage(0));
         curHealth = maxHealth;
@@ -48,27 +37,39 @@ public class Herbivore extends Animal {
         
     }
     
+    /** Constructor of the herbivore with parameters to set the speed, attack, size, and altruism */
     public Herbivore(double _speed, double _attack, double _size, double _altruism) {
         super(_speed, _attack, _size, _altruism);
         
         numHerbivores++;
-        ///// Setting up animations /////
-        GreenfootImage img = new GreenfootImage("spritesheet.png");
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Side"));
-        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
-        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
-
-        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Side"));
-        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
-        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
-
+        SetAnimations();
         setImage(animations[1].getImage(0));
 
         playAnimation("Walk Side");
         
     }
     
-    // Ok so i did not know that java does not have polymorphism
+    /** Sets all animations */
+    public void SetAnimations(){
+        ///// Setting up animations /////
+        GreenfootImage img = new GreenfootImage("spritesheet.png");
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Right"));
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Left"));
+        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Down"));
+        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 0 * 16, 1, 1, 1, 16, 16, "Idle Up"));
+
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Right"));
+        addAnimation(AnimationManager.createAnimation(img, 9 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Left"));
+        addAnimation(AnimationManager.createAnimation(img, 10 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Down"));
+        addAnimation(AnimationManager.createAnimation(img, 11 * 16, 4 * 16, 1, 4, 4, 16, 16, "Walk Up"));
+        
+        // Flip the left animations
+        flipAnimation("Idle Left");
+        flipAnimation("Walk Left");
+        
+    }
+    
+    // refer to animal
     public void SetValues(){
         speed = 2; // Animal movement speed, increases more health decay when moving
         healthDecay = 0.3; // How fast animals health goes down, hunger

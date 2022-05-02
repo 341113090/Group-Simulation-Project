@@ -64,7 +64,7 @@ public class Carnivore extends Animal {
         state = State.Searching;
     }
     
-    // Ok so i did not know that java does not have polymorphism
+    // refer to animal
     public void SetValues(){
         speed = 3; // Animal movement speed, increases more health decay when moving
         healthDecay = 0.3; // How fast animals health goes down, hunger
