@@ -78,24 +78,38 @@ public abstract class Animal extends Animator {
     
     /** A reference to the animals health bar*/
     SuperStatBar hpBar;
+    
+    /** Animal Constructor which takes no values*/
     public Animal(){
         state = State.Searching;
+        
+        // Set current health
         curHealth = maxHealth;
+        
+        // init hp bar
         hpBar = new SuperStatBar(maxHealth, (int)curHealth, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         
+        // Set basic animation
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 1000, 1000, 1, 1, 1, 16, 16, "Hidden"));
     }
     
+    /** Animal Contructor taking 4 doubles for base animal values*/
     public Animal(double _speed, double _attack, double _size, double _altruism){
         SetValues();
         state = State.Searching;
+        
+        // Set current health
         curHealth = maxHealth;
+        
+        // init hp bar
         hpBar = new SuperStatBar(maxHealth, (int)curHealth, this, 24, 4, 10, Color.GREEN, Color.RED, false, Color.BLACK, 1);
         
+        // Set basic animation
         GreenfootImage img = new GreenfootImage("spritesheet.png");
         addAnimation(AnimationManager.createAnimation(img, 1000, 1000, 1, 1, 1, 16, 16, "Hidden"));
         
+        // Generate values
         speed = _speed;
         healthDecay = _speed*speedDecayModifier;
         attack = _attack;
@@ -106,9 +120,6 @@ public abstract class Animal extends Animator {
         maxHealth = (int)(size*sizeHealthModifier);
         
         curHealth = maxHealth;
-        
-        
-        //System.out.println(speed);
     }
     /**
      * Allows an animal to set its values to anything before values are adjusted from parents

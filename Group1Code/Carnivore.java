@@ -17,7 +17,7 @@ public class Carnivore extends Animal {
 
 
     ////////// CONSTRUCTOR //////////
- 
+     /** Carnivore Constructor which takes no values*/
     public Carnivore() {
         numCarnivores++;
         ///// Setting up animations /////
@@ -43,6 +43,7 @@ public class Carnivore extends Animal {
         SetValues();
     }
     
+    /** Carnivore Contructor taking 4 doubles for base animal values*/
     public Carnivore(double _speed, double _attack, double _size, double _altruism) {
         
         super(_speed, _attack, _size, _altruism);
@@ -99,6 +100,7 @@ public class Carnivore extends Animal {
         
     }
     
+    /** Updating hp bar when added to world*/
     public void addedToWorld(World w) {
         w.addObject(hpBar, getX(), getY());
         hpBar.update((int)curHealth);
@@ -254,7 +256,7 @@ public class Carnivore extends Animal {
 
     }
 
-    ////////// OLD //////////
+    ////////// OLD AND UNUSED //////////
 
     /**
      * Private method, called by act(), that moves toward the target,
